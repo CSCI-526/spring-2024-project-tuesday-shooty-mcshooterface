@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletColor: 1
+  enemyCollection: {fileID: 11400000, guid: eab7e3363ac714a458ff4bfb5ac26580, type: 2}
   _speed: 2
   _knockbackForce: 200
 --- !u!114 &5188986845866770064

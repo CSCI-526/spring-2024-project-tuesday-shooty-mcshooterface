@@ -1,10 +1,14 @@
+using System;
 using Scripts.Game;
 using System.Collections;
 using System.Collections.Generic;
+using ScriptableObjectArchitecture;
 using UnityEngine;
 
 public class SwarmEnemyParent : MonoBehaviour
 {
+    [SerializeField] private GameObjectCollection enemyCollection;
+
     [Header("Swarm Enemy")]
     [SerializeField] int numSwarmers;
     [SerializeField] BulletColor _bulletColor;
@@ -19,6 +23,13 @@ public class SwarmEnemyParent : MonoBehaviour
     {
         m_list = new List<SwarmEnemy>();
         SpawnSwarm();
+    }
+
+    private void Start() {
+        enemyCollection.Add(gameObject);
+    }
+    private void OnDestroy() {
+        enemyCollection.Remove(gameObject);
     }
 
     void SpawnSwarm()

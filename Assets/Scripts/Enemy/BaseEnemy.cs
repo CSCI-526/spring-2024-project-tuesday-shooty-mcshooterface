@@ -15,7 +15,7 @@ public class BaseEnemy : MonoBehaviour
     protected Rigidbody _rigidbody;
     protected CapsuleCollider _collider;
 
-    private void Start()
+    protected virtual void Start()
     {
         _healthComponent = GetComponent<HealthComponent>();
         _rigidbody = GetComponent<Rigidbody>();
