@@ -39,7 +39,9 @@ namespace Scripts.Player.Gun
                 shootingSystem.Play();
 
                 Vector3 direction = GetDirection();
-                Transform bulletSpawnTransform = PlayerCharacterController.Instance.BulletSpawnTransform;
+                Transform bulletSpawnTransform = PlayerCharacterController
+                    .Instance
+                    .BulletSpawnTransform;
                 if (
                     Physics.Raycast(
                         bulletSpawnTransform.position,
@@ -74,6 +76,9 @@ namespace Scripts.Player.Gun
 
         private Vector3 GetDirection()
         {
+            Transform bulletSpawnTransform = PlayerCharacterController
+                .Instance
+                .BulletSpawnTransform;
             Vector3 direction = bulletSpawnTransform.transform.forward;
             if (bulletSpreadEnabled)
             {
