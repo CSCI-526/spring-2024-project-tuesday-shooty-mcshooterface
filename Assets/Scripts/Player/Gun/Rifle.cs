@@ -19,9 +19,6 @@ namespace Scripts.Player.Gun
         private ParticleSystem shootingSystem;
 
         [SerializeField]
-        private Transform bulletSpawnPoint;
-
-        [SerializeField]
         private ParticleSystem impactParticleSystem;
 
         [SerializeField]
@@ -42,9 +39,10 @@ namespace Scripts.Player.Gun
                 shootingSystem.Play();
 
                 Vector3 direction = GetDirection();
+                Transform bulletSpawnTransform = PlayerCharacterController.Instance.BulletSpawnTransform;
                 if (
                     Physics.Raycast(
-                        bulletSpawnPoint.position,
+                        bulletSpawnTransform.position,
                         direction,
                         out RaycastHit hit,
                         float.MaxValue,
@@ -62,7 +60,7 @@ namespace Scripts.Player.Gun
 
                     TrailRenderer trail = Instantiate(
                         bulletTrail,
-                        bulletSpawnPoint.position,
+                        bulletSpawnTransform.position,
                         Quaternion.identity
                     );
                     StartCoroutine(SpawnTrail(trail, hit));
@@ -76,7 +74,7 @@ namespace Scripts.Player.Gun
 
         private Vector3 GetDirection()
         {
-            Vector3 direction = bulletSpawnPoint.transform.forward;
+            Vector3 direction = bulletSpawnTransform.transform.forward;
             if (bulletSpreadEnabled)
             {
                 direction += new Vector3(

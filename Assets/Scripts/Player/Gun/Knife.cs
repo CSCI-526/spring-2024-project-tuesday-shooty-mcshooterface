@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Scripts.Game;
 using Scripts.Player.Gun;
+using Scripts.Player;
 
 public class Knife : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject KnifePrefab;
-    public Transform SpwanPoint;
     public float KnifeSpeed = 30;
     public float cd = 1.0f; 
 
@@ -30,13 +30,13 @@ public class Knife : MonoBehaviour
 
     public void ThrowKnife() 
     {
-
+        Transform spawnTransform = PlayerCharacterController.Instance.BulletSpawnTransform;
         if (Time.time >= _nextFireTime) 
         {
             _nextFireTime = Time.time + cd;
 
-            GameObject kf = Instantiate(KnifePrefab, SpwanPoint.position, SpwanPoint.rotation) as GameObject;
-            kf.GetComponent<Rigidbody>().velocity = SpwanPoint.forward * KnifeSpeed;
+            GameObject kf = Instantiate(KnifePrefab, spawnTransform.position, spawnTransform.rotation) as GameObject;
+            kf.GetComponent<Rigidbody>().velocity = spawnTransform.forward * KnifeSpeed;
 
             Destroy(kf, 2.0f);
 
