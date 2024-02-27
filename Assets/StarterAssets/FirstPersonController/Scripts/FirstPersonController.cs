@@ -20,6 +20,8 @@ namespace StarterAssets
 		public float RotationSpeed = 1.0f;
 		[Tooltip("Acceleration and deceleration")]
 		public float SpeedChangeRate = 10.0f;
+		[Tooltip("Rotation speed multiplier for WebGL")]
+		public float WebGLRotationMult = 0.1f;
 
 		[Space(10)]
 		[Tooltip("The height the player can jump")]
@@ -136,7 +138,10 @@ namespace StarterAssets
 			{
 				//Don't multiply mouse input by Time.deltaTime
 				float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
-				
+				float effectiveRotationSpeed = RotationSpeed;
+#if WEBGL
+				effectiveRotationSpeed *= WebGLRotationMult;
+#endif
 				_cinemachineTargetPitch += _input.look.y * RotationSpeed * deltaTimeMultiplier;
 				_rotationVelocity = _input.look.x * RotationSpeed * deltaTimeMultiplier;
 
