@@ -24,7 +24,7 @@ public class SwarmEnemy : BaseEnemy
 
     void Update()
     {
-        GameObject player = GameManager.Instance.PlayerReference;
+        GameObject player = GameManager.Instance.PlayerReference.gameObject;
         if (player == null)
         {
             return;

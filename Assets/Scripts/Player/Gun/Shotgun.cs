@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
+using Scripts.Game;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Shotgun : MonoBehaviour, IGun
 {

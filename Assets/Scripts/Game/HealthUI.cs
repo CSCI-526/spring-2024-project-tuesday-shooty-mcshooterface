@@ -1,26 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 
-public class HealthUI : MonoBehaviour
+namespace Scripts.Game
 {
-    private HealthComponent _healthComponent;
-    public HealthComponent HealthComponent => (_healthComponent ??= GetComponent<HealthComponent>());
-
-    public TextMeshProUGUI healthText;
-
-    // Start is called before the first frame update
-    void Start()
+    public class HealthUI : MonoBehaviour
     {
-        _healthComponent = GetComponent<HealthComponent>();
-        _healthComponent.OnHealthChanged += UpdateHealthUI;
-        UpdateHealthUI(HealthComponent.CurrentHealth);
-    }
+        private HealthComponent _healthComponent;
+        public HealthComponent HealthComponent => _healthComponent;
 
-    void UpdateHealthUI(int newHealth)
-    {
-        healthText.text = "Health: " + newHealth;
+        public TextMeshProUGUI healthText;
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            _healthComponent = GameManager.Instance.PlayerReference.GetComponent<HealthComponent>();
+            _healthComponent.OnHealthChanged += UpdateHealthUI;
+            UpdateHealthUI(HealthComponent.CurrentHealth);
+        }
+
+        void UpdateHealthUI(int newHealth)
+        {
+            healthText.text = "Health: " + newHealth;
+        }
     }
 }

@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using Scripts.Game;
+using Scripts.Player;
 using UnityEngine;
 
 public class OgreEnemy : BaseEnemy
@@ -9,23 +9,50 @@ public class OgreEnemy : BaseEnemy
     [SerializeField]
     private float _speed = 1f;
 
+    [SerializeField]
+    private float _knockbackForce = 100f;
+
+    private float _knockbackStunDuration = 1.5f;
+
+    private bool _isStunned = false;
+
     void Update()
     {
-        GameObject player = GameManager.Instance.PlayerReference;
+        PlayerCharacterController player = GameManager.Instance.PlayerReference;
         if (player == null)
         {
             return;
         }
 
         Vector3 toVector = player.transform.position - transform.position;
-        if (toVector.sqrMagnitude > 1 + _collider.radius * 2)
+
+        if (!_isStunned)
         {
-            RigidbodyComponent.velocity = toVector.normalized * _speed;
+            if (toVector.sqrMagnitude > 1 + _collider.radius * 2)
+            {
+                RigidbodyComponent.velocity = toVector.normalized * _speed;
+            }
+            else
+            {
+                Attack(player.gameObject);
+            }
         }
-        else
-        {
-            RigidbodyComponent.velocity = Vector3.zero;
-        }
+    }
+
+    private void Attack(GameObject entity)
+    {
+        Vector3 toVector = entity.transform.position - transform.position;
+        entity.GetComponent<HealthComponent>().TakeDamage(1);
+        RigidbodyComponent.velocity = Vector3.zero;
+        RigidbodyComponent.AddForce((-toVector.normalized + Vector3.up).normalized * _knockbackForce);
+        StartCoroutine(Stun());
+    }
+
+    private IEnumerator Stun()
+    {
+        _isStunned = true;
+        yield return new WaitForSeconds(1.5f);
+        _isStunned = false;
     }
 
     void OnCollisionEnter(Collision collision)

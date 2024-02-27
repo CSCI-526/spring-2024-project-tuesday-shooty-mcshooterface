@@ -1,33 +1,35 @@
 using UnityEngine;
 
-public class HealthComponent : MonoBehaviour
+namespace Scripts.Game
 {
-    public delegate void HealthEvent(int newHealth);
-
-    public HealthEvent OnHealthChanged;
-    public HealthEvent OnDeath;
-
-    public int CurrentHealth => _currentHealth;
-
-    [SerializeField]
-    private int _startingHealth = 5;
-
-    private int _currentHealth;
-
-    void Start()
+    public class HealthComponent : MonoBehaviour
     {
-        _currentHealth = _startingHealth;
-    }
+        public delegate void HealthEvent(int newHealth);
 
-    public void TakeDamage(int delta)
-    {
-        _currentHealth -= delta;
-        OnHealthChanged?.Invoke(_currentHealth);
+        public HealthEvent OnHealthChanged;
+        public HealthEvent OnDeath;
 
-        if (_currentHealth + delta > 0 && _currentHealth <= 0)
+        public int CurrentHealth => _currentHealth;
+
+        [SerializeField]
+        private int _startingHealth = 5;
+
+        private int _currentHealth;
+
+        void Awake()
         {
-            OnDeath?.Invoke(_currentHealth);
+            _currentHealth = _startingHealth;
+        }
+
+        public void TakeDamage(int delta)
+        {
+            _currentHealth -= delta;
+            OnHealthChanged?.Invoke(_currentHealth);
+
+            if (_currentHealth + delta > 0 && _currentHealth <= 0)
+            {
+                OnDeath?.Invoke(_currentHealth);
+            }
         }
     }
-
 }

@@ -33,7 +33,7 @@ public class SwarmEnemyParent : MonoBehaviour
 
     public void RemoveSwarmEnemy(SwarmEnemy swarm)
     {
-        m_list.Remove(swarm)
+        m_list.Remove(swarm);
         if (m_list.Count <= 0)
         {
             StartCoroutine(SelfDestruct());
