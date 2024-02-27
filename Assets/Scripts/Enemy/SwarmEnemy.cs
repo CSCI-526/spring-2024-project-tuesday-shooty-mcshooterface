@@ -1,6 +1,7 @@
 using Scripts.Game;
 using System.Collections;
 using System.Collections.Generic;
+using Scripts.Player;
 using UnityEngine;
 
 public class SwarmEnemy : BaseEnemy
@@ -22,9 +23,8 @@ public class SwarmEnemy : BaseEnemy
         _parent = parent;
     }
 
-    void Update()
-    {
-        GameObject player = GameManager.Instance.PlayerReference.gameObject;
+    void Update() {
+        var player = PlayerCharacterController.Instance;
         if (player == null)
         {
             return;

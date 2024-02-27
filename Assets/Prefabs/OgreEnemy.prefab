@@ -151,6 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletColor: 1
   _speed: 2
+  _knockbackForce: 200
 --- !u!114 &5188986845866770064
 MonoBehaviour:
   m_ObjectHideFlags: 0

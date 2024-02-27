@@ -1,3 +1,4 @@
+using Scripts.Player;
 using TMPro;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace Scripts.Game
         // Start is called before the first frame update
         void Start()
         {
-            _healthComponent = GameManager.Instance.PlayerReference.GetComponent<HealthComponent>();
+            _healthComponent = PlayerCharacterController.Instance.GetComponent<HealthComponent>();
             _healthComponent.OnHealthChanged += UpdateHealthUI;
             UpdateHealthUI(HealthComponent.CurrentHealth);
         }

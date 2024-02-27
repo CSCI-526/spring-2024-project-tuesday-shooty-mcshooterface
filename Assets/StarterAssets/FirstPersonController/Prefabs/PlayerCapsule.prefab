@@ -48,7 +48,7 @@ MonoBehaviour:
   bulletSpreadEnabled: 0
   bulletSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
   shootingSystem: {fileID: 198234346748616026, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
-  bulletSpawnPoint: {fileID: 4135013735270702856}
+  bulletSpawnPoint: {fileID: 0}
   impactParticleSystem: {fileID: 0}
   bulletTrail: {fileID: 2760837023063302622, guid: 1bc22e020dea1a84ab0aed8adfa42076, type: 3}
   shootDelay: 0.1
@@ -107,7 +107,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 129
   bulletSpawnPoint: {fileID: 0}
-  bulletTrail: {fileID: 2760837023063302622, guid: 1bc22e020dea1a84ab0aed8adfa42076, type: 3}
+  bulletTrail: {fileID: 2760837023063302622, guid: d2e31953b6540de4f8028673acebcad7, type: 3}
 --- !u!1 &4135013735270702863
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,6 +260,8 @@ GameObject:
   - component: {fileID: 1978471637655604388}
   - component: {fileID: 5420857361349278248}
   - component: {fileID: 8616685848737228376}
+  - component: {fileID: 7836273030983870676}
+  - component: {fileID: 5835747266641425234}
   m_Layer: 6
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -285,6 +287,7 @@ Transform:
   - {fileID: 1405183585127572872}
   - {fileID: 4135013735270702856}
   - {fileID: 5393215578589016641}
+  - {fileID: 2662158776821295907}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &8616685848737228382
@@ -380,7 +383,8 @@ MonoBehaviour:
   cursorInputForLook: 1
   rifle: {fileID: 9151111376233833974}
   shotgun: {fileID: 5835940766494879018}
-  knife: {fileID: 0}
+  grenadeLauncher: {fileID: 1741924214705271100}
+  knife: {fileID: 3149948947449974818}
 --- !u!114 &8616685848737228376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,6 +483,79 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7836273030983870676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cbc64af75fe5545922a202bf2c7140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startingHealth: 5
+--- !u!114 &5835747266641425234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2290cb0cd367d9478fede887cd2ae81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &9006084774285667290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2662158776821295907}
+  - component: {fileID: 1741924214705271100}
+  m_Layer: 6
+  m_Name: GrenadeLauncher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2662158776821295907
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9006084774285667290}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8997996947095583982}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1741924214705271100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9006084774285667290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b17d500e98dc2461da2d4f57f8354494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grenadeSpawnPoint: {fileID: 0}
+  shootDelay: 0.1
+  grenade: {fileID: 902214275315206496, guid: aaedb430039294ebf877a1a946f287dd, type: 3}
+  range: 30
 --- !u!1 &9198829875465693465
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,7 +600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3795578fcbd70fc40ad605db285f70d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KnifePrefab: {fileID: 0}
+  KnifePrefab: {fileID: 3579973076615327078, guid: bbc4b5b3b76a779489cd49e88474e490, type: 3}
   SpwanPoint: {fileID: 0}
   KnifeSpeed: 30
   cd: 1

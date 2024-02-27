@@ -16,9 +16,8 @@ public class OgreEnemy : BaseEnemy
 
     private bool _isStunned = false;
 
-    void Update()
-    {
-        PlayerCharacterController player = GameManager.Instance.PlayerReference;
+    void Update() {
+        var player = PlayerCharacterController.Instance;
         if (player == null)
         {
             return;

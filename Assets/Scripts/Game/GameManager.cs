@@ -1,4 +1,5 @@
 using Scripts.Player;
+using StarterAssets;
 using UnityEngine;
 
 namespace Scripts.Game
@@ -13,10 +14,8 @@ namespace Scripts.Game
         /// </summary>
         public static GameManager Instance { get; private set; }
 
-        public PlayerCharacterController PlayerReference => _playerReference;
         public BulletQueueManager BulletQueueManager => _bulletQueueManager;
 
-        [SerializeField] private PlayerCharacterController _playerReference;
         [SerializeField] private BulletQueueManager _bulletQueueManager;
 
         void Awake()
