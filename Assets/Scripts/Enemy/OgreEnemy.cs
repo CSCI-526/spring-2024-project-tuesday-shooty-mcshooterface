@@ -63,7 +63,7 @@ public class OgreEnemy : BaseEnemy
     private IEnumerator Stun()
     {
         _isStunned = true;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(_knockbackStunDuration);
         _isStunned = false;
     }
 
