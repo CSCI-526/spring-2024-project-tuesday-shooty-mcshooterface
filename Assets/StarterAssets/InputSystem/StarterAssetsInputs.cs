@@ -25,6 +25,7 @@ namespace StarterAssets
 		[Header("Shooting")] 
 		public Rifle rifle;
 		public Shotgun shotgun;
+		public Launcher grenadeLauncher;
 		public Knife knife;
 
 		public void OnMove(InputValue value)
@@ -59,6 +60,9 @@ namespace StarterAssets
 					break;
 				case BulletColor.Green:
 					if (shotgun.TryShoot()) GameManager.Instance.BulletQueueManager.LoseAmmo();
+					break;
+				case BulletColor.Red:
+					if (grenadeLauncher.TryShoot()) GameManager.Instance.BulletQueueManager.LoseAmmo();
 					break;
 				case BulletColor.Empty:
 					knife.ThrowKnife();
