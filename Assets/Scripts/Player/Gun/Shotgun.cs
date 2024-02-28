@@ -79,7 +79,11 @@ public class Shotgun : MonoBehaviour, IGun
         {
             HealthComponent hp = hit.transform.gameObject.GetComponent<HealthComponent>();
             if (hp != null)
-                hp.TakeDamage(bulletDamage);
+            {
+                DamageInfo d = new DamageInfo(bulletDamage, BulletColor.Green);
+                hp.TakeDamage(d);
+            }
+                
         }
         TrailRenderer trail = Instantiate(bulletTrail, transform.position, Quaternion.identity);
         StartCoroutine(SpawnTrail(trail, hit));

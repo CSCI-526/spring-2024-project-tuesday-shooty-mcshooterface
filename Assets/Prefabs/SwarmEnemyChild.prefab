@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7039292707930865630}
   - component: {fileID: 6764775051295622976}
   - component: {fileID: 4073629453022146855}
-  - component: {fileID: 6501647892842757839}
   - component: {fileID: 5260041164143068832}
+  - component: {fileID: 1610030231150379246}
   m_Layer: 7
   m_Name: SwarmEnemyChild
   m_TagString: Untagged
@@ -137,19 +137,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &6501647892842757839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1827521457419956481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1cbc64af75fe5545922a202bf2c7140, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _startingHealth: 1
 --- !u!114 &5260041164143068832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,5 +149,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e68f5ebe7d2908242b5d82246f6db2c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletColor: 0
-  _speed: 3.5
+  _enemyType: 1
+  _enemyStatTunable: {fileID: 11400000, guid: 2bd2ddad11caf024181ef76e02fec1cc, type: 2}
+  _superEffectiveTunable: {fileID: 11400000, guid: f8358c299f5b71e4ead746982db47860, type: 2}
+--- !u!114 &1610030231150379246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827521457419956481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e4f47d52c56864690b26062b804621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

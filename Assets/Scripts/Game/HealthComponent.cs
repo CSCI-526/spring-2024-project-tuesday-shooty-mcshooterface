@@ -11,25 +11,26 @@ namespace Scripts.Game
 
         public int CurrentHealth => _currentHealth;
 
-        [SerializeField]
-        private int _startingHealth = 5;
+        protected int _currentHealth;
 
-        private int _currentHealth;
-
-        void Awake()
+        public virtual void TakeDamage(DamageInfo damage)
         {
-            _currentHealth = _startingHealth;
-        }
-
-        public void TakeDamage(int delta)
-        {
-            _currentHealth -= delta;
+            _currentHealth -= damage.damage;
             OnHealthChanged?.Invoke(_currentHealth);
 
-            if (_currentHealth + delta > 0 && _currentHealth <= 0)
+            if (_currentHealth + damage.damage > 0 && _currentHealth <= 0)
             {
                 OnDeath?.Invoke(_currentHealth);
             }
         }
+    }
+
+    public class DamageInfo
+    {
+        public int damage;
+        public BulletColor color = BulletColor.Empty;
+    
+        public DamageInfo(int damage) { this.damage = damage; }
+        public DamageInfo(int damage, BulletColor color) { this.damage = damage; this.color = color; }
     }
 }

@@ -5,22 +5,28 @@ using UnityEngine;
 
 public class BaseEnemy : MonoBehaviour
 {
-    public HealthComponent HealthComponent => _healthComponent ??= GetComponent<HealthComponent>();
-    public Rigidbody RigidbodyComponent => _rigidbody ??= GetComponent<Rigidbody>();
-    public CapsuleCollider ColliderComponent => _collider ??= GetComponent<CapsuleCollider>();
+    [SerializeField] EnemyType _enemyType;
+    [SerializeField] protected EnemyStatObject _enemyStatTunable;
+    [SerializeField] protected SuperEffectiveObject _superEffectiveTunable;
 
-    public BulletColor _bulletColor;
-
-    protected HealthComponent _healthComponent;
+    protected EnemyHealthComponent _healthComponent;
     protected Rigidbody _rigidbody;
     protected CapsuleCollider _collider;
 
+    public EnemyType EnemyType => _enemyType;
+    public EnemyHealthComponent HealthComponent => _healthComponent;
+    public Rigidbody RigidbodyComponent => _rigidbody;
+    public CapsuleCollider ColliderComponent => _collider ??= GetComponent<CapsuleCollider>();
+    public EnemyStatObject EnemyStatTunable => _enemyStatTunable;
+    public SuperEffectiveObject SuperEffectiveTunable => _superEffectiveTunable;
+
     protected virtual void Start()
     {
-        _healthComponent = GetComponent<HealthComponent>();
+        _healthComponent = GetComponent<EnemyHealthComponent>();
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<CapsuleCollider>();
 
+        _healthComponent.Construct(this);
         _healthComponent.OnDeath += OnDeath;
     }
 
@@ -32,7 +38,14 @@ public class BaseEnemy : MonoBehaviour
     protected virtual IEnumerator SelfDestruct()
     {
         yield return new WaitForEndOfFrame();
-        GameManager.Instance.BulletQueueManager.Reload(_bulletColor);
+        GameManager.Instance.BulletQueueManager.Reload(_enemyStatTunable.GetDropColor(_enemyType));
         Destroy(gameObject);
     }
+}
+
+public enum EnemyType
+{
+    Ogre,
+    Swarm,
+    Flying
 }

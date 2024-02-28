@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 626635287375087505}
   - component: {fileID: 3722238125847285158}
   - component: {fileID: 8212575628898584186}
-  - component: {fileID: 5188986845866770064}
+  - component: {fileID: 1545507938404276952}
   m_Layer: 7
   m_Name: OgreEnemy
   m_TagString: Untagged
@@ -149,11 +149,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c95e49e8071aff45a2de550d4f320dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletColor: 1
+  _enemyType: 0
+  _enemyStatTunable: {fileID: 11400000, guid: 2bd2ddad11caf024181ef76e02fec1cc, type: 2}
+  _superEffectiveTunable: {fileID: 11400000, guid: f8358c299f5b71e4ead746982db47860, type: 2}
   enemyCollection: {fileID: 11400000, guid: eab7e3363ac714a458ff4bfb5ac26580, type: 2}
-  _speed: 2
   _knockbackForce: 200
---- !u!114 &5188986845866770064
+  _knockbackStunDuration: 1.5
+--- !u!114 &1545507938404276952
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,7 +164,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5186863481464667598}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1cbc64af75fe5545922a202bf2c7140, type: 3}
+  m_Script: {fileID: 11500000, guid: 74e4f47d52c56864690b26062b804621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingHealth: 5

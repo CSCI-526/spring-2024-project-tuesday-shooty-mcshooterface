@@ -6,9 +6,6 @@ using UnityEngine;
 
 public class SwarmEnemy : BaseEnemy
 {
-    [Header("SwarmEnemy Variables")]
-    [SerializeField] private float _speed = 1f;
-
     SwarmEnemyParent _parent;
 
     protected override IEnumerator SelfDestruct()
@@ -33,7 +30,7 @@ public class SwarmEnemy : BaseEnemy
         Vector3 toVector = player.transform.position - transform.position;
         if (toVector.sqrMagnitude > 1.5)
         {
-            RigidbodyComponent.velocity = toVector.normalized * _speed;
+            RigidbodyComponent.velocity = toVector.normalized * _enemyStatTunable.SwarmSpeed;
         }
         else
         {

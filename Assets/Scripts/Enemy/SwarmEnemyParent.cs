@@ -9,11 +9,8 @@ public class SwarmEnemyParent : MonoBehaviour
 {
     [SerializeField] private GameObjectCollection enemyCollection;
 
-    [Header("Swarm Enemy")]
-    [SerializeField] int numSwarmers;
-    [SerializeField] BulletColor _bulletColor;
-
     [Header("References")]
+    [SerializeField] EnemyStatObject _enemyStatTunable;
     [SerializeField] SwarmEnemy swarmEnemy;
 
     [Header("Debug")]
@@ -34,7 +31,7 @@ public class SwarmEnemyParent : MonoBehaviour
 
     void SpawnSwarm()
     {
-        for (int i = 0; i < numSwarmers; i++)
+        for (int i = 0; i < _enemyStatTunable.SwarmNumber; i++)
         {
             SwarmEnemy swarm = Instantiate(swarmEnemy, transform, false);
             m_list.Add(swarm);
@@ -54,7 +51,7 @@ public class SwarmEnemyParent : MonoBehaviour
     IEnumerator SelfDestruct()
     {
         yield return new WaitForEndOfFrame();
-        GameManager.Instance.BulletQueueManager.Reload(_bulletColor);
+        GameManager.Instance.BulletQueueManager.Reload(_enemyStatTunable.SwarmDropColor);
         Destroy(gameObject);
     }
 }

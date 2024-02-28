@@ -27,7 +27,11 @@ public class Grenade : MonoBehaviour
         foreach (Collider c in colliders)
         {
             HealthComponent hp = c.transform.gameObject.GetComponent<HealthComponent>();
-            if (hp != null) hp.TakeDamage(blastDamage);
+            if (hp != null)
+            {
+                DamageInfo d = new DamageInfo(blastDamage, BulletColor.Red);
+                hp.TakeDamage(d);
+            }
         }
         Destroy(gameObject);
     }

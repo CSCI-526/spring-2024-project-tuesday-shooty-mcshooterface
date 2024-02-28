@@ -27,7 +27,8 @@ public class KnifeProjectile : MonoBehaviour
             HealthComponent hp = other.gameObject.GetComponent<HealthComponent>();
             if (hp != null) 
             {
-                hp.TakeDamage(_damage);
+                DamageInfo d = new DamageInfo(_damage);
+                hp.TakeDamage(d);
                 Destroy(gameObject);
             }
         }
