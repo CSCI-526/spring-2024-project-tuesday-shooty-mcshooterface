@@ -7,7 +7,18 @@ using UnityEngine;
 public class SwarmEnemy : BaseEnemy
 {
     SwarmEnemyParent _parent;
+    public enum SwarmState
+    {
+        Chase,
+        Attack,
+        Wander,
+        Flee
+    }
+    private SwarmState _curState;
+    private Transform _plTf; // PlayerTransfrom
 
+    public float closeRange = 10.0f;
+    public float farRange = 12.0f;
     protected override IEnumerator SelfDestruct()
     {
         yield return new WaitForEndOfFrame();
@@ -17,24 +28,83 @@ public class SwarmEnemy : BaseEnemy
 
     public void Construct(SwarmEnemyParent parent)
     {
+        _curState = SwarmState.Chase;
         _parent = parent;
+        _plTf = PlayerCharacterController.Instance.transform; 
+        //RigidbodyComponent.AddForce(Vector3.down * 20.0f, ForceMode.Impulse);
     }
 
-    void Update() {
-        var player = PlayerCharacterController.Instance;
-        if (player == null)
-        {
-            return;
-        }
+    private void Update()
+    {
+        
+    }
 
-        Vector3 toVector = player.transform.position - transform.position;
-        if (toVector.sqrMagnitude > 1.5)
+    Vector3 _distance;
+    void FixedUpdate() {
+        if (_plTf == null) { return; }
+        Vector3 ds = _plTf.position - transform.position;
+        _distance = new Vector3(ds.x, 0, ds.z);
+        switch (_curState)
         {
-            RigidbodyComponent.velocity = toVector.normalized * _enemyStatTunable.SwarmSpeed;
+            case SwarmState.Chase:
+                ToChase();
+                break;
+            case SwarmState.Attack:
+
+                break;
+            case SwarmState.Wander:
+                ToWander();
+                break;
+            case SwarmState.Flee:
+                ToFlee();
+                break;
+        }
+        CheckState();
+        if (RigidbodyComponent.velocity.magnitude > _enemyStatTunable.SwarmSpeed)
+        {
+            RigidbodyComponent.velocity = RigidbodyComponent.velocity.normalized * _enemyStatTunable.SwarmSpeed;
+        }
+    }
+
+    void ToChase() 
+    {
+        RigidbodyComponent.velocity = _distance.normalized * _enemyStatTunable.SwarmSpeed;
+    }
+
+    void ToFlee() 
+    {
+        /*
+        Vector3 nm = _parent.SwarmCenter - _plTf.position;
+        Vector3 mid = Vector3.Project(_distance, nm); // mid = - mid
+        Vector3 dir = (_distance + 2 * mid).normalized;
+        RigidbodyComponent.velocity = - dir * _enemyStatTunable.SwarmSpeed;
+        */
+        Vector3 nm = _parent.SwarmCenter - _plTf.position;
+        float mag = Mathf.Abs(Vector3.Dot(_distance, nm) / nm.magnitude);
+        Vector3 dir = _distance + nm.normalized * 2 * mag;
+        RigidbodyComponent.velocity =  _enemyStatTunable.SwarmSpeed * dir.normalized;
+    }
+
+    void ToWander() 
+    {
+        //RigidbodyComponent.velocity = _parent.wanderDir * _enemyStatTunable.SwarmSpeed;
+        RigidbodyComponent.AddForce(_parent.wanderDir * 10.0f, ForceMode.Force);
+        RigidbodyComponent.AddForce((_parent.SwarmCenter - transform.position) * 5.0f, ForceMode.Force);
+    }
+    void CheckState() 
+    {
+        if (_distance.magnitude > farRange)
+        {
+            _curState = SwarmState.Chase;
+        }
+        else if (_distance.magnitude <= farRange && _distance.magnitude > closeRange)
+        {
+            _curState = SwarmState.Wander;
         }
         else
         {
-            RigidbodyComponent.velocity = Vector3.zero;
+            _curState = SwarmState.Flee;
         }
+    
     }
 }

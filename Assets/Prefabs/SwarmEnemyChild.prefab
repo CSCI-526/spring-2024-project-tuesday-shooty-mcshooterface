@@ -152,6 +152,9 @@ MonoBehaviour:
   _enemyType: 1
   _enemyStatTunable: {fileID: 11400000, guid: 2bd2ddad11caf024181ef76e02fec1cc, type: 2}
   _superEffectiveTunable: {fileID: 11400000, guid: f8358c299f5b71e4ead746982db47860, type: 2}
+  _curState: 0
+  closeRange: 11
+  farRange: 15
 --- !u!114 &1610030231150379246
 MonoBehaviour:
   m_ObjectHideFlags: 0
