@@ -48,3 +48,7 @@ MonoBehaviour:
   _enemyStatTunable: {fileID: 11400000, guid: 2bd2ddad11caf024181ef76e02fec1cc, type: 2}
   swarmEnemy: {fileID: 5260041164143068832, guid: 7d7559122e6edd642abe582b0a69f175, type: 3}
   m_list: []
+  _swarmCenter: {x: 0, y: 0, z: 0}
+  wanderDir: {x: 0, y: 0, z: 0}
+  attackCD: 5
+  projectilePrefab: {fileID: 3288330728612101159, guid: 3f05d69f09fdff441abd2761264b1ea1, type: 3}

@@ -107,4 +107,29 @@ public class SwarmEnemy : BaseEnemy
         }
     
     }
+
+    public void IndicateAttack() 
+    {
+        RigidbodyComponent.AddForce((_parent.SwarmCenter - transform.position) * 7.0f, ForceMode.Impulse);
+        StartCoroutine(ChangeColor(Color.magenta, _parent.attackIndicate / 2));
+    }
+
+    // Debug attack indicator
+    IEnumerator ChangeColor(Color targetColor, float duration)
+    {
+        Color startColor = GetComponent<Renderer>().material.color;
+        float startTime = Time.time;
+
+        while (Time.time - startTime < duration)
+        {
+            float t = (Time.time - startTime) / duration;
+
+            GetComponent<Renderer>().material.color = Color.Lerp(startColor, targetColor, t);
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(duration);
+        GetComponent<Renderer>().material.color = startColor;
+    }
 }
