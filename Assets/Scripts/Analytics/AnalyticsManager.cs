@@ -4,8 +4,16 @@ using UnityEngine.Networking;
 
 public class AnalyticsManager : MonoBehaviour
 {
+    public static AnalyticsManager Instance => _instance;
+    private static AnalyticsManager _instance;
+
     [SerializeField]
     private string _analyticsAddress = "https://logrun-mup5e2fdeq-uc.a.run.app";
+
+    void Awake()
+    {
+        _instance = this;
+    }
 
     /// <summary>
     /// Logs a run to the analytics server

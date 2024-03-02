@@ -1,10 +1,10 @@
-using System;
 using System.Collections;
 using ScriptableObjectArchitecture;
 using Scripts.Game;
 using Scripts.Player;
 using UnityEngine;
 
+[Enemy]
 public class OgreEnemy : BaseEnemy
 {
     [SerializeField] private GameObjectCollection enemyCollection;

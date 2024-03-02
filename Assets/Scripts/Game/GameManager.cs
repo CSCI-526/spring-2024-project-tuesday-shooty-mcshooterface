@@ -59,7 +59,7 @@ namespace Scripts.Game
             yield return _analyticsManager.LogRun(
                 new RunData
                 {
-                    SurvivalTimeSeconds = (long)Time.time,
+                    SurvivalTimeSeconds = (int)Time.timeSinceLevelLoad,
                     AmmoCollections = ammoCollection,
                     DamageDealtPerAmmo = ammoDamageDealt,
                     DamageDealtPerEnemyType = damageDealtPerEnemyType,

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BulletQueueManager : MonoBehaviour
 {
+    public static BulletQueueManager Instance => _instance;
+    private static BulletQueueManager _instance;
     public delegate void BulletQueueEventHandler(BulletColor color);
     public event BulletQueueEventHandler OnBulletObtained;
     private Queue<BulletColor> bulletQueue = new Queue<BulletColor>();
@@ -34,6 +36,11 @@ public class BulletQueueManager : MonoBehaviour
 
     public BulletQueueUI bulletQueueUI;
 
+    private void Awake()
+    {
+        _instance = this;
+    }
+
     private void Start()
     {
         // initialization (all of bullets are set to empty)
@@ -48,7 +55,10 @@ public class BulletQueueManager : MonoBehaviour
             _ammoDamageDealt[color.ToString()] = 0;
         }
 
-        // TODO: Add enemy types
+        foreach (string enemyName in TypeFinderUtility.GetAllEnemyNames())
+        {
+            _damageDealtPerEnemyType[enemyName] = 0;
+        }
 
         bulletQueueUI.UpdateQueueDisplay(bulletQueue);
     }

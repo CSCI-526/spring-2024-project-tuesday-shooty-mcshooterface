@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 [Serializable]
 public class RunData
@@ -11,6 +12,34 @@ public class RunData
     public List<KeyValue<string, long>> DamageDealtPerAmmo;
 
     public List<KeyValue<string, long>> DamageDealtPerEnemyType;
+
+    public override string ToString()
+    {
+        AmmoCollections.Sort((x, y) => x.Key.CompareTo(y.Key));
+        DamageDealtPerAmmo.Sort((x, y) => x.Key.CompareTo(y.Key));
+        DamageDealtPerEnemyType.Sort((x, y) => x.Key.CompareTo(y.Key));
+
+        StringBuilder sb = new StringBuilder();
+        sb.Append(SurvivalTimeSeconds);
+        sb.Append(',');
+        foreach (KeyValue<string, long> kvp in AmmoCollections)
+        {
+            sb.Append(kvp.Value);
+            sb.Append(',');
+        }
+        foreach (KeyValue<string, long> kvp in DamageDealtPerAmmo)
+        {
+            sb.Append(kvp.Value);
+            sb.Append(',');
+        }
+        foreach (KeyValue<string, long> kvp in DamageDealtPerEnemyType)
+        {
+            sb.Append(kvp.Value);
+            sb.Append(',');
+        }
+
+        return sb.ToString();
+    }
 }
 
 [Serializable]

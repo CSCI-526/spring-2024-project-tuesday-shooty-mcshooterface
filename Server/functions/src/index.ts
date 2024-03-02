@@ -1,37 +1,46 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * import {onCall} from "firebase-functions/v2/https";
- * import {onDocumentWritten} from "firebase-functions/v2/firestore";
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
-
 import { onRequest } from "firebase-functions/v2/https";
 import { getFirestore } from "firebase-admin/firestore";
 import * as logger from "firebase-functions/logger";
 import { initializeApp } from "firebase-admin/app";
 import * as functions from "firebase-functions";
+import * as admin from "firebase-admin";
 
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
 
 initializeApp();
+const RUN_COLLECTION_NAME = "runs";
 
-exports.logRun = onRequest(
-  async (req: functions.https.Request, res: functions.Response<any>) => {
-    const runData = req.body;
-
+// This returns all the runs in the database. We can query this on the client side to visualize data.
+exports.allRuns = onRequest(async (_: functions.https.Request, res: functions.Response<any>) => {
     try {
-      const writeResult = await getFirestore() 
-        .collection("messages")
-        .add(runData);
-      const message = `Message with ID: ${writeResult.id} was added.`;
-      logger.log(message);
-      res.json({ result: message });
+        const collectionRef = admin.firestore().collection(RUN_COLLECTION_NAME);
+        const querySnapshot = await collectionRef.get();
+        const allDocuments : any[] = [];
+        querySnapshot.forEach((doc) => {
+            allDocuments.push(doc.data());
+        });
+
+        res.status(200).json({data: allDocuments});
     } catch (error) {
-      console.error("Error writing document: ", error);
-      res.status(500).send("Error writing document");
+        console.error("Error getting documents: ", error);
+        res.status(500).send("Error getting documents");
     }
-  },
+});
+
+// This logs a single game run. We can store all the analytics data on firestore from here.
+exports.logRun = onRequest(
+    async (req: functions.https.Request, res: functions.Response<any>) => {
+        const runData = req.body;
+
+        try {
+            const writeResult = await getFirestore()
+                .collection(RUN_COLLECTION_NAME)
+                .add(runData);
+            const message = `Run with ID: ${writeResult.id} was added.`;
+            logger.log(message);
+            res.json({ result: message });
+        } catch (error) {
+            console.error("Error writing document: ", error);
+            res.status(500).send("Error writing document");
+        }
+    },
 );

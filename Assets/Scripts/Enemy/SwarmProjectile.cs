@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Scripts.Game;
 
+[Enemy]
 public class SwarmProjectile : MonoBehaviour
 {
     // Start is called before the first frame update
