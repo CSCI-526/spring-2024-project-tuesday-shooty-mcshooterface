@@ -48,7 +48,6 @@ MonoBehaviour:
   bulletSpreadEnabled: 0
   bulletSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
   shootingSystem: {fileID: 198234346748616026, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
-  bulletSpawnPoint: {fileID: 0}
   impactParticleSystem: {fileID: 0}
   bulletTrail: {fileID: 2760837023063302622, guid: 1bc22e020dea1a84ab0aed8adfa42076, type: 3}
   shootDelay: 0.1
@@ -106,7 +105,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 129
-  bulletSpawnPoint: {fileID: 0}
+  bulletSpawnTransform: {fileID: 0}
   bulletTrail: {fileID: 2760837023063302622, guid: d2e31953b6540de4f8028673acebcad7, type: 3}
 --- !u!1 &4135013735270702863
 GameObject:
@@ -260,8 +259,8 @@ GameObject:
   - component: {fileID: 1978471637655604388}
   - component: {fileID: 5420857361349278248}
   - component: {fileID: 8616685848737228376}
-  - component: {fileID: 7836273030983870676}
   - component: {fileID: 5835747266641425234}
+  - component: {fileID: 4987027219826621335}
   m_Layer: 6
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -332,6 +331,7 @@ MonoBehaviour:
   SprintSpeed: 8
   RotationSpeed: 1
   SpeedChangeRate: 10
+  WebGLRotationMult: 0.1
   JumpHeight: 1.2
   Gravity: -15
   JumpTimeout: 0.1
@@ -483,19 +483,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &7836273030983870676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8616685848737228372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1cbc64af75fe5545922a202bf2c7140, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _startingHealth: 5
 --- !u!114 &5835747266641425234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,6 +495,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2290cb0cd367d9478fede887cd2ae81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bulletSpawnTransform: {fileID: 0}
+--- !u!114 &4987027219826621335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8616685848737228372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b68c9efb4e77d8f47a7948af8131ca50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 5
 --- !u!1 &9006084774285667290
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,7 +553,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17d500e98dc2461da2d4f57f8354494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grenadeSpawnPoint: {fileID: 0}
   shootDelay: 0.1
   grenade: {fileID: 902214275315206496, guid: aaedb430039294ebf877a1a946f287dd, type: 3}
   range: 30
@@ -601,6 +601,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KnifePrefab: {fileID: 3579973076615327078, guid: bbc4b5b3b76a779489cd49e88474e490, type: 3}
-  SpwanPoint: {fileID: 0}
   KnifeSpeed: 30
   cd: 1

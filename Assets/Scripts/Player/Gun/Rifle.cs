@@ -57,7 +57,11 @@ namespace Scripts.Player.Gun
                         HealthComponent hp =
                             hit.transform.gameObject.GetComponent<HealthComponent>();
                         if (hp != null)
-                            hp.TakeDamage(bulletDamage);
+                        {
+                            DamageInfo d = new DamageInfo(bulletDamage, BulletColor.Blue);
+                            hp.TakeDamage(d);
+                        }
+                            
                     }
 
                     TrailRenderer trail = Instantiate(

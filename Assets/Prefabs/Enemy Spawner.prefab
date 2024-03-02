@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3423221536652857574
+--- !u!1 &1298073616037422223
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4717704456695970406}
-  - component: {fileID: 1895667836078513749}
+  - component: {fileID: 665501250938976378}
+  - component: {fileID: 3077889099124551895}
   m_Layer: 0
-  m_Name: SwarmEnemy
+  m_Name: Enemy Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4717704456695970406
+--- !u!4 &665501250938976378
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3423221536652857574}
+  m_GameObject: {fileID: 1298073616037422223}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.45, y: 3.14, z: 10.49}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1895667836078513749
+--- !u!114 &3077889099124551895
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3423221536652857574}
+  m_GameObject: {fileID: 1298073616037422223}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62a3842189fd76943a5af3e15bd2dac7, type: 3}
+  m_Script: {fileID: 11500000, guid: c1d6241cae40f42bab97d6a822418a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swarmEnemyParentPF: {fileID: 3423221536652857574, guid: 95e69a2e1a9eed74ebb68d040dfb291f, type: 3}
+  meleeEnemyParentPF: {fileID: 5186863481464667598, guid: f656fd4523cd2f94eba75abb7f3c0830, type: 3}
+  spawnLocations: []
   enemyCollection: {fileID: 11400000, guid: eab7e3363ac714a458ff4bfb5ac26580, type: 2}
-  _enemyStatTunable: {fileID: 11400000, guid: 2bd2ddad11caf024181ef76e02fec1cc, type: 2}
-  swarmEnemy: {fileID: 5260041164143068832, guid: 7d7559122e6edd642abe582b0a69f175, type: 3}
-  m_list: []
-  _swarmCenter: {x: 0, y: 0, z: 0}
-  wanderDir: {x: 0, y: 0, z: 0}
-  attackCD: 5
-  projectilePrefab: {fileID: 3288330728612101159, guid: 3f05d69f09fdff441abd2761264b1ea1, type: 3}
+  maxEnemyCount: 5
+  spawnCooldown: 2

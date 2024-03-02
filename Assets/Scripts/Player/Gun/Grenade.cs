@@ -1,29 +1,37 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Scripts.Game;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
     
-    [SerializeField] private float radius = 10f;
+    [SerializeField] private float radius = 5f;
     [SerializeField] private int blastDamage = 10;
     [SerializeField] private float delay = 1f;
-    
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject explosionEffect;
+
+    private void OnCollisionEnter(Collision other)
     {
-        Invoke("Explode", delay);
+        Explode();
     }
 
     private void Explode()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
-        transform.localScale = new Vector3(radius, radius, radius);
+        Vector3 position = transform.position;
+        Quaternion rotation = transform.rotation;
+        Collider[] colliders = Physics.OverlapSphere(position, radius, LayerMask.GetMask("Enemy"));
+        Instantiate(explosionEffect, position, rotation);
         foreach (Collider c in colliders)
         {
             HealthComponent hp = c.transform.gameObject.GetComponent<HealthComponent>();
-            if (hp != null) hp.TakeDamage(blastDamage);
+            if (hp != null)
+            {
+                DamageInfo d = new DamageInfo(blastDamage, BulletColor.Red);
+                hp.TakeDamage(d);
+            }
         }
         Destroy(gameObject);
     }
