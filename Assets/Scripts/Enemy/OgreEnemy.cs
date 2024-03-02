@@ -52,7 +52,7 @@ public class OgreEnemy : BaseEnemy
     {
         Vector3 toVector = entity.transform.position - transform.position;
 
-        DamageInfo d = new DamageInfo(1);
+        DamageInfo d = new DamageInfo(1, BulletColor.Red, GetType().Name);
         entity.GetComponent<HealthComponent>().TakeDamage(d);
         
         RigidbodyComponent.velocity = Vector3.zero;

@@ -1,6 +1,5 @@
 using Scripts.Game;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseEnemy : MonoBehaviour
@@ -30,7 +29,7 @@ public class BaseEnemy : MonoBehaviour
         _healthComponent.OnDeath += OnDeath;
     }
 
-    private void OnDeath(int newHealth)
+    private void OnDeath(in int _)
     {
         StartCoroutine(SelfDestruct());
     }

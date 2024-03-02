@@ -4,10 +4,10 @@ namespace Scripts.Game
 {
     public class HealthComponent : MonoBehaviour
     {
-        public delegate void HealthEvent(int newHealth);
+        public delegate void HealthEvent<T>(in T args);
 
-        public HealthEvent OnHealthChanged;
-        public HealthEvent OnDeath;
+        public HealthEvent<int> OnDeath;
+        public HealthEvent<(DamageInfo damage, int newHealth)> OnDamageTaken;
 
         public int CurrentHealth => _currentHealth;
 
@@ -16,7 +16,7 @@ namespace Scripts.Game
         public virtual void TakeDamage(DamageInfo damage)
         {
             _currentHealth -= damage.damage;
-            OnHealthChanged?.Invoke(_currentHealth);
+            OnDamageTaken?.Invoke((damage, _currentHealth));
 
             if (_currentHealth + damage.damage > 0 && _currentHealth <= 0)
             {
@@ -29,8 +29,13 @@ namespace Scripts.Game
     {
         public int damage;
         public BulletColor color = BulletColor.Empty;
-    
-        public DamageInfo(int damage) { this.damage = damage; }
-        public DamageInfo(int damage, BulletColor color) { this.damage = damage; this.color = color; }
+        public string source;
+
+        public DamageInfo(int damage, BulletColor color, string source)
+        {
+            this.damage = damage;
+            this.color = color;
+            this.source = source;
+        }
     }
 }

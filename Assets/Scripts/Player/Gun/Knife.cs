@@ -39,9 +39,6 @@ public class Knife : MonoBehaviour
             kf.GetComponent<Rigidbody>().velocity = spawnTransform.forward * KnifeSpeed;
 
             Destroy(kf, 2.0f);
-
         }
-
-
     }
 }

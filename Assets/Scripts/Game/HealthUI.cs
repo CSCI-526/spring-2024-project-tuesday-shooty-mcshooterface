@@ -15,13 +15,13 @@ namespace Scripts.Game
         void Start()
         {
             _healthComponent = PlayerCharacterController.Instance.GetComponent<HealthComponent>();
-            _healthComponent.OnHealthChanged += UpdateHealthUI;
-            UpdateHealthUI(HealthComponent.CurrentHealth);
+            _healthComponent.OnDamageTaken += UpdateHealthUI;
+            UpdateHealthUI((null, HealthComponent.CurrentHealth));
         }
 
-        void UpdateHealthUI(int newHealth)
+        void UpdateHealthUI(in (DamageInfo _, int newHealth) args)
         {
-            healthText.text = "Health: " + newHealth;
+            healthText.text = "Health: " + args.newHealth;
         }
     }
 }

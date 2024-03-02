@@ -58,7 +58,7 @@ namespace Scripts.Player.Gun
                             hit.transform.gameObject.GetComponent<HealthComponent>();
                         if (hp != null)
                         {
-                            DamageInfo d = new DamageInfo(bulletDamage, BulletColor.Blue);
+                            DamageInfo d = new DamageInfo(bulletDamage, BulletColor.Blue, GetType().Name);
                             hp.TakeDamage(d);
                         }
                             

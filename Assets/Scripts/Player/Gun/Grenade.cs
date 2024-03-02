@@ -27,7 +27,7 @@ public class Grenade : MonoBehaviour
             HealthComponent hp = c.transform.gameObject.GetComponent<HealthComponent>();
             if (hp != null)
             {
-                DamageInfo d = new DamageInfo(blastDamage, BulletColor.Red);
+                DamageInfo d = new DamageInfo(blastDamage, BulletColor.Red, GetType().Name);
                 hp.TakeDamage(d);
             }
         }

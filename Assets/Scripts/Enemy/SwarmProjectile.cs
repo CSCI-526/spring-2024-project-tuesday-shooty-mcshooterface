@@ -25,7 +25,7 @@ public class SwarmProjectile : MonoBehaviour
             HealthComponent hp = other.gameObject.GetComponent<HealthComponent>();
             if (hp != null)
             {
-                DamageInfo d = new DamageInfo(1);
+                DamageInfo d = new DamageInfo(1, BulletColor.Empty, GetType().Name);
                 hp.TakeDamage(d);
                 Destroy(gameObject);
             }

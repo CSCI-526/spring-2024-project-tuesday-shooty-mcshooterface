@@ -36,7 +36,7 @@ namespace Scripts.Game
             PlayerCharacterController.Instance.HealthComponent.OnDeath += OnPlayerDeath;
         }
 
-        private void OnPlayerDeath(int newHealth)
+        private void OnPlayerDeath(in int newHealth)
         {
             StartCoroutine(EndGame());
         }

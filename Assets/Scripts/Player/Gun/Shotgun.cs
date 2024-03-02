@@ -80,7 +80,7 @@ public class Shotgun : MonoBehaviour, IGun
             HealthComponent hp = hit.transform.gameObject.GetComponent<HealthComponent>();
             if (hp != null)
             {
-                DamageInfo d = new DamageInfo(bulletDamage, BulletColor.Green);
+                DamageInfo d = new DamageInfo(bulletDamage, BulletColor.Green, GetType().Name);
                 hp.TakeDamage(d);
             }
                 

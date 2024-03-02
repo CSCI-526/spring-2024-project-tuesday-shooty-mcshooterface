@@ -1,9 +1,6 @@
 using Scripts.Game;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class EnemyHealthComponent : Scripts.Game.HealthComponent
+public class EnemyHealthComponent : HealthComponent
 {
     private BaseEnemy _enemy;
     public void Construct(BaseEnemy enemy)
@@ -18,7 +15,7 @@ public class EnemyHealthComponent : Scripts.Game.HealthComponent
         int delta = (int) (damage.damage * _enemy.SuperEffectiveTunable.GetMultiplier(_enemy.EnemyType, damage.color));
 
         _currentHealth -= delta;
-        OnHealthChanged?.Invoke(_currentHealth);
+        OnDamageTaken?.Invoke((damage, _currentHealth));
 
         if (_currentHealth + delta > 0 && _currentHealth <= 0)
         {
