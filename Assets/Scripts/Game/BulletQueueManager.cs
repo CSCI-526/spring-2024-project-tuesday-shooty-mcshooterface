@@ -9,8 +9,11 @@ public class BulletQueueManager : MonoBehaviour
     private Dictionary<string, long> _ammoCollections = new();
     private Dictionary<string, long> _ammoDamageDealt = new();
     private Dictionary<string, long> _damageDealtPerEnemyType = new();
-    
-    public BulletColor Top { get => bulletQueue.Count == 0 ? BulletColor.Empty : bulletQueue.Peek(); }
+
+    public BulletColor Top
+    {
+        get => bulletQueue.Count == 0 ? BulletColor.Empty : bulletQueue.Peek();
+    }
 
     /// <summary>
     /// The ammo collections of the player. For analytics purposes.
@@ -83,6 +86,7 @@ public class BulletQueueManager : MonoBehaviour
             Reload(BulletColor.Blue);
         }
     }
+
     public BulletColor LoseAmmo()
     {
         if (bulletQueue.Count > 0 && bulletQueue.Peek() != BulletColor.Empty)
@@ -122,4 +126,10 @@ public class BulletQueueManager : MonoBehaviour
     }
 }
 
-public enum BulletColor { Red, Green, Blue, Empty }
+public enum BulletColor
+{
+    Red,
+    Green,
+    Blue,
+    Empty
+}
