@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -555,6 +555,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 1876542644636442451, guid: 06041ac6b2c0f4d99931d05763b66930, type: 3}
+      propertyPath: _analyticsManager
+      value: 
+      objectReference: {fileID: 309538127}
     - target: {fileID: 3205492231832135008, guid: 06041ac6b2c0f4d99931d05763b66930, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -598,13 +602,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1716907632577469230, guid: 06041ac6b2c0f4d99931d05763b66930, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 309538127}
   m_SourcePrefab: {fileID: 100100000, guid: 06041ac6b2c0f4d99931d05763b66930, type: 3}
 --- !u!4 &309538125 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3205492231832135008, guid: 06041ac6b2c0f4d99931d05763b66930, type: 3}
   m_PrefabInstance: {fileID: 309538124}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &309538126 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1716907632577469230, guid: 06041ac6b2c0f4d99931d05763b66930, type: 3}
+  m_PrefabInstance: {fileID: 309538124}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &309538127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309538126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc903ef9e36b3eb44b474e8d2a701d13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _analyticsAddress: https://logrun-mup5e2fdeq-uc.a.run.app
 --- !u!1001 &351221655
 PrefabInstance:
   m_ObjectHideFlags: 0

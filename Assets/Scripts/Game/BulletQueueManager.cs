@@ -5,8 +5,27 @@ using UnityEngine;
 public class BulletQueueManager : MonoBehaviour
 {
     private Queue<BulletColor> bulletQueue = new Queue<BulletColor>();
+    private long[] _ammoCollections = new long[3];
+    private long[] _ammoDamageDealt = new long[3];
+    private Dictionary<string, long> _damageDealtPerEnemyType = new();
     
     public BulletColor Top { get => bulletQueue.Count == 0 ? BulletColor.Empty : bulletQueue.Peek(); }
+
+    /// <summary>
+    /// The ammo collections of the player. For analytics purposes.
+    /// </summary>
+    public long[] AmmoCollections => _ammoCollections;
+
+    /// <summary>
+    /// The damage dealt per ammo type. For analytics purposes.
+    /// </summary>
+    public long[] AmmoDamageDealt => _ammoDamageDealt;
+
+    /// <summary>
+    /// The damage dealt per enemy type. For analytics purposes.
+    /// </summary>
+    public Dictionary<string, long> DamageDealtPerEnemyType => _damageDealtPerEnemyType;
+
     public BulletQueueUI bulletQueueUI;
 
     private void Start()

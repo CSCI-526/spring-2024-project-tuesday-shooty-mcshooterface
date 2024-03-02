@@ -8,20 +8,30 @@
  */
 
 import { onRequest } from "firebase-functions/v2/https";
-import {getFirestore} from "firebase-admin/firestore";
+import { getFirestore } from "firebase-admin/firestore";
 import * as logger from "firebase-functions/logger";
-import {initializeApp} from "firebase-admin/app";
+import { initializeApp } from "firebase-admin/app";
+import * as functions from "firebase-functions";
 
 // Start writing functions
 // https://firebase.google.com/docs/functions/typescript
 
 initializeApp();
 
-exports.logRun = onRequest(async (req, res) => {
-    const runData = JSON.parse(req.body);
+exports.logRun = onRequest(
+  async (req: functions.https.Request, res: functions.Response<any>) => {
+    const runData = req.body;
 
-    const writeResult = await getFirestore().collection("messages").add(runData);
-    const message = `Message with ID: ${writeResult.id} was added.`;
-    logger.log(message);
-    res.json({result: message});
-});
+    try {
+      const writeResult = await getFirestore() 
+        .collection("messages")
+        .add(runData);
+      const message = `Message with ID: ${writeResult.id} was added.`;
+      logger.log(message);
+      res.json({ result: message });
+    } catch (error) {
+      console.error("Error writing document: ", error);
+      res.status(500).send("Error writing document");
+    }
+  },
+);
