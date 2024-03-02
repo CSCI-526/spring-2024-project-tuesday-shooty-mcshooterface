@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,8 @@ using UnityEngine;
 public class BulletQueueManager : MonoBehaviour
 {
     private Queue<BulletColor> bulletQueue = new Queue<BulletColor>();
-    private long[] _ammoCollections = new long[3];
-    private long[] _ammoDamageDealt = new long[3];
+    private Dictionary<string, long> _ammoCollections = new();
+    private Dictionary<string, long> _ammoDamageDealt = new();
     private Dictionary<string, long> _damageDealtPerEnemyType = new();
     
     public BulletColor Top { get => bulletQueue.Count == 0 ? BulletColor.Empty : bulletQueue.Peek(); }
@@ -14,12 +15,12 @@ public class BulletQueueManager : MonoBehaviour
     /// <summary>
     /// The ammo collections of the player. For analytics purposes.
     /// </summary>
-    public long[] AmmoCollections => _ammoCollections;
+    public Dictionary<string, long> AmmoCollections => _ammoCollections;
 
     /// <summary>
     /// The damage dealt per ammo type. For analytics purposes.
     /// </summary>
-    public long[] AmmoDamageDealt => _ammoDamageDealt;
+    public Dictionary<string, long> AmmoDamageDealt => _ammoDamageDealt;
 
     /// <summary>
     /// The damage dealt per enemy type. For analytics purposes.
@@ -35,6 +36,14 @@ public class BulletQueueManager : MonoBehaviour
         {
             bulletQueue.Enqueue(BulletColor.Empty);
         }
+
+        foreach (BulletColor color in Enum.GetValues(typeof(BulletColor)))
+        {
+            _ammoCollections[color.ToString()] = 0;
+            _ammoDamageDealt[color.ToString()] = 0;
+        }
+
+        // TODO: Add enemy types
 
         bulletQueueUI.UpdateQueueDisplay(bulletQueue);
     }

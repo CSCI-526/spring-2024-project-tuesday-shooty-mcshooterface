@@ -43,17 +43,25 @@ namespace Scripts.Game
 
         private IEnumerator EndGame()
         {
-            List<EnemyDamageKeyValue> damageDealtPerEnemyType = (
+            List<KeyValue<string, long>> damageDealtPerEnemyType = (
                 from kvp in BulletQueueManager.DamageDealtPerEnemyType
-                select new EnemyDamageKeyValue { Enemy = kvp.Key, Damage = kvp.Value }
+                select new KeyValue<string, long>() { Key = kvp.Key, Value = kvp.Value }
+            ).ToList();
+            List<KeyValue<string, long>> ammoCollection = (
+                from kvp in BulletQueueManager.AmmoCollections
+                select new KeyValue<string, long>() { Key = kvp.Key, Value = kvp.Value }
+            ).ToList();
+            List<KeyValue<string, long>> ammoDamageDealt = (
+                from kvp in BulletQueueManager.AmmoDamageDealt
+                select new KeyValue<string, long>() { Key = kvp.Key, Value = kvp.Value }
             ).ToList();
 
             yield return _analyticsManager.LogRun(
                 new RunData
                 {
                     SurvivalTimeSeconds = (long)Time.time,
-                    AmmoCollections = BulletQueueManager.AmmoCollections,
-                    DamageDealtPerAmmo = BulletQueueManager.AmmoDamageDealt,
+                    AmmoCollections = ammoCollection,
+                    DamageDealtPerAmmo = ammoDamageDealt,
                     DamageDealtPerEnemyType = damageDealtPerEnemyType,
                 }
             );

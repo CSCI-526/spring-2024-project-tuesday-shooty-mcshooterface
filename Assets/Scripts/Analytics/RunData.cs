@@ -6,16 +6,17 @@ public class RunData
 {
     public long SurvivalTimeSeconds;
 
-    public long[] AmmoCollections;
+    public List<KeyValue<string, long>> AmmoCollections;
 
-    public long[] DamageDealtPerAmmo;
+    public List<KeyValue<string, long>> DamageDealtPerAmmo;
 
-    public List<EnemyDamageKeyValue> DamageDealtPerEnemyType;
+    public List<KeyValue<string, long>> DamageDealtPerEnemyType;
 }
 
 [Serializable]
-public class EnemyDamageKeyValue
+public class KeyValue<T1,T2> where T1 : class
 {
-    public string Enemy;
-    public long Damage;
+    public T1 Key;
+    public T2 Value;
 }
+
