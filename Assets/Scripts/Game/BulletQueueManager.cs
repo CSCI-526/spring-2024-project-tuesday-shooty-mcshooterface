@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BulletQueueManager : MonoBehaviour
 {
+    public delegate void BulletQueueEventHandler(BulletColor color);
+    public event BulletQueueEventHandler OnBulletObtained;
     private Queue<BulletColor> bulletQueue = new Queue<BulletColor>();
     private Dictionary<string, long> _ammoCollections = new();
     private Dictionary<string, long> _ammoDamageDealt = new();
@@ -75,15 +77,15 @@ public class BulletQueueManager : MonoBehaviour
         // H key for clearing queue
         if (Input.GetKeyDown(KeyCode.J))
         {
-            Reload(BulletColor.Red);
+            ObtainBullet(BulletColor.Red);
         }
         else if (Input.GetKeyDown(KeyCode.K))
         {
-            Reload(BulletColor.Green);
+            ObtainBullet(BulletColor.Green);
         }
         else if (Input.GetKeyDown(KeyCode.L))
         {
-            Reload(BulletColor.Blue);
+            ObtainBullet(BulletColor.Blue);
         }
     }
 
@@ -113,7 +115,7 @@ public class BulletQueueManager : MonoBehaviour
         bulletQueueUI.UpdateQueueDisplay(bulletQueue);
     }
 
-    public void Reload(BulletColor color)
+    public void ObtainBullet(BulletColor color)
     {
         List<BulletColor> tempList = new List<BulletColor>(bulletQueue);
         int index = tempList.IndexOf(BulletColor.Empty);
@@ -122,7 +124,14 @@ public class BulletQueueManager : MonoBehaviour
             tempList[index] = color;
             bulletQueue = new Queue<BulletColor>(tempList);
             bulletQueueUI.UpdateQueueDisplay(bulletQueue);
+            HandleBulletObtained(color);
         }
+    }
+
+    private void HandleBulletObtained(BulletColor color)
+    {
+        OnBulletObtained?.Invoke(color);
+        _ammoCollections[color.ToString()]++;
     }
 }
 

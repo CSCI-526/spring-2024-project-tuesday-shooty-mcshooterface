@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using Scripts.Game;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Grenade : MonoBehaviour
@@ -15,14 +12,15 @@ public class Grenade : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Explode();
+        StartCoroutine(Explode());
     }
 
-    private void Explode()
+    private IEnumerator Explode()
     {
         Vector3 position = transform.position;
         Quaternion rotation = transform.rotation;
         Collider[] colliders = Physics.OverlapSphere(position, radius, LayerMask.GetMask("Enemy"));
+        yield return new WaitForSeconds(delay);
         Instantiate(explosionEffect, position, rotation);
         foreach (Collider c in colliders)
         {

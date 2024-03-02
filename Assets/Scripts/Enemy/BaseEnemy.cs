@@ -38,7 +38,7 @@ public class BaseEnemy : MonoBehaviour
     protected virtual IEnumerator SelfDestruct()
     {
         yield return new WaitForEndOfFrame();
-        GameManager.Instance.BulletQueueManager.Reload(_enemyStatTunable.GetDropColor(_enemyType));
+        GameManager.Instance.BulletQueueManager.ObtainBullet(_enemyStatTunable.GetDropColor(_enemyType));
         Destroy(gameObject);
     }
 }

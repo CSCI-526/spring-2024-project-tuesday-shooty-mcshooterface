@@ -74,6 +74,6 @@ public class OgreEnemy : BaseEnemy
             Debug.DrawRay(contact.point, contact.normal, Color.white);
         }
 
-        Debug.Log("Contact");
+        // TODO:Contact
     }
 }
