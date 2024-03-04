@@ -18,12 +18,16 @@ namespace Scripts.Game
         public static GameManager Instance { get; private set; }
 
         public BulletQueueManager BulletQueueManager => _bulletQueueManager;
+        public AudioManager AudioManager => _audioManager;
 
         [SerializeField]
         private BulletQueueManager _bulletQueueManager;
 
         [SerializeField]
         private AnalyticsManager _analyticsManager;
+
+        [SerializeField]
+        private AudioManager _audioManager;
 
         void Awake()
         {

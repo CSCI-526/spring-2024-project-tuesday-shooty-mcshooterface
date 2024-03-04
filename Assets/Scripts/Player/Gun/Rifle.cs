@@ -72,6 +72,7 @@ namespace Scripts.Player.Gun
                     StartCoroutine(SpawnTrail(trail, hit));
                 }
 
+                Scripts.Game.GameManager.Instance.AudioManager.Play("RifleSFX");
                 return true;
             }
 

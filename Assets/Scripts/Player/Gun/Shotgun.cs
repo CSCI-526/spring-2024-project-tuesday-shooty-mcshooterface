@@ -36,6 +36,7 @@ public class Shotgun : MonoBehaviour, IGun
         {
             elapsed = 1.0f / firingRate;
             FirePellets();
+            Scripts.Game.GameManager.Instance.AudioManager.Play("ShotgunSFX");
             return true;
         }
         return false;
