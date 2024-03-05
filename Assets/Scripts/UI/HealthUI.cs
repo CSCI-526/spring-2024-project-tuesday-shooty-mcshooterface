@@ -14,7 +14,7 @@ namespace Scripts.Game
         // Start is called before the first frame update
         void Start()
         {
-            _healthComponent = PlayerCharacterController.Instance.GetComponent<HealthComponent>();
+            _healthComponent = PlayerHealthComponent.Instance;
             _healthComponent.OnDamageTaken += UpdateHealthUI;
             UpdateHealthUI((null, HealthComponent.CurrentHealth));
         }

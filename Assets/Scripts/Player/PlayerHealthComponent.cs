@@ -1,16 +1,23 @@
+using System;
 using Scripts.Game;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealthComponent : Scripts.Game.HealthComponent
-{
+public class PlayerHealthComponent : Scripts.Game.HealthComponent {
+    public static PlayerHealthComponent Instance;
+    
     [SerializeField] int _maxHealth;
 
     DamageVFX damageVFX;
+
+    private void Awake() {
+        Instance = this;
+        _currentHealth = _maxHealth;
+    }
+
     protected void Start()
     {
-        _currentHealth = _maxHealth;
         damageVFX = FindObjectOfType<DamageVFX>();
     }
 
