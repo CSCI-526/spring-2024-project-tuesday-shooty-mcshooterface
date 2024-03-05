@@ -53,7 +53,6 @@ MonoBehaviour:
   shootingSystem: {fileID: 198234346748616026, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
   impactParticleSystem: {fileID: 0}
   bulletTrail: {fileID: 2760837023063302622, guid: 1bc22e020dea1a84ab0aed8adfa42076, type: 3}
-  shootDelay: 0.1
   mask:
     serializedVersion: 2
     m_Bits: 129
@@ -107,7 +106,6 @@ MonoBehaviour:
     _useConstant: 0
     _constantValue: 0
     _variable: {fileID: 11400000, guid: fcf55ef13f3dcce4a870c2c421051977, type: 2}
-  firingRate: 1
   mask:
     serializedVersion: 2
     m_Bits: 129
@@ -391,6 +389,7 @@ MonoBehaviour:
   shotgun: {fileID: 5835940766494879018}
   grenadeLauncher: {fileID: 1741924214705271100}
   knife: {fileID: 3149948947449974818}
+  firingRate: 0.5
 --- !u!114 &8616685848737228376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,7 +558,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17d500e98dc2461da2d4f57f8354494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootDelay: 0.1
   grenade: {fileID: 902214275315206496, guid: aaedb430039294ebf877a1a946f287dd, type: 3}
   range: 30
 --- !u!1 &9198829875465693465
@@ -608,4 +606,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KnifePrefab: {fileID: 3579973076615327078, guid: bbc4b5b3b76a779489cd49e88474e490, type: 3}
   KnifeSpeed: 30
-  cd: 1

@@ -15,9 +15,6 @@ public class Shotgun : MonoBehaviour, IGun
 
     [SerializeField] private IntReference bulletDamage;
 
-    [SerializeField]
-    float firingRate = 1;
-
     [Header("References")]
     [SerializeField]
     LayerMask mask;
@@ -28,24 +25,11 @@ public class Shotgun : MonoBehaviour, IGun
     [SerializeField]
     TrailRenderer bulletTrail;
 
-    private float elapsed = 0;
-
     public bool TryShoot()
     {
-        if (elapsed <= 0)
-        {
-            elapsed = 1.0f / firingRate;
-            FirePellets();
-            Scripts.Game.GameManager.Instance.AudioManager.Play("ShotgunSFX");
-            return true;
-        }
-        return false;
-    }
-
-    private void Update()
-    {
-        if (elapsed > 0)
-            elapsed -= Time.deltaTime;
+        FirePellets();
+        Scripts.Game.GameManager.Instance.AudioManager.Play("ShotgunSFX");
+        return true;
     }
 
     private void FirePellets()
