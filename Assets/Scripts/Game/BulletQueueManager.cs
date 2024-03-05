@@ -51,8 +51,11 @@ public class BulletQueueManager : MonoBehaviour
 
         foreach (BulletColor color in Enum.GetValues(typeof(BulletColor)))
         {
-            _ammoCollections[color.ToString()] = 0;
-            _ammoDamageDealt[color.ToString()] = 0;
+            string colorString = color.ToString();
+            _ammoCollections[colorString] = 0;
+            _ammoDamageDealt[colorString] = 0;
+
+            Debug.Log(colorString);
         }
 
         foreach (string enemyName in TypeFinderUtility.GetAllEnemyNames())

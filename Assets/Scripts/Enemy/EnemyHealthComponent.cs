@@ -1,4 +1,5 @@
 using Scripts.Game;
+using UnityEngine;
 
 public class EnemyHealthComponent : HealthComponent
 {
@@ -17,25 +18,24 @@ public class EnemyHealthComponent : HealthComponent
             damage.damage
             * _enemy.SuperEffectiveTunable.GetMultiplier(_enemy.EnemyType, damage.color)
         );
+        
+
+        string damageSource = damage.color.ToString();
+
 
         _currentHealth -= delta;
         OnDamageTaken?.Invoke((damage, _currentHealth));
-
-        // TODO: Refactor
-        if (
-            !BulletQueueManager.Instance.DamageDealtPerEnemyType.ContainsKey(
-                damage.color.ToString()
-            )
-        )
-        {
-            BulletQueueManager.Instance.DamageDealtPerEnemyType.Add(damage.color.ToString(), 0);
-        }
-
-        BulletQueueManager.Instance.DamageDealtPerEnemyType[damage.color.ToString()] += delta;
 
         if (_currentHealth + delta > 0 && _currentHealth <= 0)
         {
             OnDeath?.Invoke(_currentHealth);
         }
+        if (!BulletQueueManager.Instance.AmmoDamageDealt.ContainsKey(damageSource))
+        {
+            Debug.LogError($"Damage source: {damageSource} is not defined in AmmoDamageDealt");
+            return;
+        }
+
+        BulletQueueManager.Instance.AmmoDamageDealt[damageSource] += delta;
     }
 }
