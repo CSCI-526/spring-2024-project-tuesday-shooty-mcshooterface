@@ -80,7 +80,7 @@ public class SwarmEnemyParent : MonoBehaviour
         Transform pt = PlayerCharacterController.Instance.transform;
         GameObject projectile = Instantiate(projectilePrefab, _swarmCenter, transform.rotation) as GameObject;
 
-        float offset = 2.0f;
+        float offset = 1.0f;
         Vector3 s2p = (pt.position - _swarmCenter);
         Vector3 aim = new Vector3(s2p.x, s2p.y + offset, s2p.z);
 
