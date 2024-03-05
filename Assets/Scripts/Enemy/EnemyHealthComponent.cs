@@ -18,10 +18,6 @@ public class EnemyHealthComponent : HealthComponent
             damage.damage
             * _enemy.SuperEffectiveTunable.GetMultiplier(_enemy.EnemyType, damage.color)
         );
-        
-
-        string damageSource = damage.color.ToString();
-
 
         _currentHealth -= delta;
         OnDamageTaken?.Invoke((damage, _currentHealth));
@@ -30,6 +26,9 @@ public class EnemyHealthComponent : HealthComponent
         {
             OnDeath?.Invoke(_currentHealth);
         }
+
+        string damageSource = damage.color.ToString();
+        Debug.Log($"Enemy took {delta} damage from {damageSource} color bullet");
         if (!BulletQueueManager.Instance.AmmoDamageDealt.ContainsKey(damageSource))
         {
             Debug.LogError($"Damage source: {damageSource} is not defined in AmmoDamageDealt");
