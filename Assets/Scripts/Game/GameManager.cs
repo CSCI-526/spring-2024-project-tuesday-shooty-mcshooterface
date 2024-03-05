@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +19,16 @@ namespace Scripts.Game
         public static GameManager Instance { get; private set; }
 
         public BulletQueueManager BulletQueueManager => _bulletQueueManager;
+        public AudioManager AudioManager => _audioManager;
 
         [SerializeField]
         private BulletQueueManager _bulletQueueManager;
 
         [SerializeField]
         private AnalyticsManager _analyticsManager;
+
+        [SerializeField]
+        private AudioManager _audioManager;
 
         void Awake()
         {
@@ -34,6 +39,12 @@ namespace Scripts.Game
         {
             Cursor.lockState = CursorLockMode.Locked;
             PlayerCharacterController.Instance.HealthComponent.OnDeath += OnPlayerDeath;
+        }
+
+        private void Update() {
+            if (Input.GetKeyDown(KeyCode.R)) {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
 
         private void OnPlayerDeath(in int newHealth)

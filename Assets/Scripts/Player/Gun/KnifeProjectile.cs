@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ScriptableObjectArchitecture;
 using UnityEngine;
 using Scripts.Game;
 using Scripts.Player.Gun;
@@ -7,7 +8,7 @@ using Scripts.Player.Gun;
 public class KnifeProjectile : MonoBehaviour
 {
     // Start is called before the first frame update
-    private int _damage = 5;
+    [SerializeField] private IntReference damage; // 5
     void Start()
     {
         // Debug
@@ -27,7 +28,7 @@ public class KnifeProjectile : MonoBehaviour
             HealthComponent hp = other.gameObject.GetComponent<HealthComponent>();
             if (hp != null) 
             {
-                DamageInfo d = new DamageInfo(_damage, BulletColor.Empty, GetType().Name);
+                DamageInfo d = new DamageInfo(damage.Value, BulletColor.Empty, GetType().Name);
                 hp.TakeDamage(d);
                 Destroy(gameObject);
             }

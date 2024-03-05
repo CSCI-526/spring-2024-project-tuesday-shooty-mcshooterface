@@ -25,6 +25,7 @@ public class SwarmEnemyParent : MonoBehaviour
     public float attackCD = 5.0f;
     public float attackIndicate = 1.8f;
     public GameObject projectilePrefab;
+    [SerializeField] private float projectileSpeed;
     public Vector3 SwarmCenter 
     {
         get { return new Vector3(_swarmCenter.x, 0, _swarmCenter.z); }
@@ -79,12 +80,12 @@ public class SwarmEnemyParent : MonoBehaviour
         Transform pt = PlayerCharacterController.Instance.transform;
         GameObject projectile = Instantiate(projectilePrefab, _swarmCenter, transform.rotation) as GameObject;
 
-        float offset = 2.0f;
+        float offset = 1.0f;
         Vector3 s2p = (pt.position - _swarmCenter);
         Vector3 aim = new Vector3(s2p.x, s2p.y + offset, s2p.z);
 
-        projectile.GetComponent<Rigidbody>().AddForce(aim * 2.5f, ForceMode.Impulse);
-        Destroy(projectile, 2.0f);
+        projectile.GetComponent<Rigidbody>().AddForce(aim * projectileSpeed, ForceMode.Impulse);
+        Destroy(projectile, 5.0f);
     }
 
     private void OnDestroy() {

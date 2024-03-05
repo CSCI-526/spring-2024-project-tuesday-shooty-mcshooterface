@@ -1,4 +1,5 @@
 using System.Collections;
+using ScriptableObjectArchitecture;
 using Scripts.Game;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ public class Grenade : MonoBehaviour
 {
     
     [SerializeField] private float radius = 5f;
-    [SerializeField] private int blastDamage = 10;
+    [SerializeField] private IntReference blastDamage;
     [SerializeField] private float delay = 1f;
     [SerializeField] private GameObject explosionEffect;
 
@@ -27,7 +28,7 @@ public class Grenade : MonoBehaviour
             HealthComponent hp = c.transform.gameObject.GetComponent<HealthComponent>();
             if (hp != null)
             {
-                DamageInfo d = new DamageInfo(blastDamage, BulletColor.Red, GetType().Name);
+                DamageInfo d = new DamageInfo(blastDamage.Value, BulletColor.Red, GetType().Name);
                 hp.TakeDamage(d);
             }
         }

@@ -1,4 +1,5 @@
 using Scripts.Player;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class Launcher : MonoBehaviour, IGun
@@ -28,6 +29,7 @@ public class Launcher : MonoBehaviour, IGun
         grenadeInstance
             .GetComponent<Rigidbody>()
             .AddForce(bulletSpawnTransform.forward * range, ForceMode.Impulse);
+        Scripts.Game.GameManager.Instance.AudioManager.Play("GrenadeLauncherSFX");
         return true;
     }
 }

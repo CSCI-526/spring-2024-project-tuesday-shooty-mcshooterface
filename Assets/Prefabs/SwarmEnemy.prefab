@@ -50,5 +50,7 @@ MonoBehaviour:
   m_list: []
   _swarmCenter: {x: 0, y: 0, z: 0}
   wanderDir: {x: 0, y: 0, z: 0}
-  attackCD: 5
+  attackCD: 4
+  attackIndicate: 1.8
   projectilePrefab: {fileID: 3288330728612101159, guid: 3f05d69f09fdff441abd2761264b1ea1, type: 3}
+  projectileSpeed: 1

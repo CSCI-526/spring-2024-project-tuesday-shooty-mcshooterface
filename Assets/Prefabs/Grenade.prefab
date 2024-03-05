@@ -147,6 +147,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 5
-  blastDamage: 10
+  blastDamage:
+    _useConstant: 0
+    _constantValue: 0
+    _variable: {fileID: 11400000, guid: f4bdcc8ef7f054c469a8d9a0b7b74aba, type: 2}
   delay: 1
   explosionEffect: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}

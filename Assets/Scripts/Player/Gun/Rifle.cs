@@ -1,13 +1,12 @@
 using System.Collections;
+using ScriptableObjectArchitecture;
 using Scripts.Game;
 using UnityEngine;
 
 namespace Scripts.Player.Gun
 {
-    public class Rifle : MonoBehaviour, IGun
-    {
-        [SerializeField]
-        private int bulletDamage;
+    public class Rifle : MonoBehaviour, IGun {
+        [SerializeField] private IntReference bulletDamage;
 
         [SerializeField]
         private bool bulletSpreadEnabled;
@@ -58,7 +57,7 @@ namespace Scripts.Player.Gun
                             hit.transform.gameObject.GetComponent<HealthComponent>();
                         if (hp != null)
                         {
-                            DamageInfo d = new DamageInfo(bulletDamage, BulletColor.Blue, GetType().Name);
+                            DamageInfo d = new DamageInfo(bulletDamage.Value, BulletColor.Blue, GetType().Name);
                             hp.TakeDamage(d);
                         }
                             
@@ -72,6 +71,7 @@ namespace Scripts.Player.Gun
                     StartCoroutine(SpawnTrail(trail, hit));
                 }
 
+                Scripts.Game.GameManager.Instance.AudioManager.Play("RifleSFX");
                 return true;
             }
 
