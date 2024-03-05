@@ -389,7 +389,8 @@ MonoBehaviour:
   shotgun: {fileID: 5835940766494879018}
   grenadeLauncher: {fileID: 1741924214705271100}
   knife: {fileID: 3149948947449974818}
-  firingRate: 0.5
+  firingRate: {fileID: 11400000, guid: ace71a5e6156cfb41b5b5f682f1726ab, type: 2}
+  elapsedFiringRate: {fileID: 11400000, guid: cc219df8a3cc3d942bb84b158800314b, type: 2}
 --- !u!114 &8616685848737228376
 MonoBehaviour:
   m_ObjectHideFlags: 0

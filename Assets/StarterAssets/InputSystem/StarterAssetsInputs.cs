@@ -1,3 +1,4 @@
+using ScriptableObjectArchitecture;
 using Scripts.Game;
 using Scripts.Player.Gun;
 using UnityEngine;
@@ -25,8 +26,8 @@ namespace StarterAssets
 		public Shotgun shotgun;
 		public Launcher grenadeLauncher;
 		public Knife knife;
-		public float firingRate;
-		private float elapsedFiringRate;
+		public FloatVariable firingRate;
+		public FloatVariable elapsedFiringRate;
 
 		public void OnMove(InputValue value)
 		{
@@ -73,7 +74,7 @@ namespace StarterAssets
                         break;
                 }
 
-				elapsedFiringRate = firingRate;
+				elapsedFiringRate.Value = firingRate;
             }
 
 		}
@@ -111,7 +112,7 @@ namespace StarterAssets
 
         private void Update()
         {
-			if (elapsedFiringRate > 0) elapsedFiringRate -= Time.deltaTime;
+			if (elapsedFiringRate > 0) elapsedFiringRate.Value -= Time.deltaTime;
         }
     }
 	
