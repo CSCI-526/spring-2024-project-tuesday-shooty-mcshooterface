@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -19,14 +20,19 @@ public class IntroductionText : MonoBehaviour {
 
     private IEnumerator ShowIntroText() {
         hud.alpha = 0;
-        foreach (var word in wordsToShow) {
+        for (var w = 0; w < wordsToShow.Count; w++) {
+            var word = wordsToShow[w];
             text.text = word;
 
+            if (w == wordsToShow.Count - 1) {
+                hud.DOFade(1, 2*timeBetweenText);
+            }
             yield return new WaitForSeconds(timeBetweenText);
         }
+
         text.text = "";
 
-        // fade in hud 
-        hud.alpha = 1;
+        // wait for hud to fade in
+        yield return new WaitForSeconds(timeBetweenText);
     }
 }

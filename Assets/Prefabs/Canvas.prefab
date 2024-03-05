@@ -730,9 +730,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'BILLION
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c28c6bb7e25ba334d9d05391c22aa12b, type: 2}
   m_sharedMaterial: {fileID: 2449029380292007786, guid: c28c6bb7e25ba334d9d05391c22aa12b, type: 2}
