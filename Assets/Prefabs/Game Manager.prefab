@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3205492231832135008}
   - component: {fileID: 1876542644636442451}
   - component: {fileID: 454020956643487723}
+  - component: {fileID: 7992551895827605324}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletQueueManager: {fileID: 454020956643487723}
-  _analyticsManager: {fileID: 0}
+  _analyticsManager: {fileID: 7992551895827605324}
   _audioManager: {fileID: 4794400357665718817}
 --- !u!114 &454020956643487723
 MonoBehaviour:
@@ -62,6 +63,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletQueueUI: {fileID: 0}
+--- !u!114 &7992551895827605324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716907632577469230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc903ef9e36b3eb44b474e8d2a701d13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _analyticsAddress: https://logrun-mup5e2fdeq-uc.a.run.app
 --- !u!1 &2205192504607881038
 GameObject:
   m_ObjectHideFlags: 0
