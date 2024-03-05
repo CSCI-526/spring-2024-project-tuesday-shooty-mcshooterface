@@ -21,7 +21,6 @@ public class Grenade : MonoBehaviour
         Vector3 position = transform.position;
         Quaternion rotation = transform.rotation;
         Collider[] colliders = Physics.OverlapSphere(position, radius, LayerMask.GetMask("Enemy"));
-        yield return new WaitForSeconds(delay);
         Instantiate(explosionEffect, position, rotation);
         foreach (Collider c in colliders)
         {
@@ -33,5 +32,6 @@ public class Grenade : MonoBehaviour
             }
         }
         Destroy(gameObject);
+        yield return new WaitForSeconds(delay);
     }
 }

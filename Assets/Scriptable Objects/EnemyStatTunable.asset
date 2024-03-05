@@ -19,3 +19,6 @@ MonoBehaviour:
   _swarmHealth: 1
   _swarmSpeed: 4
   _swarmDropColor: 2
+  _flyingHealth: 1
+  _flyingSpeed: 3
+  _flyingDropColor: 1

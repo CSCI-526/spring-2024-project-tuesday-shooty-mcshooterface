@@ -16,6 +16,12 @@ public class EnemyStatObject : ScriptableObject
     [SerializeField] private float _swarmSpeed;
     [SerializeField] private BulletColor _swarmDropColor;
 
+    [Header("Flying Variables")]
+    [SerializeField] private int _flyingHealth;
+    [SerializeField] private float _flyingSpeed;
+    [SerializeField] private BulletColor _flyingDropColor;
+    
+
     public int OgreHealth => _ogreHealth;
     public float OgreSpeed => _ogreSpeed;
     public BulletColor OgreDropColor => _ogreDropColor;
@@ -25,6 +31,10 @@ public class EnemyStatObject : ScriptableObject
     public float SwarmSpeed => _swarmSpeed;
     public BulletColor SwarmDropColor => _swarmDropColor;
 
+    public int FlyingHealth => _flyingHealth;
+    public float FlyingSpeed => _flyingSpeed;
+    public BulletColor FlyingDropColor => _flyingDropColor;
+
     public int GetHealth(EnemyType enemyType)
     {
         switch (enemyType)
@@ -33,6 +43,8 @@ public class EnemyStatObject : ScriptableObject
                 return _ogreHealth;
             case EnemyType.Swarm:
                 return _swarmHealth;
+            case EnemyType.Flying:
+                return _flyingHealth;
         }
 
         return 0;
@@ -46,6 +58,8 @@ public class EnemyStatObject : ScriptableObject
                 return _ogreDropColor;
             case EnemyType.Swarm:
                 return _swarmDropColor;
+            case EnemyType.Flying:
+                return _flyingDropColor;
         }
         return BulletColor.Empty;
     }
