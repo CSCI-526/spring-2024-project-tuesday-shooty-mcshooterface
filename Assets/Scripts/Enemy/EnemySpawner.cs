@@ -70,8 +70,6 @@ public class EnemySpawner : MonoBehaviour
         var randomIndex = Random.Range(0, enemiesToSpawn.Count);
         var newEnemyPrefab = enemiesToSpawn[randomIndex];
         
-        Debug.Log("spawning " + newEnemyPrefab.name);
-
         // spawn enemy 
         Instantiate(newEnemyPrefab, farthestSpawnLocation.position, Quaternion.identity);
     }

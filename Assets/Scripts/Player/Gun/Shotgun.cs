@@ -1,4 +1,5 @@
 using System.Collections;
+using ScriptableObjectArchitecture;
 using Scripts.Game;
 using Scripts.Player;
 using UnityEngine;
@@ -12,8 +13,7 @@ public class Shotgun : MonoBehaviour, IGun
     [SerializeField]
     float spreadAngle;
 
-    [SerializeField]
-    int bulletDamage;
+    [SerializeField] private IntReference bulletDamage;
 
     [SerializeField]
     float firingRate = 1;
@@ -81,7 +81,7 @@ public class Shotgun : MonoBehaviour, IGun
             HealthComponent hp = hit.transform.gameObject.GetComponent<HealthComponent>();
             if (hp != null)
             {
-                DamageInfo d = new DamageInfo(bulletDamage, BulletColor.Green, GetType().Name);
+                DamageInfo d = new DamageInfo(bulletDamage.Value, BulletColor.Green, GetType().Name);
                 hp.TakeDamage(d);
             }
                 

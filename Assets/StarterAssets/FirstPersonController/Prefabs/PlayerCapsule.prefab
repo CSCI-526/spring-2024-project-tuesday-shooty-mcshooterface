@@ -44,7 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a76707bdcec3e84d8a8edb2d8a1a412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamage: 10
+  bulletDamage:
+    _useConstant: 0
+    _constantValue: 0
+    _variable: {fileID: 11400000, guid: 3c6493c0153dc0543b2139af714c4019, type: 2}
   bulletSpreadEnabled: 0
   bulletSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
   shootingSystem: {fileID: 198234346748616026, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
@@ -100,7 +103,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numPellets: 10
   spreadAngle: 4
-  bulletDamage: 1
+  bulletDamage:
+    _useConstant: 0
+    _constantValue: 0
+    _variable: {fileID: 11400000, guid: fcf55ef13f3dcce4a870c2c421051977, type: 2}
   firingRate: 1
   mask:
     serializedVersion: 2

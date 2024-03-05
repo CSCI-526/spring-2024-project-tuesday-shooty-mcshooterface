@@ -57,7 +57,7 @@ MonoBehaviour:
   spawnLocations: []
   enemyCollection: {fileID: 11400000, guid: eab7e3363ac714a458ff4bfb5ac26580, type: 2}
   maxEnemyCount: 5
-  spawnTime: 3
+  spawnTime: 1.5
 --- !u!1 &1975065816390406961
 GameObject:
   m_ObjectHideFlags: 0
