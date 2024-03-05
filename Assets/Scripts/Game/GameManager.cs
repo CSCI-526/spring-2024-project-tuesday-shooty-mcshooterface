@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,12 @@ namespace Scripts.Game
         {
             Cursor.lockState = CursorLockMode.Locked;
             PlayerCharacterController.Instance.HealthComponent.OnDeath += OnPlayerDeath;
+        }
+
+        private void Update() {
+            if (Input.GetKeyDown(KeyCode.R)) {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
 
         private void OnPlayerDeath(in int newHealth)
