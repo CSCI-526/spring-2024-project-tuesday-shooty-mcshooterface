@@ -18,16 +18,12 @@ public class PlayerHealthComponent : Scripts.Game.HealthComponent
     {
         base.TakeDamage(damage);
         damageVFX.DamageFlash();
-    }
-
-    public override void TakeDamage(DamageInfo damage)
-    {
-        base.TakeDamage(damage);
 
         // TODO: Refactor
         if (BulletQueueManager.Instance.DamageDealtPerEnemyType.ContainsKey(damage.source) == false)
         {
-            BulletQueueManager.Instance.DamageDealtPerEnemyType.Add(damage.source, 0);
+            Debug.LogError($"Damage source: {damage.source} doesn't have a [Enemy] tag...");
+            return;
         }
 
         BulletQueueManager.Instance.DamageDealtPerEnemyType[damage.source] += damage.damage;
