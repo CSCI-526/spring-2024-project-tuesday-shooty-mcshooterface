@@ -24,58 +24,48 @@ namespace Scripts.Player.Gun
         private TrailRenderer bulletTrail;
 
         [SerializeField]
-        private float shootDelay;
-
-        [SerializeField]
         private LayerMask mask;
-
-        private float _lastShootTime;
 
         public bool TryShoot()
         {
-            if (_lastShootTime + shootDelay < Time.time)
-            {
-                shootingSystem.Play();
+            shootingSystem.Play();
 
-                Vector3 direction = GetDirection();
-                Transform bulletSpawnTransform = PlayerCharacterController
-                    .Instance
-                    .BulletSpawnTransform;
-                if (
-                    Physics.Raycast(
-                        bulletSpawnTransform.position,
-                        direction,
-                        out RaycastHit hit,
-                        float.MaxValue,
-                        mask
-                    )
+            Vector3 direction = GetDirection();
+            Transform bulletSpawnTransform = PlayerCharacterController
+                .Instance
+                .BulletSpawnTransform;
+            if (
+                Physics.Raycast(
+                    bulletSpawnTransform.position,
+                    direction,
+                    out RaycastHit hit,
+                    float.MaxValue,
+                    mask
                 )
+            )
+            {
+                if (hit.collider != null)
                 {
-                    if (hit.collider != null)
+                    HealthComponent hp =
+                        hit.transform.gameObject.GetComponent<HealthComponent>();
+                    if (hp != null)
                     {
-                        HealthComponent hp =
-                            hit.transform.gameObject.GetComponent<HealthComponent>();
-                        if (hp != null)
-                        {
-                            DamageInfo d = new DamageInfo(bulletDamage.Value, BulletColor.Blue, GetType().Name);
-                            hp.TakeDamage(d);
-                        }
-                            
+                        DamageInfo d = new DamageInfo(bulletDamage.Value, BulletColor.Blue, GetType().Name);
+                        hp.TakeDamage(d);
                     }
 
-                    TrailRenderer trail = Instantiate(
-                        bulletTrail,
-                        bulletSpawnTransform.position,
-                        Quaternion.identity
-                    );
-                    StartCoroutine(SpawnTrail(trail, hit));
                 }
 
-                Scripts.Game.GameManager.Instance.AudioManager.Play("RifleSFX");
-                return true;
+                TrailRenderer trail = Instantiate(
+                    bulletTrail,
+                    bulletSpawnTransform.position,
+                    Quaternion.identity
+                );
+                StartCoroutine(SpawnTrail(trail, hit));
             }
 
-            return false;
+            Scripts.Game.GameManager.Instance.AudioManager.Play("RifleSFX");
+            return true;
         }
 
         private Vector3 GetDirection()

@@ -25,6 +25,8 @@ namespace StarterAssets
 		public Shotgun shotgun;
 		public Launcher grenadeLauncher;
 		public Knife knife;
+		public float firingRate;
+		private float elapsedFiringRate;
 
 		public void OnMove(InputValue value)
 		{
@@ -50,25 +52,30 @@ namespace StarterAssets
 		}
 
 		public void OnShoot() {
-
-			switch (GameManager.Instance.BulletQueueManager.Top)
+			if (elapsedFiringRate <= 0)
 			{
-				case BulletColor.Blue:
-					if (rifle.TryShoot()) GameManager.Instance.BulletQueueManager.LoseAmmo();
-					break;
-				case BulletColor.Green:
-					if (shotgun.TryShoot()) GameManager.Instance.BulletQueueManager.LoseAmmo();
-					break;
-				case BulletColor.Red:
-					if (grenadeLauncher.TryShoot()) GameManager.Instance.BulletQueueManager.LoseAmmo();
-					break;
-				case BulletColor.Empty:
-					knife.ThrowKnife();
-					break;
-				default:
-					GameManager.Instance.BulletQueueManager.LoseAmmo();
-					break;
-			}
+                switch (GameManager.Instance.BulletQueueManager.Top)
+                {
+                    case BulletColor.Blue:
+                        if (rifle.TryShoot()) GameManager.Instance.BulletQueueManager.LoseAmmo();
+                        break;
+                    case BulletColor.Green:
+                        if (shotgun.TryShoot()) GameManager.Instance.BulletQueueManager.LoseAmmo();
+                        break;
+                    case BulletColor.Red:
+                        if (grenadeLauncher.TryShoot()) GameManager.Instance.BulletQueueManager.LoseAmmo();
+                        break;
+                    case BulletColor.Empty:
+						knife.TryShoot();
+                        break;
+                    default:
+                        GameManager.Instance.BulletQueueManager.LoseAmmo();
+                        break;
+                }
+
+				elapsedFiringRate = firingRate;
+            }
+
 		}
 
 
@@ -101,6 +108,11 @@ namespace StarterAssets
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
-	}
+
+        private void Update()
+        {
+			if (elapsedFiringRate > 0) elapsedFiringRate -= Time.deltaTime;
+        }
+    }
 	
 }
