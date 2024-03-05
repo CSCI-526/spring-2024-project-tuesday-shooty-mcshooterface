@@ -1,12 +1,16 @@
+using Unity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+#if UNITY_EDITOR
 using Unity.EditorCoroutines.Editor;
+#endif
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
 
+#if UNITY_EDITOR
 public class AnalyticsEditorTool : EditorWindow
 {
     [MenuItem("Tools/Analytics Data Download")]
@@ -34,6 +38,7 @@ public class AnalyticsEditorTool : EditorWindow
         }
     }
 
+#if UNITY_EDITOR
     private void DownloadAsJson(string url)
     {
         EditorCoroutineUtility.StartCoroutineOwnerless(Download(url, false));
@@ -43,6 +48,7 @@ public class AnalyticsEditorTool : EditorWindow
     {
         EditorCoroutineUtility.StartCoroutineOwnerless(Download(url, true));
     }
+#endif
 
     private IEnumerator Download(string url, bool convertToCsv)
     {
@@ -96,3 +102,5 @@ public class AnalyticsEditorTool : EditorWindow
         public List<RunData> data;
     }
 }
+#endif
+

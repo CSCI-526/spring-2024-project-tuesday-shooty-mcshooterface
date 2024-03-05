@@ -52,8 +52,8 @@ MonoBehaviour:
   swarmEnemyParentPF: {fileID: 3423221536652857574, guid: 95e69a2e1a9eed74ebb68d040dfb291f, type: 3}
   spawnMeleeEnemy: 1
   meleeEnemyPF: {fileID: 5186863481464667598, guid: f656fd4523cd2f94eba75abb7f3c0830, type: 3}
-  spawnFlyingEnemy: 0
-  flyingEnemyPF: {fileID: 0}
+  spawnFlyingEnemy: 1
+  flyingEnemyPF: {fileID: 3435423267389870471, guid: f4e4cd69dab4b4ab096ba6ba9633c6f5, type: 3}
   spawnLocations:
   - {fileID: 5373056677548962450}
   - {fileID: 4992063537853034942}
