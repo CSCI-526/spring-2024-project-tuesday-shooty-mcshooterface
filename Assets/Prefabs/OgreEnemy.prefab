@@ -152,6 +152,7 @@ MonoBehaviour:
   _enemyType: 0
   _enemyStatTunable: {fileID: 11400000, guid: 2bd2ddad11caf024181ef76e02fec1cc, type: 2}
   _superEffectiveTunable: {fileID: 11400000, guid: f8358c299f5b71e4ead746982db47860, type: 2}
+  enemiesKilled: {fileID: 11400000, guid: c5b0b2d7029e638488289a909c164dfb, type: 2}
   enemyCollection: {fileID: 11400000, guid: eab7e3363ac714a458ff4bfb5ac26580, type: 2}
   _knockbackForce: 200
   _knockbackStunDuration: 1.5

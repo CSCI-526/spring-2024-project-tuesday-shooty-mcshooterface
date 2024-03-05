@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using ScriptableObjectArchitecture;
 using Scripts.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -30,6 +31,8 @@ namespace Scripts.Game
         [SerializeField]
         private AudioManager _audioManager;
 
+        [SerializeField] protected IntVariable enemiesKilled;
+
         void Awake()
         {
             Instance = this;
@@ -39,6 +42,7 @@ namespace Scripts.Game
         {
             Cursor.lockState = CursorLockMode.Locked;
             PlayerCharacterController.Instance.HealthComponent.OnDeath += OnPlayerDeath;
+            enemiesKilled.Value = 0;
         }
 
         private void Update() {

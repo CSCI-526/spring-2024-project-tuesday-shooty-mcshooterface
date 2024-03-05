@@ -1,5 +1,6 @@
 using Scripts.Game;
 using System.Collections;
+using ScriptableObjectArchitecture;
 using UnityEngine;
 
 public class BaseEnemy : MonoBehaviour
@@ -7,6 +8,7 @@ public class BaseEnemy : MonoBehaviour
     [SerializeField] EnemyType _enemyType;
     [SerializeField] protected EnemyStatObject _enemyStatTunable;
     [SerializeField] protected SuperEffectiveObject _superEffectiveTunable;
+    [SerializeField] protected IntVariable enemiesKilled;
 
     protected EnemyHealthComponent _healthComponent;
     protected Rigidbody _rigidbody;
@@ -38,6 +40,7 @@ public class BaseEnemy : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         GameManager.Instance.BulletQueueManager.ObtainBullet(_enemyStatTunable.GetDropColor(_enemyType));
+        enemiesKilled.Value++;
         Destroy(gameObject);
     }
 }

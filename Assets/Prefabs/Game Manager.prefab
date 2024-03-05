@@ -50,6 +50,7 @@ MonoBehaviour:
   _bulletQueueManager: {fileID: 454020956643487723}
   _analyticsManager: {fileID: 7992551895827605324}
   _audioManager: {fileID: 4794400357665718817}
+  enemiesKilled: {fileID: 11400000, guid: c5b0b2d7029e638488289a909c164dfb, type: 2}
 --- !u!114 &454020956643487723
 MonoBehaviour:
   m_ObjectHideFlags: 0
