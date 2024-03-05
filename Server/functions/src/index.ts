@@ -10,7 +10,7 @@ initializeApp();
 const RUN_COLLECTION_NAME = "runs";
 
 // This returns all the runs in the database. We can query this on the client side to visualize data.
-exports.allRuns = onRequest(async (_: functions.https.Request, res: functions.Response<any>) => {
+exports.allRuns = onRequest({cors: true}, async (_: functions.https.Request, res: functions.Response<any>) => {
     try {
         const collectionRef = admin.firestore().collection(RUN_COLLECTION_NAME);
         const querySnapshot = await collectionRef.get();
