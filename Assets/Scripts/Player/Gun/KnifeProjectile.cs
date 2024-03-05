@@ -9,17 +9,6 @@ public class KnifeProjectile : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private IntReference damage; // 5
-    void Start()
-    {
-        // Debug
-        GetComponent<Renderer>().material.color = Color.red;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     void OnTriggerEnter(Collider other)
     {
