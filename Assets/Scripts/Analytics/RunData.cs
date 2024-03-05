@@ -13,6 +13,33 @@ public class RunData
 
     public List<KeyValue<string, long>> DamageDealtPerEnemyType;
 
+    public string GetHeader()
+    {
+        AmmoCollections.Sort((x, y) => x.Key.CompareTo(y.Key));
+        DamageDealtPerAmmo.Sort((x, y) => x.Key.CompareTo(y.Key));
+        DamageDealtPerEnemyType.Sort((x, y) => x.Key.CompareTo(y.Key));
+        StringBuilder sb = new StringBuilder();
+        // header
+        sb.Append("Survival Time (seconds),");
+        foreach (KeyValue<string, long> kvp in AmmoCollections)
+        {
+            sb.Append(kvp.Key);
+            sb.Append(',');
+        }
+        foreach (KeyValue<string, long> kvp in DamageDealtPerAmmo)
+        {
+            sb.Append(kvp.Key);
+            sb.Append(',');
+        }
+        foreach (KeyValue<string, long> kvp in DamageDealtPerEnemyType)
+        {
+            sb.Append(kvp.Key);
+            sb.Append(',');
+        }
+
+        return sb.ToString();
+    }
+
     public override string ToString()
     {
         AmmoCollections.Sort((x, y) => x.Key.CompareTo(y.Key));
@@ -20,6 +47,7 @@ public class RunData
         DamageDealtPerEnemyType.Sort((x, y) => x.Key.CompareTo(y.Key));
 
         StringBuilder sb = new StringBuilder();
+        // data
         sb.Append(SurvivalTimeSeconds);
         sb.Append(',');
         foreach (KeyValue<string, long> kvp in AmmoCollections)

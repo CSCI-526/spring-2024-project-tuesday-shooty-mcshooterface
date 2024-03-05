@@ -78,6 +78,10 @@ public class AnalyticsEditorTool : EditorWindow
         StringBuilder csv = new StringBuilder();
         RunDataResponse response = JsonUtility.FromJson<RunDataResponse>(json);
         List<RunData> data = response.data;
+        if (data.Count > 0)
+        {
+            csv.AppendLine(data[0].GetHeader());
+        }
         for (int runIndex = 0; runIndex < data.Count; runIndex++)
         {
             csv.AppendLine(data[runIndex].ToString());
