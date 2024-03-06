@@ -18,11 +18,7 @@ public class Knife : MonoBehaviour, IGun
     // Update is called once per frame
     void Update()
     {
-        //  Debug
-        if (Input.GetMouseButtonDown(1)) 
-        {
-            ThrowKnife();        
-        }
+
     }
 
     public void ThrowKnife() 
