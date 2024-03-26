@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
-    
+    [SerializeField] private Rigidbody rb;
     [SerializeField] private float radius = 5f;
     [SerializeField] private IntReference blastDamage;
     [SerializeField] private float delay = 1f;
     [SerializeField] private GameObject explosionEffect;
-
+    [SerializeField] private float gravity = 9.8f;
     private void OnCollisionEnter(Collision other)
     {
         StartCoroutine(Explode());
@@ -33,5 +33,10 @@ public class Grenade : MonoBehaviour
         }
         Destroy(gameObject);
         yield return new WaitForSeconds(delay);
+    }
+
+    private void Update()
+    {
+        rb.AddForce(gravity * Time.deltaTime * Vector3.down, ForceMode.Acceleration);
     }
 }
