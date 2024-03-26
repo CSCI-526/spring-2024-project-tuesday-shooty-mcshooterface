@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1876542644636442451}
   - component: {fileID: 454020956643487723}
   - component: {fileID: 7992551895827605324}
+  - component: {fileID: 4128116159034774586}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -52,6 +53,7 @@ MonoBehaviour:
   _analyticsManager: {fileID: 7992551895827605324}
   _audioManager: {fileID: 4794400357665718817}
   _scoreManager: {fileID: 6338925469010415393}
+  _deathManager: {fileID: 4128116159034774586}
   enemiesKilled: {fileID: 11400000, guid: c5b0b2d7029e638488289a909c164dfb, type: 2}
 --- !u!114 &454020956643487723
 MonoBehaviour:
@@ -79,6 +81,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _analyticsAddress: https://logrun-mup5e2fdeq-uc.a.run.app
+--- !u!114 &4128116159034774586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716907632577469230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 855abd91e8cced9449a85d316fbf49c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deathState: 0
 --- !u!1 &2205192504607881038
 GameObject:
   m_ObjectHideFlags: 0

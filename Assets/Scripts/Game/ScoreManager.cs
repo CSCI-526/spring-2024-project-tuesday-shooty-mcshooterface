@@ -1,5 +1,6 @@
 using ScriptableObjectArchitecture;
 using Scripts.Game;
+using Scripts.Player;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -42,7 +43,7 @@ public class ScoreManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1);
-            AddScore(_scoreTunable.survivalBonusPerSec);
+            if (PlayerCharacterController.Instance.HealthComponent.CurrentHealth > 0) AddScore(_scoreTunable.survivalBonusPerSec);
         }
     }
 

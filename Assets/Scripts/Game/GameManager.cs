@@ -22,6 +22,8 @@ namespace Scripts.Game
         public BulletQueueManager BulletQueueManager => _bulletQueueManager;
         public AudioManager AudioManager => _audioManager;
         public ScoreManager ScoreManager => _scoreManager;
+        public AnalyticsManager AnalyticsManager => _analyticsManager;
+        public DeathManager DeathManager => _deathManager;
 
         [SerializeField]
         private BulletQueueManager _bulletQueueManager;
@@ -35,6 +37,9 @@ namespace Scripts.Game
         [SerializeField]
         private ScoreManager _scoreManager;
 
+        [SerializeField]
+        private DeathManager _deathManager;
+
         [SerializeField] protected IntVariable enemiesKilled;
 
         void Awake()
@@ -45,46 +50,9 @@ namespace Scripts.Game
         void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
-            PlayerCharacterController.Instance.HealthComponent.OnDeath += OnPlayerDeath;
             enemiesKilled.Value = 0;
         }
 
-        private void Update() {
-            if (Input.GetKeyDown(KeyCode.R)) {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
-        }
-
-        private void OnPlayerDeath(in DamageInfo damage)
-        {
-            StartCoroutine(EndGame());
-        }
-
-        private IEnumerator EndGame()
-        {
-            List<KeyValue<string, long>> damageDealtPerEnemyType = (
-                from kvp in BulletQueueManager.DamageDealtPerEnemyType
-                select new KeyValue<string, long>() { Key = kvp.Key, Value = kvp.Value }
-            ).ToList();
-            List<KeyValue<string, long>> ammoCollection = (
-                from kvp in BulletQueueManager.AmmoCollections
-                select new KeyValue<string, long>() { Key = kvp.Key, Value = kvp.Value }
-            ).ToList();
-            List<KeyValue<string, long>> ammoDamageDealt = (
-                from kvp in BulletQueueManager.AmmoDamageDealt
-                select new KeyValue<string, long>() { Key = kvp.Key, Value = kvp.Value }
-            ).ToList();
-
-            yield return _analyticsManager.LogRun(
-                new RunData
-                {
-                    SurvivalTimeSeconds = (int)Time.timeSinceLevelLoad,
-                    AmmoCollections = ammoCollection,
-                    DamageDealtPerAmmo = ammoDamageDealt,
-                    DamageDealtPerEnemyType = damageDealtPerEnemyType,
-                }
-            );
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+        
     }
 }
