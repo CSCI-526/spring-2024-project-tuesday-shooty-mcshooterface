@@ -27,8 +27,6 @@ public class SwarmEnemyParent : MonoBehaviour
     public float attackIndicate = 1.8f;
     public GameObject projectilePrefab;
     [SerializeField] private float projectileSpeed;
-
-    Vector3 lastEnemyDeathPosition;
     public Vector3 SwarmCenter 
     {
         get { return new Vector3(_swarmCenter.x, 0, _swarmCenter.z); }
@@ -107,7 +105,6 @@ public class SwarmEnemyParent : MonoBehaviour
 
     public void RemoveSwarmEnemy(SwarmEnemy swarm)
     {
-        lastEnemyDeathPosition = swarm.transform.position;
         m_list.Remove(swarm);
         if (m_list.Count <= 0)
         {
@@ -119,7 +116,7 @@ public class SwarmEnemyParent : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         GameManager.Instance.ScoreManager.GiveEnemyBonus();
-        SpawnDrop(lastEnemyDeathPosition);
+        SpawnDrop(_swarmCenter);
         enemiesKilled.Value++;
         Destroy(gameObject);
     }
