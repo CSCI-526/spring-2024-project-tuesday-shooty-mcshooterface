@@ -13,11 +13,14 @@ public class AmmoDrop : MonoBehaviour
     {
         if (other != null && (other.gameObject.layer == LayerMask.NameToLayer("Player")))
         {
-            for (int i = 0; i < _amount; i++)
+            if (!GameManager.Instance.BulletQueueManager.IsMaxAmmo())
             {
-                GameManager.Instance.BulletQueueManager.ObtainBullet(_color);
+                for (int i = 0; i < _amount; i++)
+                {
+                    GameManager.Instance.BulletQueueManager.ObtainBullet(_color);
+                }
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
         }
     }
 }

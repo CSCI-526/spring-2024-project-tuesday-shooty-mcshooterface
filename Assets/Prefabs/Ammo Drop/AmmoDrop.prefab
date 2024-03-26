@@ -4930,7 +4930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb76e414f3477f14490954440ebb246a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _amount: 1
+  _amount: 2
   _color: 3
 --- !u!1 &8136495810080142420
 GameObject:

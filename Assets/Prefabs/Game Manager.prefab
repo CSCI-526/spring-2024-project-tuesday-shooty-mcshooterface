@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 005e8213495052248a5a1f7c6c9d98ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ammoSize: 6
   bulletQueueUI: {fileID: 0}
 --- !u!114 &7992551895827605324
 MonoBehaviour:
