@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cf4ddbf25f5894a927dc77665043d7, type: 3}
   m_Name: SuperEffectiveTunable
   m_EditorClassIdentifier: 
-  rifleVersusOgreMultiplier: 1
-  shotgunVersusOgreMultiplier: 2
-  grenadeVersusOgreMultiplier: 1
+  rifleVersusOgreMultiplier: 2
+  shotgunVersusOgreMultiplier: 6
+  grenadeVersusOgreMultiplier: 3
   rifleVersusSwarmMultiplier: 1
-  shotgunVersusSwarmMultiplier: 1
+  shotgunVersusSwarmMultiplier: 2
   grenadeVersusSwarmMultiplier: 2
-  rifleVersusFlyingMultiplier: 2
-  shotgunVersusFlyingMultiplier: 1
-  grenadeVersusFlyingMultiplier: 1
+  rifleVersusFlyingMultiplier: 6
+  shotgunVersusFlyingMultiplier: 3
+  grenadeVersusFlyingMultiplier: 2

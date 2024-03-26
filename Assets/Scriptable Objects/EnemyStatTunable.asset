@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68035207ac808944fa14ccca7f3b1d3a, type: 3}
   m_Name: EnemyStatTunable
   m_EditorClassIdentifier: 
-  _ogreHealth: 5
-  _ogreSpeed: 2
+  _ogreHealth: 60
+  _ogreSpeed: 3.5
   _ogreDrop: {fileID: 2896749894368506011, guid: e4178aa1d66297947a9e96a6ad0d5663, type: 3}
   _swarmNumber: 3
-  _swarmHealth: 1
+  _swarmHealth: 20
   _swarmSpeed: 4
   _swarmDrop: {fileID: 6852151386850967833, guid: 20aec5e261c2ae74c93faf4fae7e64e8, type: 3}
-  _flyingHealth: 1
+  _flyingHealth: 60
   _flyingSpeed: 3
   _flyingDrop: {fileID: 4546229708036329592, guid: 3a8e97a50db24d8499e9a3599f32c21c, type: 3}
