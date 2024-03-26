@@ -15,6 +15,8 @@ public class BulletQueueManager : MonoBehaviour
     private Dictionary<string, long> _ammoDamageDealt = new();
     private Dictionary<string, long> _damageDealtPerEnemyType = new();
 
+    [SerializeField] public int _ammoSize;
+
     public BulletColor Top
     {
         get => bulletQueue.Count == 0 ? BulletColor.Empty : bulletQueue.Peek();
@@ -127,7 +129,7 @@ public class BulletQueueManager : MonoBehaviour
     void ClearQueue()
     {
         bulletQueue.Clear();
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < _ammoSize; i++)
         {
             bulletQueue.Enqueue(BulletColor.Empty);
         }
@@ -151,6 +153,12 @@ public class BulletQueueManager : MonoBehaviour
     {
         OnBulletObtained?.Invoke(color);
         _ammoCollections[color.ToString()]++;
+    }
+
+    public bool IsMaxAmmo()
+    {
+        List<BulletColor> tempList = new List<BulletColor>(bulletQueue);
+        return tempList.IndexOf(BulletColor.Empty) == -1;
     }
 }
 
