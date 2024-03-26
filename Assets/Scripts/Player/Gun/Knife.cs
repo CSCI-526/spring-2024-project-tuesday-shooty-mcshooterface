@@ -1,5 +1,6 @@
 using UnityEngine;
 using Scripts.Player;
+using Scripts.Game;
 
 public class Knife : MonoBehaviour, IGun
 {
@@ -23,7 +24,7 @@ public class Knife : MonoBehaviour, IGun
 
         GameObject kf = Instantiate(KnifePrefab, spawnTransform.position, spawnTransform.rotation) as GameObject;
         kf.GetComponent<Rigidbody>().velocity = spawnTransform.forward * KnifeSpeed;
-
+        GameManager.Instance.AudioManager.Play("KnifeSFX");
         Destroy(kf, 2.0f);
     }
 
