@@ -2,6 +2,7 @@ using Scripts.Game;
 using System.Collections;
 using ScriptableObjectArchitecture;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class BaseEnemy : MonoBehaviour
 {
@@ -40,9 +41,15 @@ public class BaseEnemy : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         GameManager.Instance.ScoreManager.GiveEnemyBonus();
-        GameManager.Instance.BulletQueueManager.ObtainBullet(_enemyStatTunable.GetDropColor(_enemyType));
+        SpawnDrop();
         enemiesKilled.Value++;
         Destroy(gameObject);
+    }
+
+    protected virtual void SpawnDrop()
+    {
+        GameObject drop = Instantiate(_enemyStatTunable.GetEnemyDrop(_enemyType), transform.position, Quaternion.identity);
+        drop.transform.position = new Vector3(drop.transform.position.x, 0, drop.transform.position.z);
     }
 }
 

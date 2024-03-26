@@ -23,7 +23,6 @@ public class SwarmEnemy : BaseEnemy
     {
         yield return new WaitForEndOfFrame();
         _parent.RemoveSwarmEnemy(this);
-        base.enemiesKilled.Value++;
         Destroy(gameObject);
     }
 

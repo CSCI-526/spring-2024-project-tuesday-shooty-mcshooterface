@@ -14,6 +14,7 @@ public class SwarmEnemyParent : MonoBehaviour
     [Header("References")]
     [SerializeField] EnemyStatObject _enemyStatTunable;
     [SerializeField] SwarmEnemy swarmEnemy;
+    [SerializeField] protected IntVariable enemiesKilled;
 
     [Header("Debug")]
     [SerializeField] List<SwarmEnemy> m_list;
@@ -115,7 +116,14 @@ public class SwarmEnemyParent : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         GameManager.Instance.ScoreManager.GiveEnemyBonus();
-        GameManager.Instance.BulletQueueManager.ObtainBullet(_enemyStatTunable.SwarmDropColor);
+        SpawnDrop();
+        enemiesKilled.Value++;
         Destroy(gameObject);
+    }
+
+    protected virtual void SpawnDrop()
+    {
+        GameObject drop = Instantiate(_enemyStatTunable.GetEnemyDrop(EnemyType.Swarm), transform.position, Quaternion.identity);
+        drop.transform.position = new Vector3(drop.transform.position.x, 0, drop.transform.position.z);
     }
 }
