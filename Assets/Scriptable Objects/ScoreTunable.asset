@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9db2a864d8ee34da85cf5b648e8fda, type: 3}
   m_Name: ScoreTunable
   m_EditorClassIdentifier: 
-  survivalBonusPerSec: 0
-  killBonus: 0
-  consecutiveKillStreakBonus: 0
-  killstreakDuration: 0
+  survivalBonusPerSec: 100
+  killBonus: 1000
+  consecutiveKillStreakBonus: 1000
+  killstreakDuration: 4
   oneshotBonus: 0
-  Score: {fileID: 0}
-  CurrKillStreak: {fileID: 0}
+  Score: {fileID: 11400000, guid: 37880c4a70757ac48ba9f7d52a3983ab, type: 2}
+  CurrKillStreak: {fileID: 11400000, guid: 8aef3f4611cdade43b3a799a4f799e25, type: 2}
