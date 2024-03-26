@@ -7,7 +7,7 @@ public class Launcher : MonoBehaviour, IGun
     private GameObject grenade;
 
     [SerializeField]
-    private float range = 15f;
+    private float range = 30f;
 
     public bool TryShoot()
     {
