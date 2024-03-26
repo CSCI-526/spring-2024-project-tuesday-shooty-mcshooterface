@@ -27,7 +27,7 @@ exports.allRuns = onRequest({cors: true}, async (_: functions.https.Request, res
 });
 
 // This logs a single game run. We can store all the analytics data on firestore from here.
-exports.logRun = onRequest(
+exports.logRun = onRequest( {cors: true},
     async (req: functions.https.Request, res: functions.Response<any>) => {
         const runData = req.body;
 
