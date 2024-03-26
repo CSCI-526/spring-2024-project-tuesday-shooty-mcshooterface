@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +13,7 @@ public class BulletQueueUI : MonoBehaviour
 
     public void UpdateQueueDisplay(Queue<BulletColor> queue)
     {
+        BulletQueueManager.Instance.InvokeBulletChange(queue.Peek());
         int index = 0;
         foreach (var bullet in queue)
         {

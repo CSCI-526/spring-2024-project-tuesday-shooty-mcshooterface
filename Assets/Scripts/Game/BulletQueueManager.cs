@@ -9,6 +9,7 @@ public class BulletQueueManager : MonoBehaviour
     private static BulletQueueManager _instance;
     public delegate void BulletQueueEventHandler(BulletColor color);
     public event BulletQueueEventHandler OnBulletObtained;
+    public event BulletQueueEventHandler OnBulletChanged;
     private Queue<BulletColor> bulletQueue = new Queue<BulletColor>();
     private Dictionary<string, long> _ammoCollections = new();
     private Dictionary<string, long> _ammoDamageDealt = new();
@@ -39,6 +40,11 @@ public class BulletQueueManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+    }
+
+    public void InvokeBulletChange(BulletColor color)
+    {
+        OnBulletChanged?.Invoke(color);
     }
 
     private void Start()

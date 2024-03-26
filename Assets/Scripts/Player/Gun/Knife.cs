@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Scripts.Game;
-using Scripts.Player.Gun;
 using Scripts.Player;
 
 public class Knife : MonoBehaviour, IGun
