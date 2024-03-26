@@ -33,6 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5709584416719974810}
+  - {fileID: 7970602819014052317}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1876542644636442451
@@ -50,6 +51,7 @@ MonoBehaviour:
   _bulletQueueManager: {fileID: 454020956643487723}
   _analyticsManager: {fileID: 7992551895827605324}
   _audioManager: {fileID: 4794400357665718817}
+  _scoreManager: {fileID: 6338925469010415393}
   enemiesKilled: {fileID: 11400000, guid: c5b0b2d7029e638488289a909c164dfb, type: 2}
 --- !u!114 &454020956643487723
 MonoBehaviour:
@@ -205,6 +207,52 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &3024992245595555178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7970602819014052317}
+  - component: {fileID: 6338925469010415393}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7970602819014052317
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3024992245595555178}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3205492231832135008}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6338925469010415393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3024992245595555178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8365e3e77db28848bf0f20d0536624e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scoreTunable: {fileID: 11400000, guid: b788affd7bd64de4c9220ae7d4082a3a, type: 2}
+  killStreakTimer: 0
 --- !u!1 &5720541588136053328
 GameObject:
   m_ObjectHideFlags: 0
