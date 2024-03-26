@@ -1,16 +1,29 @@
 using Scripts.Game;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DeathPanelUI : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] Animator _animator;
+    [SerializeField] TextMeshProUGUI _timeText;
+
+    [Header("Debug")]
+    [SerializeField] float time;
 
     private void Start()
     {
         GameManager.Instance.DeathManager.OnSceneDeath += OnDeath;
         GameManager.Instance.DeathManager.OnSceneContinue += OnContinue;
+
+        time = 0;
+    }
+
+    private void Update()
+    {
+        time += Time.deltaTime;
     }
 
     private void OnDestroy()
@@ -23,6 +36,8 @@ public class DeathPanelUI : MonoBehaviour
     {
         _animator.SetBool("Open", true);
         _animator.SetBool("TryAgain", false);
+
+        _timeText.text = "Time: " + Mathf.Floor(time).ToString();
     }
 
     public void OnContinue()
