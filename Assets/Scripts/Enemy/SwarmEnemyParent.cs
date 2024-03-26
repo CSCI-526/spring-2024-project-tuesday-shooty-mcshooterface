@@ -114,6 +114,7 @@ public class SwarmEnemyParent : MonoBehaviour
     IEnumerator SelfDestruct()
     {
         yield return new WaitForEndOfFrame();
+        GameManager.Instance.ScoreManager.GiveEnemyBonus();
         GameManager.Instance.BulletQueueManager.ObtainBullet(_enemyStatTunable.SwarmDropColor);
         Destroy(gameObject);
     }

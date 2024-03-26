@@ -21,6 +21,7 @@ namespace Scripts.Game
 
         public BulletQueueManager BulletQueueManager => _bulletQueueManager;
         public AudioManager AudioManager => _audioManager;
+        public ScoreManager ScoreManager => _scoreManager;
 
         [SerializeField]
         private BulletQueueManager _bulletQueueManager;
@@ -30,6 +31,9 @@ namespace Scripts.Game
 
         [SerializeField]
         private AudioManager _audioManager;
+
+        [SerializeField]
+        private ScoreManager _scoreManager;
 
         [SerializeField] protected IntVariable enemiesKilled;
 
@@ -51,7 +55,7 @@ namespace Scripts.Game
             }
         }
 
-        private void OnPlayerDeath(in int newHealth)
+        private void OnPlayerDeath(in DamageInfo damage)
         {
             StartCoroutine(EndGame());
         }

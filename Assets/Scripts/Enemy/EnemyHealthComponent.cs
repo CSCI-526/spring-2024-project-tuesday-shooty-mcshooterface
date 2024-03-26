@@ -24,7 +24,7 @@ public class EnemyHealthComponent : HealthComponent
 
         if (_currentHealth + delta > 0 && _currentHealth <= 0)
         {
-            OnDeath?.Invoke(_currentHealth);
+            OnDeath?.Invoke(damage);
         }
 
         string damageSource = damage.color.ToString();

@@ -6,7 +6,7 @@ namespace Scripts.Game
     {
         public delegate void HealthEvent<T>(in T args);
 
-        public HealthEvent<int> OnDeath;
+        public HealthEvent<DamageInfo> OnDeath;
         public HealthEvent<(DamageInfo damage, int newHealth)> OnDamageTaken;
 
         public int CurrentHealth => _currentHealth;
@@ -20,7 +20,7 @@ namespace Scripts.Game
 
             if (_currentHealth + damage.damage > 0 && _currentHealth <= 0)
             {
-                OnDeath?.Invoke(_currentHealth);
+                OnDeath?.Invoke(damage);
             }
         }
     }

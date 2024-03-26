@@ -31,7 +31,7 @@ public class BaseEnemy : MonoBehaviour
         _healthComponent.OnDeath += OnDeath;
     }
 
-    private void OnDeath(in int _)
+    private void OnDeath(in DamageInfo damageInfo)
     {
         StartCoroutine(SelfDestruct());
     }
@@ -39,6 +39,7 @@ public class BaseEnemy : MonoBehaviour
     protected virtual IEnumerator SelfDestruct()
     {
         yield return new WaitForEndOfFrame();
+        GameManager.Instance.ScoreManager.GiveEnemyBonus();
         GameManager.Instance.BulletQueueManager.ObtainBullet(_enemyStatTunable.GetDropColor(_enemyType));
         enemiesKilled.Value++;
         Destroy(gameObject);
