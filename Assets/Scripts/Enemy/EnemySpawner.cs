@@ -41,7 +41,6 @@ public class EnemySpawner : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        Debug.Log(_currentWave);
         if (_currentWave >= waves.Count) {
             // random spawning
             UpdateRandomSpawning();
