@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8781092577717487660}
   - component: {fileID: 2300208227709642109}
   - component: {fileID: 3384951850797487325}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Beacon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4839,7 +4839,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8918538364247136292}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4874,7 +4874,7 @@ GameObject:
   - component: {fileID: 367243176835482156}
   - component: {fileID: 8550484449493859897}
   - component: {fileID: 3269872054685661869}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: AmmoDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4944,7 +4944,7 @@ GameObject:
   - component: {fileID: 1158647753165960444}
   - component: {fileID: 3243646372568298815}
   - component: {fileID: 537036507477839581}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

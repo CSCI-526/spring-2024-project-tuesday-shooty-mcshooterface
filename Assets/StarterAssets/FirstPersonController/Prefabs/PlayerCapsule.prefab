@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a76707bdcec3e84d8a8edb2d8a1a412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gunModel: {fileID: 3833232318285593148}
   bulletDamage:
     _useConstant: 0
     _constantValue: 0
@@ -100,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78da064bc9cd40646b92871991aebabb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shotgunModel: {fileID: 1160052676997426504}
   numPellets: 10
   spreadAngle: 4
   bulletDamage:
@@ -292,9 +294,9 @@ Transform:
   - {fileID: 1476921829478800055}
   - {fileID: 3821992378251458551}
   - {fileID: 1405183585127572872}
+  - {fileID: 2662158776821295907}
   - {fileID: 4135013735270702856}
   - {fileID: 5393215578589016641}
-  - {fileID: 2662158776821295907}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &8616685848737228382
@@ -567,6 +569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17d500e98dc2461da2d4f57f8354494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _grenadeModel: {fileID: 128627915139023029}
   grenade: {fileID: 902214275315206496, guid: aaedb430039294ebf877a1a946f287dd, type: 3}
   range: 30
 --- !u!1 &9198829875465693465
@@ -613,6 +616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3795578fcbd70fc40ad605db285f70d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _knifeModel: {fileID: 2587185946936780877}
   KnifePrefab: {fileID: 3579973076615327078, guid: bbc4b5b3b76a779489cd49e88474e490, type: 3}
   KnifeSpeed: 30
 --- !u!1001 &9068334504884251

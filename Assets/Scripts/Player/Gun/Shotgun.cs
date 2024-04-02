@@ -8,12 +8,16 @@ public class Shotgun : MonoBehaviour, IGun
 {
     [Header("ShotGun Var")]
     [SerializeField]
+    private GameObject _shotgunModel;
+
+    [SerializeField]
     int numPellets;
 
     [SerializeField]
     float spreadAngle;
 
-    [SerializeField] private IntReference bulletDamage;
+    [SerializeField]
+    private IntReference bulletDamage;
 
     [Header("References")]
     [SerializeField]
@@ -65,12 +69,20 @@ public class Shotgun : MonoBehaviour, IGun
             HealthComponent hp = hit.transform.gameObject.GetComponent<HealthComponent>();
             if (hp != null)
             {
-                DamageInfo d = new DamageInfo(bulletDamage.Value, BulletColor.Green, GetType().Name);
+                DamageInfo d = new DamageInfo(
+                    bulletDamage.Value,
+                    BulletColor.Green,
+                    GetType().Name
+                );
                 hp.TakeDamage(d);
             }
-                
         }
-        TrailRenderer trail = Instantiate(bulletTrail, transform.position, Quaternion.identity);
+
+        TrailRenderer trail = Instantiate(
+            bulletTrail,
+            _shotgunModel.transform.position,
+            Quaternion.identity
+        );
         StartCoroutine(SpawnTrail(trail, hit));
     }
 
@@ -81,13 +93,14 @@ public class Shotgun : MonoBehaviour, IGun
 
         while (time < 1)
         {
-            trail.transform.position = Vector3.Lerp(startPosition, hit.point, time);
+            Vector3 position = Vector3.Lerp(startPosition, hit.point, time);
+            trail.AddPosition(position);
             time += Time.deltaTime / trail.time;
 
-            yield return null;
+            yield return 0;
         }
 
-        trail.transform.position = hit.point;
+        trail.AddPosition(hit.point);
 
         Destroy(trail.gameObject, trail.time);
     }
