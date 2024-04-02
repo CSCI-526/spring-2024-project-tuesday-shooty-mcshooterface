@@ -49,7 +49,7 @@ public class MenuManager : MonoBehaviour
 
     private void Update()
     {
-        if (_inputActions.Player.Cancel.triggered)
+        if (_inputActions.UI.Cancel.triggered)
         {
             BackToPreviousMenuScreen();
 

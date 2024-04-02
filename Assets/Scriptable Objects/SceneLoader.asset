@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bec9e71a553640b1a214c30e94348cfb, type: 3}
+  m_Name: SceneLoader
+  m_EditorClassIdentifier: 
+  mainMenuScene:
+    sceneAsset: {fileID: 102900000, guid: 8a6997d0a4eeedb4280fc4307aebbd7e, type: 3}
+    scenePath: Assets/Scenes/MainMenu.unity
+  gameScene:
+    sceneAsset: {fileID: 102900000, guid: 07372423de75b304a81ff0970dfbd234, type: 3}
+    scenePath: Assets/Scenes/ColinTest.unity
