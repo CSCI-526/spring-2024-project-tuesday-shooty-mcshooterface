@@ -11,8 +11,13 @@ public class ScoreManager : MonoBehaviour
     [Header("References")]
     [SerializeField] ScoreTunableObject _scoreTunable;
 
+    [Header("Healing")]
+    [SerializeField] int _healingAmount;
+    [SerializeField] int _healingThreshold;
+
     [Header("Debug")]
-    [SerializeField] float killStreakTimer = 0;
+    [SerializeField] float _killStreakTimer = 0;
+    [SerializeField] int _healsGiven = 0;
 
     private void Start()
     {
@@ -23,10 +28,10 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        if (killStreakTimer > 0)
+        if (_killStreakTimer > 0)
         {
-            killStreakTimer -= Time.deltaTime;
-            if (killStreakTimer <= 0)
+            _killStreakTimer -= Time.deltaTime;
+            if (_killStreakTimer <= 0)
             {
                 _scoreTunable.CurrKillStreak.Value = 0;
             }
@@ -36,6 +41,12 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int val)
     {
         _scoreTunable.Score.Value += val;
+
+        if (_scoreTunable.Score.Value >= _healingThreshold * (_healsGiven + 1))
+        {
+            PlayerCharacterController.Instance?.HealthComponent.HealHealth(_healingAmount);
+            _healsGiven++;
+        }
     }
 
     private IEnumerator GiveSurvivalBonus()
@@ -55,6 +66,6 @@ public class ScoreManager : MonoBehaviour
 
         AddScore(bonus);
 
-        killStreakTimer = _scoreTunable.killstreakDuration;
+        _killStreakTimer = _scoreTunable.killstreakDuration;
     }
 }

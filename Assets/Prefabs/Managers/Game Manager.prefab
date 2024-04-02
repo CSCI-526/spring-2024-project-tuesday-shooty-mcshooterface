@@ -268,7 +268,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreTunable: {fileID: 11400000, guid: b788affd7bd64de4c9220ae7d4082a3a, type: 2}
-  killStreakTimer: 0
+  _healingAmount: 1
+  _healingThreshold: 40000
+  _killStreakTimer: 0
+  _healsGiven: 0
 --- !u!1 &3378204515508189271
 GameObject:
   m_ObjectHideFlags: 0

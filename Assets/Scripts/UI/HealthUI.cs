@@ -16,10 +16,16 @@ namespace Scripts.Game
         {
             _healthComponent = PlayerHealthComponent.Instance;
             _healthComponent.OnDamageTaken += UpdateHealthUI;
+            _healthComponent.OnHealed += UpdateHealthUI;
             UpdateHealthUI((null, HealthComponent.CurrentHealth));
         }
 
         void UpdateHealthUI(in (DamageInfo _, int newHealth) args)
+        {
+            healthText.text = "Health: " + args.newHealth;
+        }
+
+        void UpdateHealthUI(in (int healing, int newHealth) args)
         {
             healthText.text = "Health: " + args.newHealth;
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class KillstreakDisplayUI : MonoBehaviour
+public class OverheadDisplayUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _text;
 

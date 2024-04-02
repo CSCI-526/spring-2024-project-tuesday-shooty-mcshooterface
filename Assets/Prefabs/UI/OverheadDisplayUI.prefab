@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8786126897266097523}
   - component: {fileID: 4239005888432327751}
   m_Layer: 5
-  m_Name: KillstreakDisplayUI
+  m_Name: OverheadUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +1000
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c28c6bb7e25ba334d9d05391c22aa12b, type: 2}
   m_sharedMaterial: {fileID: 2449029380292007786, guid: c28c6bb7e25ba334d9d05391c22aa12b, type: 2}
@@ -74,8 +74,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 922779391
-  m_fontColor: {r: 1, g: 0.49231303, b: 0, a: 1}
+    rgba: 4278222591
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 2926420246492132476}
   - component: {fileID: 4338283447610177431}
   m_Layer: 5
-  m_Name: KillstreakDisplayUI
+  m_Name: OverheadDisplayUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
