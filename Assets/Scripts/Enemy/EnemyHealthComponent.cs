@@ -37,4 +37,6 @@ public class EnemyHealthComponent : HealthComponent
 
         BulletQueueManager.Instance.AmmoDamageDealt[damageSource] += delta;
     }
+
+    public override int MaxHealth { get => _enemy.EnemyStatTunable.GetHealth(_enemy.EnemyType); }
 }

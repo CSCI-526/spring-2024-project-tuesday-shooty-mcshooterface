@@ -10,6 +10,7 @@ namespace Scripts.Game
         public HealthEvent<(DamageInfo damage, int newHealth)> OnDamageTaken;
 
         public int CurrentHealth => _currentHealth;
+        public virtual int MaxHealth { get => 0; }
 
         protected int _currentHealth;
 
@@ -23,6 +24,7 @@ namespace Scripts.Game
                 OnDeath?.Invoke(damage);
             }
         }
+
     }
 
     public class DamageInfo
