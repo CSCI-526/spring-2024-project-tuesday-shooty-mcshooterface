@@ -27,8 +27,6 @@ public class SwarmEnemyParent : MonoBehaviour
     public float attackIndicate = 1.8f;
     public GameObject projectilePrefab;
     [SerializeField] private float projectileSpeed;
-
-    Vector3 lastEnemyDeathPosition;
     public Vector3 SwarmCenter 
     {
         get { return new Vector3(_swarmCenter.x, 0, _swarmCenter.z); }
@@ -37,6 +35,7 @@ public class SwarmEnemyParent : MonoBehaviour
     private void Awake()
     {
         m_list = new List<SwarmEnemy>();
+        
         SpawnSwarm();
     }
 
@@ -44,6 +43,20 @@ public class SwarmEnemyParent : MonoBehaviour
         enemyCollection.Add(gameObject);
         StartCoroutine(CheckPos());
         StartCoroutine(SetAttack());
+        _swarmCenter = transform.position;
+    }
+
+    private void Update()
+    {
+        if (m_list.Count > 0)
+        {
+            Vector3 t = new Vector3();
+            for (int i = 0; i < m_list.Count; i++)
+            {
+                t += m_list[i].transform.position;
+            }
+            _swarmCenter = t / m_list.Count;
+        }
     }
 
     IEnumerator CheckPos()
@@ -51,12 +64,6 @@ public class SwarmEnemyParent : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1.0f);
-            Vector3 t = new Vector3();
-            for (int i = 0; i < m_list.Count; i++) 
-            {
-                t += m_list[i].transform.position;
-            }
-            _swarmCenter = t / m_list.Count;
 
             float a = UnityEngine.Random.Range(0f, 2 * Mathf.PI);
             wanderDir = new Vector3(Mathf.Cos(a), 0, Mathf.Sin(a));
@@ -107,7 +114,6 @@ public class SwarmEnemyParent : MonoBehaviour
 
     public void RemoveSwarmEnemy(SwarmEnemy swarm)
     {
-        lastEnemyDeathPosition = swarm.transform.position;
         m_list.Remove(swarm);
         if (m_list.Count <= 0)
         {
@@ -119,7 +125,7 @@ public class SwarmEnemyParent : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         GameManager.Instance.ScoreManager.GiveEnemyBonus();
-        SpawnDrop(lastEnemyDeathPosition);
+        SpawnDrop(_swarmCenter);
         enemiesKilled.Value++;
         Destroy(gameObject);
     }
@@ -128,5 +134,19 @@ public class SwarmEnemyParent : MonoBehaviour
     {
         GameObject drop = Instantiate(_enemyStatTunable.GetEnemyDrop(EnemyType.Swarm), spawnPosition, Quaternion.identity);
         drop.transform.position = new Vector3(drop.transform.position.x, 0, drop.transform.position.z);
+    }
+
+    public int GetTotalMaxHP()
+    {
+        return _enemyStatTunable.SwarmNumber * _enemyStatTunable.SwarmHealth;
+    }
+    public int GetTotalCurrHP()
+    {
+        int output = 0;
+        foreach (SwarmEnemy s in m_list)
+        {
+            output += s.HealthComponent.CurrentHealth;
+        }
+        return output;
     }
 }

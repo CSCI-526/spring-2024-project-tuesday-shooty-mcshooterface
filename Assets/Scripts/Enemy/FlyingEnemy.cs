@@ -35,6 +35,7 @@ public class FlyingEnemy : BaseEnemy
     protected override void Start()
     {
         base.Start();
+        enemyCollection.Add(gameObject);
         transform.position = new Vector3(transform.position.x, 5, transform.position.z);
         _curState = FlyingState.Chase;
         _plTf = PlayerCharacterController.Instance.transform;
