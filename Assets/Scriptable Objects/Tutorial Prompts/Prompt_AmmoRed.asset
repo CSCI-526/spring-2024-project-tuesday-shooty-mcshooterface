@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22e8eee9745b4ad8b7aea6cde9b1a328, type: 3}
-  m_Name: Prompt_Shoot
+  m_Name: Prompt_AmmoRed
   m_EditorClassIdentifier: 
-  promptText: <b>Left Click</b> to shoot
-  queueOnStart: 1
+  promptText: Pick up red ammo
+  queueOnStart: 0
   canBeCompletedEarly: 0
-  eventOnStart: {fileID: 11400000, guid: f9ff43e5983f3774e9c2393ba305b9e9, type: 2}
-  eventOnComplete: {fileID: 11400000, guid: adf53e43071d9aa42b22b42de0d9c773, type: 2}
+  eventOnStart: {fileID: 0}
+  eventOnComplete: {fileID: 11400000, guid: 61492304538790343b76f5c3ca80da19, type: 2}

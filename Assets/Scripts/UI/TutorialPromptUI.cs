@@ -23,8 +23,10 @@ public class TutorialPromptUI : MonoBehaviour {
         promptCanvasGroup.alpha = 0;
         text.text = "";
         
-        UpdateActivePrompt();
-        if(TutorialPromptManager.Instance) TutorialPromptManager.Instance.onActivePromptChange.AddListener(UpdateActivePrompt);
+        if (TutorialPromptManager.Instance) {
+            UpdateActivePrompt();
+            TutorialPromptManager.Instance.onActivePromptChange.AddListener(UpdateActivePrompt);
+        }
     }
 
     private void OnEnable() {

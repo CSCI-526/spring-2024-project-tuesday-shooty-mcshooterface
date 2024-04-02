@@ -48,6 +48,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 23dd2d42cb9749846b839fe8c30071c9, type: 2}
   - {fileID: 11400000, guid: 2eccda558bde5b940955de6025589563, type: 2}
   - {fileID: 11400000, guid: 870808deab4510546b0f346fd83b0fa8, type: 2}
+  - {fileID: 11400000, guid: 80f229437be431a4db8cc1c3d482f6fe, type: 2}
+  - {fileID: 11400000, guid: f6342b4ff96cc1c40bc6582c2f16a4a9, type: 2}
+  - {fileID: 11400000, guid: d8f862d7cec5477478044c9744e89f7f, type: 2}
   completeOnLook: {fileID: 11400000, guid: 23dd2d42cb9749846b839fe8c30071c9, type: 2}
   completeOnMove: {fileID: 11400000, guid: 2eccda558bde5b940955de6025589563, type: 2}
   completeOnShoot: {fileID: 11400000, guid: 870808deab4510546b0f346fd83b0fa8, type: 2}

@@ -144,6 +144,10 @@ PrefabInstance:
       propertyPath: _color
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3269872054685661869, guid: dc1864ab2bb156545806096c9463165f, type: 3}
+      propertyPath: completeOnPickup
+      value: 
+      objectReference: {fileID: 11400000, guid: d8f862d7cec5477478044c9744e89f7f, type: 2}
     - target: {fileID: 7544765447887727450, guid: dc1864ab2bb156545806096c9463165f, type: 3}
       propertyPath: m_Name
       value: RedAmmoDrop
