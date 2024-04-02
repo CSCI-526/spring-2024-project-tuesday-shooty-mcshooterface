@@ -23,6 +23,8 @@ public class KillstreakDisplay : MonoBehaviour
     }
 
     int previousValue = 0;
+    Queue<string> killstreakQueue = new Queue<string>();
+    KillstreakDisplayUI currKillstreakUI;
 
     private void Start()
     {
@@ -35,16 +37,24 @@ public class KillstreakDisplay : MonoBehaviour
         {
             if (_scoreTunable.CurrKillStreak != 0)
             {
-                CreateKillstreak();
+                killstreakQueue.Enqueue(CreateKillstreakText());
             }
             previousValue = _scoreTunable.CurrKillStreak.Value;
         }
+
+        if (currKillstreakUI == null && killstreakQueue.Count > 0)
+        {
+            currKillstreakUI = CreateKillstreak(killstreakQueue.Peek());
+            killstreakQueue.Dequeue();
+        }
     }
 
-    public void CreateKillstreak()
+    public KillstreakDisplayUI CreateKillstreak(string text)
     {
         KillstreakDisplayUI ui = Instantiate(_killStreakObject, transform);
-        ui.Construct(CreateKillstreakText());
+        ui.Construct(text);
+
+        return ui;
     }
 
     private string CreateKillstreakText()
