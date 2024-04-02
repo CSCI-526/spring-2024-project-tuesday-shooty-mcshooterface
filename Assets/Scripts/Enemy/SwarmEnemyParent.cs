@@ -15,6 +15,7 @@ public class SwarmEnemyParent : MonoBehaviour
     [SerializeField] EnemyStatObject _enemyStatTunable;
     [SerializeField] SwarmEnemy swarmEnemy;
     [SerializeField] protected IntVariable enemiesKilled;
+    [SerializeField] Transform _spawnPoint;
 
     [Header("Debug")]
     [SerializeField] List<SwarmEnemy> m_list;
@@ -106,7 +107,7 @@ public class SwarmEnemyParent : MonoBehaviour
     {
         for (int i = 0; i < _enemyStatTunable.SwarmNumber; i++)
         {
-            SwarmEnemy swarm = Instantiate(swarmEnemy, transform, false);
+            SwarmEnemy swarm = Instantiate(swarmEnemy, _spawnPoint, false);
             m_list.Add(swarm);
             swarm.Construct(this);
         }

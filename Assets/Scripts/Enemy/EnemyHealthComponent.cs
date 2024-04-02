@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EnemyHealthComponent : HealthComponent
 {
+    [SerializeField] EnemyDamageVFX _damageVFX;
     private BaseEnemy _enemy;
 
     public void Construct(BaseEnemy enemy)
@@ -25,6 +26,11 @@ public class EnemyHealthComponent : HealthComponent
         if (_currentHealth + delta > 0 && _currentHealth <= 0)
         {
             OnDeath?.Invoke(damage);
+            _damageVFX.DeathPlay();
+        }
+        else
+        {
+            _damageVFX?.Play();
         }
 
         string damageSource = damage.color.ToString();

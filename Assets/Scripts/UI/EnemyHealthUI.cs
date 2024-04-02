@@ -22,7 +22,6 @@ public class EnemyHealthUI : MonoBehaviour
         }
         else if (enemy.GetComponent<FlyingEnemy>() != null)
         {
-            Debug.LogError("Tried to make flying enemy");
             EnemyHealthBar healthbar = Instantiate(m_flyingHealthBar, transform);
             healthbar.Construct(enemy, m_camera);
 
