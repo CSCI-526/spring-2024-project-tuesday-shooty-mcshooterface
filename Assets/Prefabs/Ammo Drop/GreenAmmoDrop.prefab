@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 245689886366598137, guid: dc1864ab2bb156545806096c9463165f, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 245689886366598137, guid: dc1864ab2bb156545806096c9463165f, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreRaycast
+      objectReference: {fileID: 0}
     - target: {fileID: 367243176835482156, guid: dc1864ab2bb156545806096c9463165f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.71
@@ -47,6 +55,10 @@ PrefabInstance:
     - target: {fileID: 367243176835482156, guid: dc1864ab2bb156545806096c9463165f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1546195872966353045, guid: dc1864ab2bb156545806096c9463165f, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2300208227709642109, guid: dc1864ab2bb156545806096c9463165f, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
@@ -94,7 +106,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7544765447887727450, guid: dc1864ab2bb156545806096c9463165f, type: 3}
       propertyPath: m_Name
-      value: GreenAmmoDrop Variant
+      value: GreenAmmoDrop
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544765447887727450, guid: dc1864ab2bb156545806096c9463165f, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7544765447887727450, guid: dc1864ab2bb156545806096c9463165f, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreRaycast
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136495810080142420, guid: dc1864ab2bb156545806096c9463165f, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8136495810080142420, guid: dc1864ab2bb156545806096c9463165f, type: 3}
+      propertyPath: m_TagString
+      value: IgnoreRaycast
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

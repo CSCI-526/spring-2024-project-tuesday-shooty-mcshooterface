@@ -34,5 +34,7 @@ public class PlayerHealthComponent : Scripts.Game.HealthComponent {
         damageVFX.DamageFlash();
 
     }
+
+    public override int MaxHealth { get => _maxHealth; }
 }
 

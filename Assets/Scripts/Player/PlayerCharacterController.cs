@@ -32,6 +32,7 @@ namespace Scripts.Player
         {
             Instance = this;
             DisableAllModels();
+            _knifeModel.SetActive(true); // TODO: Temp fix
         }
 
         private void DisableAllModels()

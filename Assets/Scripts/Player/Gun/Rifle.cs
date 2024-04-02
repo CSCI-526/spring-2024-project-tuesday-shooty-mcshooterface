@@ -5,8 +5,13 @@ using UnityEngine;
 
 namespace Scripts.Player.Gun
 {
-    public class Rifle : MonoBehaviour, IGun {
-        [SerializeField] private IntReference bulletDamage;
+    public class Rifle : MonoBehaviour, IGun
+    {
+        [SerializeField]
+        private Transform _gunModel;
+
+        [SerializeField]
+        private IntReference bulletDamage;
 
         [SerializeField]
         private bool bulletSpreadEnabled;
@@ -31,6 +36,7 @@ namespace Scripts.Player.Gun
             shootingSystem.Play();
 
             Vector3 direction = GetDirection();
+            Vector3 hitPosition, hitNormal;
             Transform bulletSpawnTransform = PlayerCharacterController
                 .Instance
                 .BulletSpawnTransform;
@@ -46,23 +52,32 @@ namespace Scripts.Player.Gun
             {
                 if (hit.collider != null)
                 {
-                    HealthComponent hp =
-                        hit.transform.gameObject.GetComponent<HealthComponent>();
+                    HealthComponent hp = hit.transform.gameObject.GetComponent<HealthComponent>();
                     if (hp != null)
                     {
-                        DamageInfo d = new DamageInfo(bulletDamage.Value, BulletColor.Blue, GetType().Name);
+                        DamageInfo d = new DamageInfo(
+                            bulletDamage.Value,
+                            BulletColor.Blue,
+                            GetType().Name
+                        );
                         hp.TakeDamage(d);
                     }
-
                 }
+                hitPosition = hit.point;
+                hitNormal = hit.normal;
+            }
+            else
+            {
+                hitPosition = bulletSpawnTransform.position + direction * 100;
+                hitNormal = Vector3.zero;
+            }
 
                 TrailRenderer trail = Instantiate(
                     bulletTrail,
-                    bulletSpawnTransform.position,
+                    _gunModel.position,
                     Quaternion.identity
                 );
-                StartCoroutine(SpawnTrail(trail, hit));
-            }
+                StartCoroutine(SpawnTrail(trail, hitPosition, hitNormal));
 
             Scripts.Game.GameManager.Instance.AudioManager.Play("RifleSFX");
             return true;
@@ -87,23 +102,26 @@ namespace Scripts.Player.Gun
             return direction;
         }
 
-        private IEnumerator SpawnTrail(TrailRenderer trail, RaycastHit hit)
+        private IEnumerator SpawnTrail(TrailRenderer trail, Vector3 hit, Vector3 hitNormal)
         {
             float time = 0;
             Vector3 startPosition = trail.transform.position;
+            WaitForSeconds wait = new WaitForSeconds(0.003f);
 
             while (time < 1)
             {
-                trail.transform.position = Vector3.Lerp(startPosition, hit.point, time);
-                time += Time.deltaTime / trail.time;
+                Vector3 position = Vector3.Lerp(startPosition, hit, time);
+                trail.AddPosition(position);
+                time += 0.03f / trail.time;
 
-                yield return null;
+                yield return wait;
             }
 
-            trail.transform.position = hit.point;
+            //trail.transform.position = hit.point;
+            trail.AddPosition(hit);
             if (impactParticleSystem != null)
             {
-                Instantiate(impactParticleSystem, hit.point, Quaternion.LookRotation(hit.normal));
+                Instantiate(impactParticleSystem, hit, Quaternion.LookRotation(hitNormal));
             }
 
             Destroy(trail.gameObject, trail.time);
