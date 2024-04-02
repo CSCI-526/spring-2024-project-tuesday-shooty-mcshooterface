@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ScriptableObjectArchitecture;
+using UnityEngine;
 
 [CreateAssetMenu]
 public class Prompt : ScriptableObject
@@ -7,4 +8,7 @@ public class Prompt : ScriptableObject
     [Space] 
     public bool queueOnStart;
     public bool canBeCompletedEarly;
+
+    public GameEvent eventOnStart;
+    public GameEvent eventOnComplete;
 }

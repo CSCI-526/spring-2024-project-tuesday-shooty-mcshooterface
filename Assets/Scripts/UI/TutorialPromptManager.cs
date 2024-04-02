@@ -52,12 +52,29 @@ public class TutorialPromptManager : MonoBehaviour {
         _inputActions.Player.Move.performed += OnMove;
         _inputActions.Player.Shoot.performed += OnShoot;
     }
+    
+    private void OnEnable()
+    {
+        onActivePromptChange.AddListener(OnActivePromptChange);
+    }
 
     private void OnDisable()
     {
         _inputActions.Player.Look.performed -= OnLook;
         _inputActions.Player.Move.performed -= OnMove;
         _inputActions.Player.Shoot.performed -= OnShoot;
+        onActivePromptChange.RemoveListener(OnActivePromptChange);
+    }
+    
+    private void OnActivePromptChange()
+    {
+        if (ActivePrompt == null) return;
+
+        if (ActivePrompt.eventOnStart)
+        {
+            ActivePrompt.eventOnStart.Raise();
+            Debug.Log("calling OnStart on prompt: " + ActivePrompt.name);
+        }
     }
 
     public bool TryQueuePrompt(Prompt promptToQueue)
@@ -81,6 +98,10 @@ public class TutorialPromptManager : MonoBehaviour {
             allPrompts.Remove(promptToComplete);
             _queuedPrompts.Remove(promptToComplete);
 
+            if (promptToComplete.eventOnComplete) {
+                promptToComplete.eventOnComplete.Raise();
+            }
+
             onActivePromptChange?.Invoke();
             
             return true;
@@ -91,6 +112,10 @@ public class TutorialPromptManager : MonoBehaviour {
         {
             if (prompt == promptToComplete && prompt.canBeCompletedEarly) {
                 allPrompts.Remove(promptToComplete);
+                
+                if (promptToComplete.eventOnComplete) {
+                    promptToComplete.eventOnComplete.Raise();
+                }
                 
                 // if it's queued
                 if (_queuedPrompts.Contains(promptToComplete)) _queuedPrompts.Remove(promptToComplete);

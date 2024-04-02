@@ -15,3 +15,5 @@ MonoBehaviour:
   promptText: <b>Left Click</b> to shoot
   queueOnStart: 0
   canBeCompletedEarly: 0
+  eventOnStart: {fileID: 11400000, guid: f9ff43e5983f3774e9c2393ba305b9e9, type: 2}
+  eventOnComplete: {fileID: 11400000, guid: adf53e43071d9aa42b22b42de0d9c773, type: 2}
