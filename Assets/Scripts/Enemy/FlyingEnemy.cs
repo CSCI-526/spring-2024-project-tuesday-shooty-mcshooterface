@@ -27,6 +27,9 @@ public class FlyingEnemy : BaseEnemy
     private float _max_speed;
     private float dedgeInterval = 2.0f;
     private float dedgeTimer = 0f;
+    // sight detect
+    private bool _insight = true;
+    private float _fov = 90;
 
     [SerializeField] private float closeRange = 10.0f;
     [SerializeField] private float farRange = 20.0f;
@@ -60,7 +63,6 @@ public class FlyingEnemy : BaseEnemy
 
         _toPlayer3 = _plTf.position - transform.position;
         _toPlayer = new Vector3(_toPlayer3.x, 0, _toPlayer3.z);
-
 
         // dodge
         if (_curState == FlyingState.Strafe)
@@ -111,16 +113,26 @@ public class FlyingEnemy : BaseEnemy
             RigidbodyComponent.velocity = RigidbodyComponent.velocity.normalized * _max_speed;
         }
 
+        float angle = Vector3.Angle(_plTf.forward, -_toPlayer3);
+        _insight = angle < (_fov / 2) ? true : false;
     }
+
 
     private IEnumerator SetAttack()
     {
         while (true)
         {
+            if (!_insight)
+            {
+                Debug.Log("Flying: Attack canceled!");
+            }
+            else 
+            {
+                StartCoroutine(ChangeColor());
+                yield return new WaitForSeconds(attackDuration);
+                toAttack();
+            }
             yield return new WaitForSeconds(attackCooldown);
-            StartCoroutine(ChangeColor());
-            yield return new WaitForSeconds(attackDuration);
-            toAttack();
         }
     }
 

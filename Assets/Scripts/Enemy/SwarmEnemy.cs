@@ -110,6 +110,17 @@ public class SwarmEnemy : BaseEnemy
 
     public void IndicateAttack() 
     {
+        if (_parent == null)
+        {
+            Debug.Log("null parent");
+            return;
+        }
+        else if (RigidbodyComponent == null) 
+        {
+            Debug.Log("null RB");
+            return;
+        }
+
         RigidbodyComponent.AddForce((_parent.SwarmCenter - transform.position) * 7.0f, ForceMode.Impulse);
         StartCoroutine(ChangeColor(Color.magenta, _parent.attackIndicate / 2));
     }

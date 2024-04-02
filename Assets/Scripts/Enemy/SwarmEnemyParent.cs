@@ -28,6 +28,11 @@ public class SwarmEnemyParent : MonoBehaviour
     public float attackIndicate = 1.8f;
     public GameObject projectilePrefab;
     [SerializeField] private float projectileSpeed;
+
+    // sight detect
+    private bool _insight = true;
+    private float _fov = 90;
+
     public Vector3 SwarmCenter 
     {
         get { return new Vector3(_swarmCenter.x, 0, _swarmCenter.z); }
@@ -58,6 +63,11 @@ public class SwarmEnemyParent : MonoBehaviour
             }
             _swarmCenter = t / m_list.Count;
         }
+
+        // update _insight
+        Transform pt = PlayerCharacterController.Instance.transform;
+        float angle = Vector3.Angle(pt.forward, _swarmCenter - pt.position);
+        _insight = angle < (_fov / 2) ? true : false;
     }
 
     IEnumerator CheckPos()
@@ -75,15 +85,23 @@ public class SwarmEnemyParent : MonoBehaviour
     {
         while (true) 
         {
-            yield return new WaitForSeconds(attackCD);
-            for (int i = 0; i < m_list.Count; i++)
+            if (!_insight)
             {
-                m_list[i].IndicateAttack();
+                Debug.Log("Swarm: Attack canceled!");
+
             }
-            yield return new WaitForSeconds(attackIndicate);
-            Attack();
+            else 
+            {
+                for (int i = 0; i < m_list.Count; i++)
+                {
+                    m_list[i].IndicateAttack();
+                }
+                yield return new WaitForSeconds(attackIndicate);
+                Attack();
+
+            }
+            yield return new WaitForSeconds(attackCD);
         }
-    
     }
 
     private void Attack() 
