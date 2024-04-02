@@ -51,7 +51,11 @@ public class OverheadDisplay : MonoBehaviour
 
         if (previousHealthValue != PlayerCharacterController.Instance.HealthComponent.CurrentHealth)
         {
-            killstreakQueue.Enqueue((CreateHealingText(), _healingObject));
+            if (PlayerCharacterController.Instance.HealthComponent.CurrentHealth > previousHealthValue)
+            {
+                killstreakQueue.Enqueue((CreateHealingText(), _healingObject));
+            }
+            
             previousHealthValue = PlayerCharacterController.Instance.HealthComponent.CurrentHealth;
         }
 
