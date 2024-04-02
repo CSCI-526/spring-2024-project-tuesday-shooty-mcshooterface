@@ -22,7 +22,7 @@ public class SwarmProjectile : MonoBehaviour
     {
         if (other != null && (other.gameObject.layer == LayerMask.NameToLayer("Player")))
         {
-            Debug.Log("Hit!");
+            Debug.Log("Swarm Projectile Hit!");
             HealthComponent hp = other.gameObject.GetComponent<HealthComponent>();
             if (hp != null)
             {
