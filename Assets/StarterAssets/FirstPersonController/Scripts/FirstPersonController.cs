@@ -112,8 +112,8 @@ namespace StarterAssets
 			_fallTimeoutDelta = FallTimeout;
 		}
 
-		private void Update()
-		{
+		private void Update() {
+			if (Time.timeScale == 0) return;
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
