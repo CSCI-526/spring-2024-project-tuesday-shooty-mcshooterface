@@ -57,6 +57,7 @@ public class Shotgun : MonoBehaviour, IGun
     private void Fire(Vector3 direction)
     {
         Transform bulletSpawnTransform = PlayerCharacterController.Instance.BulletSpawnTransform;
+        Vector3 hitPoint;
         Physics.Raycast(
             bulletSpawnTransform.transform.position,
             direction,
@@ -76,6 +77,12 @@ public class Shotgun : MonoBehaviour, IGun
                 );
                 hp.TakeDamage(d);
             }
+
+            hitPoint = hit.point;
+        }
+        else
+        {
+            hitPoint = bulletSpawnTransform.transform.position + direction * 100;
         }
 
         TrailRenderer trail = Instantiate(
@@ -83,24 +90,24 @@ public class Shotgun : MonoBehaviour, IGun
             _shotgunModel.transform.position,
             Quaternion.identity
         );
-        StartCoroutine(SpawnTrail(trail, hit));
+        StartCoroutine(SpawnTrail(trail, hitPoint));
     }
 
-    private IEnumerator SpawnTrail(TrailRenderer trail, RaycastHit hit)
+    private IEnumerator SpawnTrail(TrailRenderer trail, Vector3 hit)
     {
         float time = 0;
         Vector3 startPosition = trail.transform.position;
 
         while (time < 1)
         {
-            Vector3 position = Vector3.Lerp(startPosition, hit.point, time);
+            Vector3 position = Vector3.Lerp(startPosition, hit, time);
             trail.AddPosition(position);
             time += Time.deltaTime / trail.time;
 
             yield return 0;
         }
 
-        trail.AddPosition(hit.point);
+        trail.AddPosition(hit);
 
         Destroy(trail.gameObject, trail.time);
     }
