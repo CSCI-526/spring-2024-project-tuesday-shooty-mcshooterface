@@ -98,4 +98,20 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
         #endif
     }
+
+    public void ActivateMenu(GameObject menu)
+    {
+        menu.SetActive(true);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void DeactivateMenu(GameObject menu)
+    {
+        menu.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 }

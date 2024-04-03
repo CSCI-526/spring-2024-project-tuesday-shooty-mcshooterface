@@ -4932,6 +4932,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _amount: 2
   _color: 3
+  completeOnPickup: {fileID: 0}
+  _lifespan: 6
+  _offsetLifespan: 2
+  _minActiveAmmo: 2
 --- !u!1 &8136495810080142420
 GameObject:
   m_ObjectHideFlags: 0
