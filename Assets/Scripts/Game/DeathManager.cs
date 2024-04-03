@@ -48,7 +48,7 @@ public class DeathManager : MonoBehaviour
     public void EndGame()
     {
         _deathState = DeathState.Dying;
-        //Time.timeScale = 0;
+        StopEnemies();
         StartCoroutine(EndGameRoutine());
     }
 
@@ -86,5 +86,16 @@ public class DeathManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    private void StopEnemies()
+    {
+        BaseEnemy[] enemylist = FindObjectsOfType<BaseEnemy>();
+        foreach (BaseEnemy e in enemylist)
+        {
+            e.gameObject.SetActive(false);
+        }
+
+        EnemySpawner spawner = FindObjectOfType<EnemySpawner>();
+        spawner.gameObject.SetActive(false);
+    }
 
 }
