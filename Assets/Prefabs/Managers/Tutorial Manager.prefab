@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3524394913022413108
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6358758883034666581}
+  m_Layer: 0
+  m_Name: Spawn Location 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6358758883034666581
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3524394913022413108}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 14.74}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4816768036412534582}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7082685157742074340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4816768036412534582}
+  - component: {fileID: 804076893732054484}
+  m_Layer: 0
+  m_Name: Tutorial Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4816768036412534582
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7082685157742074340}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6358758883034666581}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &804076893732054484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7082685157742074340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94df95444c734926b0c5cf6989e0f4e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCollection: {fileID: 11400000, guid: eab7e3363ac714a458ff4bfb5ac26580, type: 2}
+  swarmEnemyParentPF: {fileID: 3423221536652857574, guid: 95e69a2e1a9eed74ebb68d040dfb291f, type: 3}
+  meleeEnemyPF: {fileID: 5186863481464667598, guid: f656fd4523cd2f94eba75abb7f3c0830, type: 3}
+  flyingEnemyPF: {fileID: 3435423267389870471, guid: f4e4cd69dab4b4ab096ba6ba9633c6f5, type: 3}
+  spawnLocations:
+  - {fileID: 6358758883034666581}
+  loadSceneAfterWaves:
+    sceneAsset: {fileID: 102900000, guid: 07372423de75b304a81ff0970dfbd234, type: 3}
+    scenePath: Assets/Scenes/ColinTest.unity
+  loadSceneDelay: 2
+  waves:
+  - enemies: 00000000
+    promptQueueOnStart: {fileID: 0}
+    promptQueueOnComplete: {fileID: 11400000, guid: d8f862d7cec5477478044c9744e89f7f, type: 2}
+    nextWaveOnComplete: 0
+  - enemies: 01000000
+    promptQueueOnStart: {fileID: 0}
+    promptQueueOnComplete: {fileID: 11400000, guid: 80f229437be431a4db8cc1c3d482f6fe, type: 2}
+    nextWaveOnComplete: 0
+  - enemies: 02000000
+    promptQueueOnStart: {fileID: 0}
+    promptQueueOnComplete: {fileID: 11400000, guid: f6342b4ff96cc1c40bc6582c2f16a4a9, type: 2}
+    nextWaveOnComplete: 0
+  - enemies: 00000000
+    promptQueueOnStart: {fileID: 0}
+    promptQueueOnComplete: {fileID: 0}
+    nextWaveOnComplete: 1
+  - enemies: 000000000100000002000000
+    promptQueueOnStart: {fileID: 0}
+    promptQueueOnComplete: {fileID: 0}
+    nextWaveOnComplete: 1

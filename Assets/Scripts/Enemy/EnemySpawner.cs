@@ -4,6 +4,7 @@ using ScriptableObjectArchitecture;
 using Scripts.Player;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.WSA;
 using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
@@ -74,6 +75,11 @@ public class EnemySpawner : MonoBehaviour
         }
 
         _waveTimer = currentWave.maxTime;
+
+        if (ToastUI.Instance) {
+            var toastText = "Wave " + (_currentWave + 1);
+            ToastUI.Instance.QueueToast(toastText);
+        }
     }
 
     private void UpdateRandomSpawning() {

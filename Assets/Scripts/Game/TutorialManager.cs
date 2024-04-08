@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using ScriptableObjectArchitecture;
 using Scripts.Player;
@@ -18,6 +19,7 @@ public class TutorialManager : MonoBehaviour
     
     [Header("Wave Spawning Params")] 
     [SerializeField] private SceneReference loadSceneAfterWaves;
+    [SerializeField] private float loadSceneDelay;
     [SerializeField] private List<TutorialWave> waves;
 
     // state
@@ -53,7 +55,7 @@ public class TutorialManager : MonoBehaviour
     public void StartNextWave() {
         if (_waveActive) return;
         if (_currentWave >= waves.Count) {
-            SceneManager.LoadScene(loadSceneAfterWaves.ScenePath);
+            StartCoroutine(LoadNextSceneCoroutine());
         }
         
         SpawnCurrentWave();
@@ -74,6 +76,11 @@ public class TutorialManager : MonoBehaviour
 
         _waveActive = true;
         _waveTimer = 0;
+        
+        if (ToastUI.Instance) {
+            var toastText = (currentWave.enemies.Count).ToString() + " new enemies";
+            ToastUI.Instance.QueueToast(toastText);
+        }
     }
 
     private Vector3 FarthestSpawnPosition() {
@@ -106,6 +113,12 @@ public class TutorialManager : MonoBehaviour
             default:
                 return null;
         }
+    }
+
+    private IEnumerator LoadNextSceneCoroutine() {
+        yield return new WaitForSeconds(loadSceneDelay);
+
+        SceneManager.LoadScene(loadSceneAfterWaves.ScenePath);
     }
 }
 

@@ -15,6 +15,9 @@ MonoBehaviour:
   mainMenuScene:
     sceneAsset: {fileID: 102900000, guid: 8a6997d0a4eeedb4280fc4307aebbd7e, type: 3}
     scenePath: Assets/Scenes/MainMenu.unity
-  gameScene:
+  tutorialScene:
     sceneAsset: {fileID: 102900000, guid: 4bc966334e0a424489deba816d6ce297, type: 3}
     scenePath: Assets/Scenes/Tutorial.unity
+  gameScene:
+    sceneAsset: {fileID: 102900000, guid: 07372423de75b304a81ff0970dfbd234, type: 3}
+    scenePath: Assets/Scenes/ColinTest.unity

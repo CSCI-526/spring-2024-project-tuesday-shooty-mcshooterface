@@ -4,10 +4,16 @@ using UnityEngine.SceneManagement;
 [CreateAssetMenu(fileName = "SceneLoader", menuName = "SceneLoader")]
 public class SceneLoader : ScriptableObject {
     public SceneReference mainMenuScene;
+    public SceneReference tutorialScene;
     public SceneReference gameScene;
 
     public void DebugTest(string testString) {
         Debug.Log("test " + testString + " at " + Time.time);
+    }
+
+    public void LoadTutorial() {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(tutorialScene.ScenePath);
     }
 
     public void LoadGameScene() {
