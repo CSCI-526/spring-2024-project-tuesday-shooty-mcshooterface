@@ -147,11 +147,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6825637531580895531}
-  radius: 5
+  radius: 3
   blastDamage:
     _useConstant: 0
     _constantValue: 0
     _variable: {fileID: 11400000, guid: f4bdcc8ef7f054c469a8d9a0b7b74aba, type: 2}
   delay: 1
-  explosionEffect: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
+  explosionEffect: {fileID: 1337198075554910, guid: 25c7aa9ad705fe143a4d71c1c8deb7d4, type: 3}
   gravity: 1000
