@@ -49,33 +49,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCollection: {fileID: 11400000, guid: eab7e3363ac714a458ff4bfb5ac26580, type: 2}
-  swarmEnemyParentPF: {fileID: 3423221536652857574, guid: 95e69a2e1a9eed74ebb68d040dfb291f, type: 3}
+  meleeEnemyCollection: {fileID: 11400000, guid: e7014a2abdcd44d829f3722f2e428d1f, type: 2}
+  swarmEnemyCollection: {fileID: 11400000, guid: 1306fcc0a33484bb3bcd8fe181ca6297, type: 2}
+  flyingEnemyCollection: {fileID: 11400000, guid: 1919b76aaea484a2dab6f54054506894, type: 2}
   meleeEnemyPF: {fileID: 5186863481464667598, guid: f656fd4523cd2f94eba75abb7f3c0830, type: 3}
+  swarmEnemyParentPF: {fileID: 3423221536652857574, guid: 95e69a2e1a9eed74ebb68d040dfb291f, type: 3}
   flyingEnemyPF: {fileID: 3435423267389870471, guid: f4e4cd69dab4b4ab096ba6ba9633c6f5, type: 3}
   spawnLocations:
   - {fileID: 5373056677548962450}
   - {fileID: 4992063537853034942}
   - {fileID: 8807903123842834113}
   - {fileID: 1976978734243738773}
-  maxEnemyCount: 5
-  spawnTime: 1.5
-  waves:
-  - maxTime: 10
-    enemies: 00000000
-  - maxTime: 10
-    enemies: 0000000000000000
-  - maxTime: 10
-    enemies: 01000000
-  - maxTime: 10
-    enemies: 0000000001000000
-  - maxTime: 10
-    enemies: 00000000010000000100000001000000
-  - maxTime: 20
-    enemies: 02000000
-  - maxTime: 20
-    enemies: 0100000002000000
-  - maxTime: 20
-    enemies: 0000000001000000020000000200000002000000
+  maxEnemyCount: 10
+  maxMeleeEnemyCount: 5
+  maxSwarmEnemyCount: 5
+  maxFlyingEnemyCount: 5
+  timeBetweenSpawns: 3
+  allWaves: {fileID: 11400000, guid: ab8348c1ac0a24e738545881b698720f, type: 2}
 --- !u!1 &1975065816390406961
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ using UnityEngine;
 public class FlyingEnemy : BaseEnemy
 {
     [SerializeField] private GameObjectCollection enemyCollection;
+    [SerializeField] private GameObjectCollection flyingEnemyCollection;
     
     public enum FlyingState
     {
@@ -43,6 +44,7 @@ public class FlyingEnemy : BaseEnemy
     {
         base.Start();
         enemyCollection.Add(gameObject);
+        flyingEnemyCollection.Add(gameObject);
         transform.position = new Vector3(transform.position.x, 5, transform.position.z);
         _curState = FlyingState.Chase;
         _plTf = PlayerCharacterController.Instance.transform;
@@ -54,6 +56,7 @@ public class FlyingEnemy : BaseEnemy
     
     private void OnDestroy() {
         enemyCollection.Remove(gameObject);
+        flyingEnemyCollection.Remove(gameObject);
     }
 
     // Update is called once per frame

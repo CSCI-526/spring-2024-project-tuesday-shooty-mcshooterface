@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCollection: {fileID: 11400000, guid: eab7e3363ac714a458ff4bfb5ac26580, type: 2}
+  swarmEnemyCollection: {fileID: 11400000, guid: 1306fcc0a33484bb3bcd8fe181ca6297, type: 2}
   _enemyStatTunable: {fileID: 11400000, guid: 2bd2ddad11caf024181ef76e02fec1cc, type: 2}
   swarmEnemy: {fileID: 5260041164143068832, guid: 7d7559122e6edd642abe582b0a69f175, type: 3}
   enemiesKilled: {fileID: 11400000, guid: c5b0b2d7029e638488289a909c164dfb, type: 2}

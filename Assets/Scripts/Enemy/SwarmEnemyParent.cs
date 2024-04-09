@@ -10,6 +10,7 @@ using UnityEngine;
 public class SwarmEnemyParent : MonoBehaviour
 {
     [SerializeField] private GameObjectCollection enemyCollection;
+    [SerializeField] private GameObjectCollection swarmEnemyCollection;
 
     [Header("References")]
     [SerializeField] EnemyStatObject _enemyStatTunable;
@@ -47,6 +48,7 @@ public class SwarmEnemyParent : MonoBehaviour
 
     private void Start() {
         enemyCollection.Add(gameObject);
+        swarmEnemyCollection.Add(gameObject);
         StartCoroutine(CheckPos());
         StartCoroutine(SetAttack());
         _swarmCenter = transform.position;
@@ -119,6 +121,7 @@ public class SwarmEnemyParent : MonoBehaviour
 
     private void OnDestroy() {
         enemyCollection.Remove(gameObject);
+        swarmEnemyCollection.Remove(gameObject);
     }
 
     void SpawnSwarm()

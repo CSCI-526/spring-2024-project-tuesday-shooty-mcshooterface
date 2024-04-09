@@ -1,10 +1,7 @@
-using System;
 using System.Collections.Generic;
 using ScriptableObjectArchitecture;
 using Scripts.Player;
-using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.WSA;
 using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
@@ -12,8 +9,11 @@ public class EnemySpawner : MonoBehaviour
     // [SerializeField] private bool spawnSwarmEnemy;
     [Header("Prefabs")]
     [SerializeField] private GameObjectCollection enemyCollection;
-    [SerializeField] private GameObject swarmEnemyParentPF;
+    [SerializeField] private GameObjectCollection meleeEnemyCollection;
+    [SerializeField] private GameObjectCollection swarmEnemyCollection;
+    [SerializeField] private GameObjectCollection flyingEnemyCollection;
     [SerializeField] private GameObject meleeEnemyPF;
+    [SerializeField] private GameObject swarmEnemyParentPF;
     [SerializeField] private GameObject flyingEnemyPF;
 
     [Header("Spawn Locations")]
@@ -21,20 +21,21 @@ public class EnemySpawner : MonoBehaviour
     
     [Header("Random Spawning Params")]
     [SerializeField] private int maxEnemyCount;
+    [SerializeField] private int maxMeleeEnemyCount;
+    [SerializeField] private int maxSwarmEnemyCount;
+    [SerializeField] private int maxFlyingEnemyCount;
+    [SerializeField] private float timeBetweenSpawns;
 
     [Header("Wave Spawning Params")] 
-    [SerializeField] private float spawnTime;
-    // [SerializeField] private float timeBetweenWaves;
-    [SerializeField] private List<Wave> waves;
+    [SerializeField] private AllWaves allWaves;
     
     // state
     private float _spawnTimer;
     private int _currentWave;
-    private float _waveTimer;
 
     // Start is called before the first frame update
     void Start() {
-        _spawnTimer = spawnTime;
+        _spawnTimer = allWaves.timeBetweenWaves;
         
         _currentWave = 0;
         SpawnCurrentWave();
@@ -42,7 +43,7 @@ public class EnemySpawner : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (_currentWave >= waves.Count) {
+        if (_currentWave >= allWaves.waves.Count) {
             // random spawning
             UpdateRandomSpawning();
         }
@@ -53,29 +54,21 @@ public class EnemySpawner : MonoBehaviour
     }
 
     private void UpdateWaveSpawning() {
-        _waveTimer -= Time.deltaTime;
-
-        if (_waveTimer <= 0) {
-            _currentWave++;
-            SpawnCurrentWave();
-        }
-        else if(enemyCollection.Count == 0) {
+        if(enemyCollection.Count == 0) {
             _currentWave++;
             SpawnCurrentWave();
         }
     }
 
     private void SpawnCurrentWave() {
-        if (_currentWave >= waves.Count) return;
+        if (_currentWave >= allWaves.waves.Count) return;
         
-        Wave currentWave = waves[_currentWave];
+        Wave currentWave = allWaves.waves[_currentWave];
 
         foreach (var enemyType in currentWave.enemies) {
             SpawnEnemy(enemyType);
         }
-
-        _waveTimer = currentWave.maxTime;
-
+        
         if (ToastUI.Instance) {
             var toastText = "Wave " + (_currentWave + 1);
             ToastUI.Instance.QueueToast(toastText);
@@ -86,7 +79,7 @@ public class EnemySpawner : MonoBehaviour
         if (_spawnTimer <= 0) {
             if (enemyCollection.Count < maxEnemyCount) {
                 SpawnRandomEnemy();
-                _spawnTimer = spawnTime;   
+                _spawnTimer = timeBetweenSpawns;   
             }
         }
         else _spawnTimer -= Time.deltaTime;
@@ -109,9 +102,15 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnRandomEnemy() {
         // choose random enemy
         var enemiesToSpawn = new List<GameObject>();
-        enemiesToSpawn.Add(meleeEnemyPF);
-        enemiesToSpawn.Add(flyingEnemyPF);
-        enemiesToSpawn.Add(swarmEnemyParentPF);
+        if (meleeEnemyCollection.Count < maxMeleeEnemyCount) {
+            enemiesToSpawn.Add(meleeEnemyPF);
+        }
+        if (flyingEnemyCollection.Count < maxFlyingEnemyCount) {
+            enemiesToSpawn.Add(flyingEnemyPF);
+        }
+        if (swarmEnemyCollection.Count < maxSwarmEnemyCount) {
+            enemiesToSpawn.Add(swarmEnemyParentPF);
+        }
         
         var randomIndex = Random.Range(0, enemiesToSpawn.Count);
         var newEnemyPrefab = enemiesToSpawn[randomIndex];
@@ -137,10 +136,4 @@ public class EnemySpawner : MonoBehaviour
                 return null;
         }
     }
-}
-
-[Serializable]
-struct Wave {
-    public float maxTime;
-    public List<EnemyType> enemies;
 }

@@ -128,6 +128,7 @@ MonoBehaviour:
   _superEffectiveTunable: {fileID: 11400000, guid: f8358c299f5b71e4ead746982db47860, type: 2}
   enemiesKilled: {fileID: 11400000, guid: c5b0b2d7029e638488289a909c164dfb, type: 2}
   enemyCollection: {fileID: 11400000, guid: eab7e3363ac714a458ff4bfb5ac26580, type: 2}
+  flyingEnemyCollection: {fileID: 11400000, guid: 1919b76aaea484a2dab6f54054506894, type: 2}
   closeRange: 10
   farRange: 20
   projectilePrefab: {fileID: 4690386665035669512, guid: 4b7764fd2bab8491ea2b8e95a3542c06, type: 3}

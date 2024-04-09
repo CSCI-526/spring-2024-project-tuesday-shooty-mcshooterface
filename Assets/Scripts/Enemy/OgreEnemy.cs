@@ -8,6 +8,7 @@ using UnityEngine;
 public class OgreEnemy : BaseEnemy
 {
     [SerializeField] private GameObjectCollection enemyCollection;
+    [SerializeField] private GameObjectCollection meleeEnemyCollection;
 
     [Header("Ogre Enemy Vars")]
     [SerializeField]
@@ -20,10 +21,12 @@ public class OgreEnemy : BaseEnemy
     protected override void Start() {
         base.Start();
         enemyCollection.Add(gameObject);
+        meleeEnemyCollection.Add(gameObject);
     }
 
     private void OnDestroy() {
         enemyCollection.Remove(gameObject);
+        meleeEnemyCollection.Remove(gameObject);
     }
 
     void Update() {
