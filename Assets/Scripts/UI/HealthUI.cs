@@ -1,6 +1,7 @@
 using Scripts.Player;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Scripts.Game
 {
@@ -10,6 +11,7 @@ namespace Scripts.Game
         public HealthComponent HealthComponent => _healthComponent;
 
         public TextMeshProUGUI healthText;
+        public Image[] healthBars;
 
         // Start is called before the first frame update
         void Start()
@@ -22,12 +24,20 @@ namespace Scripts.Game
 
         void UpdateHealthUI(in (DamageInfo _, int newHealth) args)
         {
-            healthText.text = "Health: " + args.newHealth;
+            UpdateHealthBar(args.newHealth);
         }
 
         void UpdateHealthUI(in (int healing, int newHealth) args)
         {
-            healthText.text = "Health: " + args.newHealth;
+            UpdateHealthBar(args.newHealth);
+        }
+
+        void UpdateHealthBar(int newHealth)
+        {
+            for (int i = 0; i < healthBars.Length; i++)
+            {
+                healthBars[i].gameObject.SetActive(i < newHealth);
+            }
         }
     }
 }
