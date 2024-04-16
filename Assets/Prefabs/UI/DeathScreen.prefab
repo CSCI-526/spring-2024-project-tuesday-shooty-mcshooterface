@@ -248,6 +248,7 @@ MonoBehaviour:
   _animator: {fileID: 1085234638316694883}
   _timeText: {fileID: 8168352958286671173}
   _tryAgain: {fileID: 2784921130969802184}
+  _timeNumber: {fileID: 11400000, guid: 602898730b63c1741ba3d23894ea7c8a, type: 2}
   time: 0
 --- !u!95 &1085234638316694883
 Animator:
@@ -473,7 +474,7 @@ MonoBehaviour:
   intReference:
     _useConstant: 0
     _constantValue: 0
-    _variable: {fileID: 11400000, guid: 37880c4a70757ac48ba9f7d52a3983ab, type: 2}
+    _variable: {fileID: 11400000, guid: 602898730b63c1741ba3d23894ea7c8a, type: 2}
   stringBeforeInt: 'Time: '
   stringAfterInt: 
 --- !u!1 &5749422778619672396
@@ -1089,18 +1090,18 @@ PrefabInstance:
     - target: {fileID: 9157939908892619848, guid: 7321c01f309ce2643837775383f0596e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4439268643742679867}
+      objectReference: {fileID: 11400000, guid: 6047ce0851007ba4ea862f80a541161f, type: 2}
     - target: {fileID: 9157939908892619848, guid: 7321c01f309ce2643837775383f0596e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9157939908892619848, guid: 7321c01f309ce2643837775383f0596e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReloadGame
+      value: Restart
       objectReference: {fileID: 0}
     - target: {fileID: 9157939908892619848, guid: 7321c01f309ce2643837775383f0596e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DeathPanelUI, Assembly-CSharp
+      value: SceneLoader, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9157939908892619848, guid: 7321c01f309ce2643837775383f0596e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

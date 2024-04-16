@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using ScriptableObjectArchitecture;
 
 public class DeathPanelUI : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class DeathPanelUI : MonoBehaviour
     [SerializeField] Animator _animator;
     [SerializeField] TextMeshProUGUI _timeText;
     [SerializeField] GameObject _tryAgain;
+    [SerializeField] IntVariable _timeNumber;
 
     [Header("Debug")]
     [SerializeField] float time;
@@ -20,12 +22,15 @@ public class DeathPanelUI : MonoBehaviour
         GameManager.Instance.DeathManager.OnSceneDeath += OnDeath;
         GameManager.Instance.DeathManager.OnSceneContinue += OnContinue;
 
+        _animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+
         time = 0;
     }
 
     private void Update()
     {
         time += Time.deltaTime;
+        _timeNumber.Value = Mathf.FloorToInt(time);
     }
 
     private void OnDestroy()
@@ -41,6 +46,8 @@ public class DeathPanelUI : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        Time.timeScale = 0;
 
         _animator.SetBool("Open", true);
         _animator.SetBool("TryAgain", false);
