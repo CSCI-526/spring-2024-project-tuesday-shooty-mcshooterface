@@ -35,12 +35,12 @@ namespace Scripts.Player
             _knifeModel.SetActive(true); // TODO: Temp fix
         }
 
-        private void DisableAllModels()
+        private void DisableAllModels(GameObject modelToKeep = null)
         {
-            _knifeModel.SetActive(false);
-            _launcherModel.SetActive(false);
-            _rifleModel.SetActive(false);
-            _shotgunModel.SetActive(false);
+            if (modelToKeep != _knifeModel) _knifeModel.SetActive(false);
+            if (modelToKeep != _launcherModel) _launcherModel.SetActive(false);
+            if (modelToKeep != _rifleModel) _rifleModel.SetActive(false);
+            if (modelToKeep != _shotgunModel) _shotgunModel.SetActive(false);
         }
 
         void Start()
@@ -59,7 +59,7 @@ namespace Scripts.Player
                 BulletColor.Empty => _knifeModel,
                 _ => throw new ArgumentOutOfRangeException(),
             };
-            DisableAllModels();
+            DisableAllModels(_modelToActivate);
             _modelToActivate.SetActive(true);
         }
     }
