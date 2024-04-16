@@ -27,6 +27,13 @@ public class EnemyHealthComponent : HealthComponent
         {
             OnDeath?.Invoke(damage);
             _damageVFX.DeathPlay();
+
+            // Used to trigger the kill streak
+            KillstreakSlider killStreakManager = FindObjectOfType<KillstreakSlider>();
+            if (killStreakManager != null)
+            {
+                killStreakManager.OnKill();
+            }
         }
         else
         {
