@@ -108,6 +108,7 @@ MonoBehaviour:
     _useConstant: 0
     _constantValue: 0
     _variable: {fileID: 11400000, guid: fcf55ef13f3dcce4a870c2c421051977, type: 2}
+  shotgunController: {fileID: 7501981223975588159}
   mask:
     serializedVersion: 2
     m_Bits: 129
@@ -696,6 +697,11 @@ GameObject:
 --- !u!4 &1318105980362402015 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1327134714973098180, guid: aa5dbbb9dbe3d6d48b674247706a29b6, type: 3}
+  m_PrefabInstance: {fileID: 9068334504884251}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7501981223975588159 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7510970324635691300, guid: aa5dbbb9dbe3d6d48b674247706a29b6, type: 3}
   m_PrefabInstance: {fileID: 9068334504884251}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2835171572497132280
