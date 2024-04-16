@@ -19,6 +19,9 @@ public class Shotgun : MonoBehaviour, IGun
     [SerializeField]
     private IntReference bulletDamage;
 
+    [SerializeField]
+    private Animator shotgunController;
+
     [Header("References")]
     [SerializeField]
     LayerMask mask;
@@ -29,8 +32,14 @@ public class Shotgun : MonoBehaviour, IGun
     [SerializeField]
     TrailRenderer bulletTrail;
 
+    private void Start()
+    {
+        //shotgunController = _shotgunModel.GetComponent<Animator>();
+    }
+
     public bool TryShoot()
     {
+        shotgunController.SetTrigger("onFire");
         FirePellets();
         Scripts.Game.GameManager.Instance.AudioManager.Play("ShotgunSFX");
         return true;
