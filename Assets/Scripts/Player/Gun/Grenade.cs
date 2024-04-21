@@ -11,6 +11,16 @@ public class Grenade : MonoBehaviour
     [SerializeField] private float delay = 1f;
     [SerializeField] private GameObject explosionEffect;
     [SerializeField] private float gravity = 9.8f;
+    [SerializeField] private float maxStartAngularVelocity = 10.0f;
+
+    private void Start()
+    {
+        Vector3 randomAxis = Random.onUnitSphere;
+        float randomSpeed = Random.Range(0f, maxStartAngularVelocity);
+        rb.angularVelocity = randomAxis * randomSpeed;
+
+        transform.rotation = Random.rotation;
+    }
     private void OnCollisionEnter(Collision other)
     {
         StartCoroutine(Explode());

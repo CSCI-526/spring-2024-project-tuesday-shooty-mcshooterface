@@ -9,6 +9,15 @@ public class KnifeProjectile : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private IntReference damage; // 5
+    [SerializeField] private float minStartAngularVelocity;
+    [SerializeField] private float maxStartAngularVelocity;
+    [SerializeField] Rigidbody rb;
+
+    private void Start()
+    {
+        float randomSpeed = Random.Range(minStartAngularVelocity, maxStartAngularVelocity);
+        rb.AddTorque(Vector3.up * randomSpeed, ForceMode.Impulse);
+    }
 
     void OnTriggerEnter(Collider other)
     {

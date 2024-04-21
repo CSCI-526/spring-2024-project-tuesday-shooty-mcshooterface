@@ -28,7 +28,7 @@ public class Knife : MonoBehaviour, IGun
 
         Vector3 direction = GunHelper.GetDirection(hits, _knifeModel.transform, MAX_RANGE);
         GameObject kf =
-            Instantiate(KnifePrefab, _knifeModel.transform.position, spawnTransform.rotation)
+            Instantiate(KnifePrefab, _knifeModel.transform.position, Quaternion.LookRotation(direction, Vector3.up))
             as GameObject;
         kf.GetComponent<Rigidbody>().velocity = direction * KnifeSpeed;
         GameManager.Instance.AudioManager.Play("KnifeSFX");
