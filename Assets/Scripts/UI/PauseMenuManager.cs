@@ -7,6 +7,8 @@ public class PauseMenuManager : MonoBehaviour {
     [SerializeField] private GameObject pauseMenu;
     private DefaultInputActions _inputActions;
 
+    public GameObject settingsPanel;
+
     private bool _paused;
     
     private void Start()
@@ -50,8 +52,10 @@ public class PauseMenuManager : MonoBehaviour {
     {
         pauseMenu.SetActive(false);
 
+        settingsPanel.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        
 
         Resume();
     }

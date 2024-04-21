@@ -203,7 +203,13 @@ namespace StarterAssets
 			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 		}
 
-		private void JumpAndGravity()
+        public void UpdateRotationSpeed(float newSpeed)
+        {
+            RotationSpeed = newSpeed;
+            Debug.Log("MouseSensitivity value changed: " + newSpeed);
+        }
+
+        private void JumpAndGravity()
 		{
 			if (Grounded)
 			{

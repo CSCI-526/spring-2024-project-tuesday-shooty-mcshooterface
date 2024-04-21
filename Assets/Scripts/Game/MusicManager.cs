@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class MusicManager : MonoBehaviour
 {
     [System.Serializable]
     struct AudioSourceInfo
@@ -41,7 +41,7 @@ public class AudioManager : MonoBehaviour
         else Debug.LogError("ERROR: Cannot find audio source of name " + name);
     }
 
-    public void SetSfxVolume(float volume)
+    public void SetMusicVolume(float volume)
     {
         foreach (var audio in audioList)
         {

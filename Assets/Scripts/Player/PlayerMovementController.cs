@@ -8,7 +8,7 @@ namespace Scripts.Player
         private float baseSpeed = 2f;
 
         [SerializeField]
-        private float mouseSensitivity = 50f;
+        private float mouseSensitivity = 5f;
 
         [SerializeField]
         private Rigidbody rb;
@@ -29,6 +29,11 @@ namespace Scripts.Player
 
             Vector3 move = (headPivot.transform.right * x + headPivot.transform.forward * z) * baseSpeed;
             rb.velocity = new Vector3(move.x, rb.velocity.y, move.z);
+        }
+
+        public void UpdateMouseSensitivity(float newSensitivity)
+        {
+            mouseSensitivity = newSensitivity;
         }
     }
 }
