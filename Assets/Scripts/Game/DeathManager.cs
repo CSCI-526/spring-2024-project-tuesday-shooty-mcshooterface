@@ -14,6 +14,8 @@ public class DeathManager : MonoBehaviour
     public DeathEvent OnSceneDeath;
     public DeathEvent OnSceneContinue;
 
+    private float _intialPlayerY;
+
     private enum DeathState
     {
         Alive,
@@ -25,6 +27,7 @@ public class DeathManager : MonoBehaviour
     {
         PlayerCharacterController.Instance.HealthComponent.OnDeath += OnPlayerDeath;
         _deathState = DeathState.Alive;
+        _intialPlayerY = PlayerCharacterController.Instance.transform.position.y;
     }
 
     private void Update()
@@ -38,6 +41,10 @@ public class DeathManager : MonoBehaviour
             ReloadGame();
             _deathState = DeathState.Alive;
             Time.timeScale = 1;
+        }
+
+        if (PlayerCharacterController.Instance.transform.position.y < _intialPlayerY - 10) {
+            ReloadGame();
         }
     }
     private void OnPlayerDeath(in DamageInfo damage)

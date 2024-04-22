@@ -50,7 +50,7 @@ MonoBehaviour:
     _constantValue: 0
     _variable: {fileID: 11400000, guid: 3c6493c0153dc0543b2139af714c4019, type: 2}
   bulletSpreadEnabled: 0
-  bulletSpreadVariance: {x: 0.1, y: 0.1, z: 0.1}
+  bulletSpreadVariance: {x: 0, y: 0, z: 0}
   shootingSystem: {fileID: 198234346748616026, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
   impactParticleSystem: {fileID: 0}
   bulletTrail: {fileID: 2760837023063302622, guid: 1bc22e020dea1a84ab0aed8adfa42076, type: 3}
