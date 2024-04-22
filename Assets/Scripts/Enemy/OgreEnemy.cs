@@ -70,6 +70,10 @@ public class OgreEnemy : BaseEnemy
 
     private void Attack(GameObject entity)
     {
+        // anim
+        monsterAnimator.Play("Atk");
+
+
         Vector3 toVector = entity.transform.position - transform.position;
 
         DamageInfo d = new DamageInfo(1, BulletColor.Red, GetType().Name);

@@ -148,7 +148,6 @@ public class SwarmEnemy : BaseEnemy
         }
 
 
-        
 
         RigidbodyComponent.AddForce((_parent.SwarmCenter - transform.position) * 7.0f, ForceMode.Impulse);
         StartCoroutine(ChangeColor(Color.magenta, _parent.attackIndicate / 2));
