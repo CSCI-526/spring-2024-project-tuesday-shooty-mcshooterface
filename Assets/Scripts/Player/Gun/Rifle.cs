@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using ScriptableObjectArchitecture;
 using Scripts.Game;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Scripts.Player.Gun
 {
@@ -9,6 +11,8 @@ namespace Scripts.Player.Gun
     {
         [SerializeField]
         private Transform _gunModel;
+
+        private Animator rifleController;
 
         [SerializeField]
         private IntReference bulletDamage;
@@ -31,9 +35,15 @@ namespace Scripts.Player.Gun
         [SerializeField]
         private LayerMask mask;
 
+        private void Start()
+        {
+            rifleController = _gunModel.GetComponent<Animator>();
+        }
+
         public bool TryShoot()
         {
             shootingSystem.Play();
+            rifleController.SetTrigger("onFire");
 
             Vector3 direction = GetDirection();
             Vector3 hitPosition, hitNormal;

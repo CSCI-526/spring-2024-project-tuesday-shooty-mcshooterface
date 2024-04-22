@@ -1,3 +1,4 @@
+using System;
 using Scripts.Player;
 using UnityEngine;
 
@@ -7,14 +8,23 @@ public class Launcher : MonoBehaviour, IGun
     [SerializeField]
     private GameObject _grenadeModel;
 
+    private Animator _launcherController;
+
     [SerializeField]
     private GameObject grenade;
 
     [SerializeField]
     private float range = 30f;
 
+
+    private void Start()
+    {
+        _launcherController = _grenadeModel.GetComponent<Animator>();
+    }
+
     public bool TryShoot()
     {
+        _launcherController.SetTrigger("onFire");
         Transform gunTransform = _grenadeModel.transform;
         Transform bulletSpawnTransform = PlayerCharacterController.Instance.BulletSpawnTransform;
         RaycastHit[] hits = Physics.RaycastAll(
