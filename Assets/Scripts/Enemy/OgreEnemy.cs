@@ -18,10 +18,25 @@ public class OgreEnemy : BaseEnemy
 
     private bool _isStunned = false;
 
+    // anim
+    private Animator monsterAnimator;
+
+
     protected override void Start() {
         base.Start();
         enemyCollection.Add(gameObject);
         meleeEnemyCollection.Add(gameObject);
+
+        // get anim
+        Transform monsterTransform = transform.Find("monster_orc");
+        if (monsterTransform != null)
+        {
+            monsterAnimator = monsterTransform.GetComponent<Animator>();
+        }
+        else 
+        {
+            Debug.LogError("No Animator for ORGE!");
+        }
     }
 
     private void OnDestroy() {
@@ -36,7 +51,9 @@ public class OgreEnemy : BaseEnemy
             return;
         }
 
-        Vector3 toVector = player.transform.position - transform.position;
+        Vector3 toVector_raw = player.transform.position - transform.position;
+        Vector3 toVector = new Vector3(toVector_raw.x, 0, toVector_raw.z);
+        transform.rotation = Quaternion.LookRotation(toVector.normalized);
 
         if (!_isStunned)
         {

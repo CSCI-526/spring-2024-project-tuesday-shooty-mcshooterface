@@ -67,6 +67,8 @@ public class FlyingEnemy : BaseEnemy
         _toPlayer3 = _plTf.position - transform.position;
         _toPlayer = new Vector3(_toPlayer3.x, 0, _toPlayer3.z);
 
+
+        transform.rotation = Quaternion.LookRotation(_toPlayer.normalized, transform.up);
         // dodge
         if (_curState == FlyingState.Strafe)
         {

@@ -19,6 +19,9 @@ public class SwarmEnemy : BaseEnemy
 
     public float closeRange = 10.0f;
     public float farRange = 12.0f;
+
+
+    private Animator monsterAnimator;
     protected override IEnumerator SelfDestruct()
     {
         yield return new WaitForEndOfFrame();
@@ -30,8 +33,28 @@ public class SwarmEnemy : BaseEnemy
     {
         _curState = SwarmState.Chase;
         _parent = parent;
-        _plTf = PlayerCharacterController.Instance.transform; 
+        _plTf = PlayerCharacterController.Instance.transform;
         //RigidbodyComponent.AddForce(Vector3.down * 20.0f, ForceMode.Impulse);
+
+        // get anim
+        Transform monsterTransform = transform.Find("Slime_Red");
+        if (monsterTransform != null)
+        {
+            monsterAnimator = monsterTransform.GetComponent<Animator>();
+        }
+        else
+        {
+            Debug.LogError("No Animator found for Slime!");
+        }
+
+        if (monsterAnimator != null) 
+        {
+            monsterAnimator.Play("slime_move");
+        }
+        else 
+        {
+            Debug.LogError("No Animator constructed for Slime!");
+        }
     }
 
     private void Update()
@@ -44,6 +67,9 @@ public class SwarmEnemy : BaseEnemy
         if (_plTf == null) { return; }
         Vector3 ds = _plTf.position - transform.position;
         _distance = new Vector3(ds.x, 0, ds.z);
+
+        transform.rotation = Quaternion.LookRotation(_distance.normalized);
+
         switch (_curState)
         {
             case SwarmState.Chase:
@@ -121,6 +147,9 @@ public class SwarmEnemy : BaseEnemy
             return;
         }
 
+
+        
+
         RigidbodyComponent.AddForce((_parent.SwarmCenter - transform.position) * 7.0f, ForceMode.Impulse);
         StartCoroutine(ChangeColor(Color.magenta, _parent.attackIndicate / 2));
     }
@@ -141,6 +170,10 @@ public class SwarmEnemy : BaseEnemy
         }
 
         yield return new WaitForSeconds(duration);
+
+        // anim
+        this.monsterAnimator.Play("slime_attack");
+
         GetComponent<Renderer>().material.color = startColor;
     }
 }
