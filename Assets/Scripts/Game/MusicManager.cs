@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
@@ -15,11 +17,43 @@ public class MusicManager : MonoBehaviour
 
     Dictionary<string, AudioSourceInfo> audioDictionary = new Dictionary<string, AudioSourceInfo>();
 
+    private static MusicManager instance;
+
+    private AudioSource _audioSource;
+
     private void Awake()
     {
         foreach (AudioSourceInfo info in audioList)
         {
             audioDictionary.Add(info.name, info);
+        }
+
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            instance = this;
+        }
+        DontDestroyOnLoad(this.gameObject);
+        _audioSource = GetComponent<AudioSource>();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "MainMenu")
+        {
+            audioDictionary["GameMusic"].source.Stop();
+            audioDictionary["MenuMusic"].source.Play();
+        }
+        
+        else if (scene.name == "ColinTest")
+        {
+            audioDictionary["MenuMusic"].source.Stop();
+            audioDictionary["GameMusic"].source.Play();
         }
     }
 

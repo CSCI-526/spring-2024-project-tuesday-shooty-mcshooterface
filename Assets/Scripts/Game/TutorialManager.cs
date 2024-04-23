@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ScriptableObjectArchitecture;
 using Scripts.Player;
+using Scripts.Game;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
