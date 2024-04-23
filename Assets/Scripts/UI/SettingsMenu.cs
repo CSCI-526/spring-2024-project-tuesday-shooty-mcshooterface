@@ -38,6 +38,7 @@ public class SettingsMenu : MonoBehaviour
     void Start()
     {
         settingsPanel.SetActive(false);
+        GameManager.Instance.AudioManager.SetSfxVolume(PlayerPrefs.GetFloat(SfxVolumeKey, 0.5f));
     }
 
     private void OnSfxVolumeChanged(float sfxVolume)
