@@ -1,12 +1,11 @@
-using Scripts.Game;
 using System.Collections;
-using System.Collections.Generic;
 using Scripts.Player;
 using UnityEngine;
 
 public class SwarmEnemy : BaseEnemy
 {
     SwarmEnemyParent _parent;
+
     public enum SwarmState
     {
         Chase,
@@ -14,14 +13,15 @@ public class SwarmEnemy : BaseEnemy
         Wander,
         Flee
     }
+
     private SwarmState _curState;
     private Transform _plTf; // PlayerTransfrom
 
     public float closeRange = 10.0f;
     public float farRange = 12.0f;
 
-
     private Animator monsterAnimator;
+
     protected override IEnumerator SelfDestruct()
     {
         yield return new WaitForEndOfFrame();
@@ -47,24 +47,26 @@ public class SwarmEnemy : BaseEnemy
             Debug.LogError("No Animator found for Slime!");
         }
 
-        if (monsterAnimator != null) 
+        if (monsterAnimator != null)
         {
             monsterAnimator.Play("slime_move");
         }
-        else 
+        else
         {
             Debug.LogError("No Animator constructed for Slime!");
         }
     }
 
-    private void Update()
-    {
-        
-    }
+    private void Update() { }
 
     Vector3 _distance;
-    void FixedUpdate() {
-        if (_plTf == null) { return; }
+
+    void FixedUpdate()
+    {
+        if (_plTf == null)
+        {
+            return;
+        }
         Vector3 ds = _plTf.position - transform.position;
         _distance = new Vector3(ds.x, 0, ds.z);
 
@@ -85,19 +87,21 @@ public class SwarmEnemy : BaseEnemy
                 ToFlee();
                 break;
         }
+
         CheckState();
         if (RigidbodyComponent.velocity.magnitude > _enemyStatTunable.SwarmSpeed)
         {
-            RigidbodyComponent.velocity = RigidbodyComponent.velocity.normalized * _enemyStatTunable.SwarmSpeed;
+            RigidbodyComponent.velocity =
+                RigidbodyComponent.velocity.normalized * _enemyStatTunable.SwarmSpeed;
         }
     }
 
-    void ToChase() 
+    void ToChase()
     {
         RigidbodyComponent.velocity = _distance.normalized * _enemyStatTunable.SwarmSpeed;
     }
 
-    void ToFlee() 
+    void ToFlee()
     {
         /*
         Vector3 nm = _parent.SwarmCenter - _plTf.position;
@@ -108,16 +112,20 @@ public class SwarmEnemy : BaseEnemy
         Vector3 nm = _parent.SwarmCenter - _plTf.position;
         float mag = Mathf.Abs(Vector3.Dot(_distance, nm) / nm.magnitude);
         Vector3 dir = _distance + nm.normalized * 2 * mag;
-        RigidbodyComponent.velocity =  _enemyStatTunable.SwarmSpeed * dir.normalized;
+        RigidbodyComponent.velocity = _enemyStatTunable.SwarmSpeed * dir.normalized;
     }
 
-    void ToWander() 
+    void ToWander()
     {
         //RigidbodyComponent.velocity = _parent.wanderDir * _enemyStatTunable.SwarmSpeed;
         RigidbodyComponent.AddForce(_parent.wanderDir * 10.0f, ForceMode.Force);
-        RigidbodyComponent.AddForce((_parent.SwarmCenter - transform.position) * 5.0f, ForceMode.Force);
+        RigidbodyComponent.AddForce(
+            (_parent.SwarmCenter - transform.position) * 5.0f,
+            ForceMode.Force
+        );
     }
-    void CheckState() 
+
+    void CheckState()
     {
         if (_distance.magnitude > farRange)
         {
@@ -131,25 +139,25 @@ public class SwarmEnemy : BaseEnemy
         {
             _curState = SwarmState.Flee;
         }
-    
     }
 
-    public void IndicateAttack() 
+    public void IndicateAttack()
     {
         if (_parent == null)
         {
             Debug.Log("null parent");
             return;
         }
-        else if (RigidbodyComponent == null) 
+        else if (RigidbodyComponent == null)
         {
             Debug.Log("null RB");
             return;
         }
 
-
-
-        RigidbodyComponent.AddForce((_parent.SwarmCenter - transform.position) * 7.0f, ForceMode.Impulse);
+        RigidbodyComponent.AddForce(
+            (_parent.SwarmCenter - transform.position) * 7.0f,
+            ForceMode.Impulse
+        );
         StartCoroutine(ChangeColor(Color.magenta, _parent.attackIndicate / 2));
     }
 

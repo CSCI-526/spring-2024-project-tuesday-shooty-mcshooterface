@@ -6,35 +6,50 @@ using ScriptableObjectArchitecture;
 using Scripts.Player;
 using UnityEngine;
 
-
 public class SwarmEnemyParent : MonoBehaviour
 {
-    [SerializeField] private GameObjectCollection enemyCollection;
-    [SerializeField] private GameObjectCollection swarmEnemyCollection;
+    [SerializeField]
+    private GameObjectCollection enemyCollection;
+
+    [SerializeField]
+    private GameObjectCollection swarmEnemyCollection;
 
     [Header("References")]
-    [SerializeField] EnemyStatObject _enemyStatTunable;
-    [SerializeField] SwarmEnemy swarmEnemy;
-    [SerializeField] protected IntVariable enemiesKilled;
-    [SerializeField] Transform _spawnPoint;
+    [SerializeField]
+    EnemyStatObject _enemyStatTunable;
+
+    [SerializeField]
+    SwarmEnemy swarmEnemy;
+
+    [SerializeField]
+    protected IntVariable enemiesKilled;
+
+    [SerializeField]
+    Transform _spawnPoint;
 
     [Header("Debug")]
-    [SerializeField] List<SwarmEnemy> m_list;
+    [SerializeField]
+    List<SwarmEnemy> m_list;
 
-    [SerializeField] private Vector3 _swarmCenter;
+    [SerializeField]
+    private Vector3 _swarmCenter;
 
-    [SerializeField] public Vector3 wanderDir;
+    [SerializeField]
+    public Vector3 wanderDir;
 
+    public int Wave { get; set; }
     public float attackCD = 5.0f;
     public float attackIndicate = 1.8f;
     public GameObject projectilePrefab;
-    [SerializeField] private float projectileSpeed;
+
+    [SerializeField]
+    private float projectileSpeed;
 
     // sight detect
     private bool _insight = true;
     private float _fov = 90;
 
-    public Vector3 SwarmCenter 
+    public Vector3 SwarmCenter
     {
         get { return new Vector3(_swarmCenter.x, 0, _swarmCenter.z); }
     }
@@ -42,11 +57,12 @@ public class SwarmEnemyParent : MonoBehaviour
     private void Awake()
     {
         m_list = new List<SwarmEnemy>();
-        
+
         SpawnSwarm();
     }
 
-    private void Start() {
+    private void Start()
+    {
         enemyCollection.Add(gameObject);
         swarmEnemyCollection.Add(gameObject);
         StartCoroutine(CheckPos());
@@ -83,16 +99,15 @@ public class SwarmEnemyParent : MonoBehaviour
         }
     }
 
-    IEnumerator SetAttack() 
+    IEnumerator SetAttack()
     {
-        while (true) 
+        while (true)
         {
             if (!_insight)
             {
                 Debug.Log("Swarm: Attack canceled!");
-
             }
-            else 
+            else
             {
                 for (int i = 0; i < m_list.Count; i++)
                 {
@@ -100,16 +115,18 @@ public class SwarmEnemyParent : MonoBehaviour
                 }
                 yield return new WaitForSeconds(attackIndicate);
                 Attack();
-
             }
-            yield return new WaitForSeconds(attackCD);
+
+            float mult = 0.2f + Mathf.Exp(-0.25f * (Wave + 0.9f));
+            yield return new WaitForSeconds(attackCD * mult + UnityEngine.Random.Range(0.0f, 0.5f));
         }
     }
 
-    private void Attack() 
+    private void Attack()
     {
         Transform pt = PlayerCharacterController.Instance.transform;
-        GameObject projectile = Instantiate(projectilePrefab, _swarmCenter, transform.rotation) as GameObject;
+        GameObject projectile =
+            Instantiate(projectilePrefab, _swarmCenter, transform.rotation) as GameObject;
 
         float offset = 1.0f;
         Vector3 s2p = (pt.position - _swarmCenter);
@@ -119,7 +136,8 @@ public class SwarmEnemyParent : MonoBehaviour
         Destroy(projectile, 5.0f);
     }
 
-    private void OnDestroy() {
+    private void OnDestroy()
+    {
         enemyCollection.Remove(gameObject);
         swarmEnemyCollection.Remove(gameObject);
     }
@@ -154,14 +172,23 @@ public class SwarmEnemyParent : MonoBehaviour
 
     protected virtual void SpawnDrop(Vector3 spawnPosition)
     {
-        GameObject drop = Instantiate(_enemyStatTunable.GetEnemyDrop(EnemyType.Swarm), spawnPosition, Quaternion.identity);
-        drop.transform.position = new Vector3(drop.transform.position.x, 0, drop.transform.position.z);
+        GameObject drop = Instantiate(
+            _enemyStatTunable.GetEnemyDrop(EnemyType.Swarm),
+            spawnPosition,
+            Quaternion.identity
+        );
+        drop.transform.position = new Vector3(
+            drop.transform.position.x,
+            0,
+            drop.transform.position.z
+        );
     }
 
     public int GetTotalMaxHP()
     {
         return _enemyStatTunable.SwarmNumber * _enemyStatTunable.SwarmHealth;
     }
+
     public int GetTotalCurrHP()
     {
         int output = 0;

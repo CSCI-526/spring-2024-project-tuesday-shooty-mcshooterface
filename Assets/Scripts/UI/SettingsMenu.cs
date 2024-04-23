@@ -18,6 +18,7 @@ public class SettingsMenu : MonoBehaviour
 
     void Awake()
     {
+        PlayerPrefs.SetFloat(MouseSensitivityKey, 0.5f); // set default
         mouseSensitivitySlider.value = PlayerPrefs.GetFloat(MouseSensitivityKey, 0.5f);
         musicVolumeSlider.value = PlayerPrefs.GetFloat(MusicVolumeKey, 0.5f);
         sfxVolumeSlider.value = PlayerPrefs.GetFloat(SfxVolumeKey, 0.5f);
@@ -50,11 +51,6 @@ public class SettingsMenu : MonoBehaviour
     private void OnMouseSensitivityChanged(float mouseSensitivity)
     {
         PlayerPrefs.SetFloat(MouseSensitivityKey, mouseSensitivity);
-    }
-
-    private void Update()
-    {
-        // why not
         PlayerCharacterController.Instance.SetSensitivity(
             PlayerPrefs.GetFloat(MouseSensitivityKey, 0.5f)
         );
