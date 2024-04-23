@@ -20,4 +20,4 @@ MonoBehaviour:
   grenadeVersusSwarmMultiplier: 2
   rifleVersusFlyingMultiplier: 6
   shotgunVersusFlyingMultiplier: 3
-  grenadeVersusFlyingMultiplier: 2
+  grenadeVersusFlyingMultiplier: 3

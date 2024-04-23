@@ -61,7 +61,7 @@ public class KillstreakSlider : MonoBehaviour
         timeSinceLastKill = 0;
         killStreakSlider.value = sliderDecayTime;*/
 
-        _scoreTunable.CurrKillStreak.Value++; // Increment the kill streak in ScoreTunableObject
+        //_scoreTunable.CurrKillStreak.Value++; // Increment the kill streak in ScoreTunableObject
         /*killStreakText.text = _scoreTunable.CurrKillStreak.Value + " kills"; // Update the text display*/
         timeSinceLastKill = 0;
         killStreakSlider.value = sliderDecayTime;
