@@ -34,6 +34,9 @@ namespace Scripts.Game
 
         void UpdateHealthBar(int newHealth)
         {
+            int healthBarsCount = healthBars.Length;
+            newHealth = Mathf.Min(newHealth, healthBarsCount);
+
             for (int i = 0; i < healthBars.Length; i++)
             {
                 healthBars[i].gameObject.SetActive(i < newHealth);
