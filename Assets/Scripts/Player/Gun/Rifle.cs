@@ -46,35 +46,44 @@ namespace Scripts.Player.Gun
             rifleController.SetTrigger("onFire");
 
             Vector3 direction = GetDirection();
-            Vector3 hitPosition, hitNormal;
+            Vector3 hitPosition = Vector3.zero;
+            Vector3 hitNormal = Vector3.zero;
             Transform bulletSpawnTransform = PlayerCharacterController
                 .Instance
                 .BulletSpawnTransform;
-            if (
-                Physics.Raycast(
-                    bulletSpawnTransform.position,
-                    direction,
-                    out RaycastHit hit,
-                    float.MaxValue,
-                    mask
-                )
-            )
+
+            ReadOnlySpan<RaycastHit> hits = Physics.RaycastAll(
+                bulletSpawnTransform.position,
+                direction,
+                float.MaxValue,
+                mask
+            );
+
+            if (hits.Length > 0)
             {
-                if (hit.collider != null)
+                float closest = float.MaxValue;
+                for (int i = 0; i < hits.Length; i++)
                 {
-                    HealthComponent hp = hit.transform.gameObject.GetComponent<HealthComponent>();
-                    if (hp != null)
+                    RaycastHit hit = hits[i];
+                    if (hit.collider != null)
                     {
-                        DamageInfo d = new DamageInfo(
-                            bulletDamage.Value,
-                            BulletColor.Blue,
-                            GetType().Name
-                        );
-                        hp.TakeDamage(d);
+                        HealthComponent hp =
+                            hit.transform.gameObject.GetComponent<HealthComponent>();
+                        if (hp != null)
+                        {
+                            DamageInfo d =
+                                new(bulletDamage.Value, BulletColor.Blue, GetType().Name);
+                            hp.TakeDamage(d);
+                        }
+                    }
+
+                    if (hit.distance < closest)
+                    {
+                        closest = hit.distance;
+                        hitPosition = hit.point;
+                        hitNormal = hit.normal;
                     }
                 }
-                hitPosition = hit.point;
-                hitNormal = hit.normal;
             }
             else
             {
@@ -82,14 +91,10 @@ namespace Scripts.Player.Gun
                 hitNormal = Vector3.zero;
             }
 
-                TrailRenderer trail = Instantiate(
-                    bulletTrail,
-                    _gunModel.position,
-                    Quaternion.identity
-                );
-                StartCoroutine(SpawnTrail(trail, hitPosition, hitNormal));
+            TrailRenderer trail = Instantiate(bulletTrail, _gunModel.position, Quaternion.identity);
+            StartCoroutine(SpawnTrail(trail, hitPosition, hitNormal));
 
-            Scripts.Game.GameManager.Instance.AudioManager.Play("RifleSFX");
+            GameManager.Instance.AudioManager.Play("RifleSFX");
             return true;
         }
 
