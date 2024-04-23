@@ -13,7 +13,13 @@ public class MusicManager : MonoBehaviour
         public AudioSource source;
     }
 
-    [SerializeField] List<AudioSourceInfo> audioList;
+    public static MusicManager Instance
+    {
+        get { return instance; }
+    }
+
+    [SerializeField]
+    List<AudioSourceInfo> audioList;
 
     Dictionary<string, AudioSourceInfo> audioDictionary = new Dictionary<string, AudioSourceInfo>();
 
@@ -40,6 +46,7 @@ public class MusicManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         _audioSource = GetComponent<AudioSource>();
         SceneManager.sceneLoaded += OnSceneLoaded;
+        SetMusicVolume(PlayerPrefs.GetFloat(SettingsMenu.MusicVolumeKey, 0.1f));
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -49,7 +56,6 @@ public class MusicManager : MonoBehaviour
             audioDictionary["GameMusic"].source.Stop();
             audioDictionary["MenuMusic"].source.Play();
         }
-        
         else if (scene.name == "ColinTest")
         {
             audioDictionary["MenuMusic"].source.Stop();
@@ -63,7 +69,8 @@ public class MusicManager : MonoBehaviour
         {
             audioDictionary[name].source.Play();
         }
-        else Debug.LogError("ERROR: Cannot find audio source of name " + name);
+        else
+            Debug.LogError("ERROR: Cannot find audio source of name " + name);
     }
 
     public void Stop(string name)
@@ -72,7 +79,8 @@ public class MusicManager : MonoBehaviour
         {
             audioDictionary[name].source.Stop();
         }
-        else Debug.LogError("ERROR: Cannot find audio source of name " + name);
+        else
+            Debug.LogError("ERROR: Cannot find audio source of name " + name);
     }
 
     public void SetMusicVolume(float volume)
