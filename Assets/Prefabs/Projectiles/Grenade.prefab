@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6825637531580895531}
-  radius: 3
+  radius: 2
   blastDamage:
     _useConstant: 0
     _constantValue: 0

@@ -17,6 +17,7 @@ public class KnifeProjectile : MonoBehaviour
     {
         float randomSpeed = Random.Range(minStartAngularVelocity, maxStartAngularVelocity);
         rb.AddTorque(Vector3.up * randomSpeed, ForceMode.Impulse);
+        Destroy(gameObject, 10.0f);
     }
 
     void OnTriggerEnter(Collider other)

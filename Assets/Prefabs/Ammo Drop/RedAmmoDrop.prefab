@@ -148,6 +148,10 @@ PrefabInstance:
       propertyPath: completeOnPickup
       value: 
       objectReference: {fileID: 11400000, guid: d8f862d7cec5477478044c9744e89f7f, type: 2}
+    - target: {fileID: 3384951850797487325, guid: dc1864ab2bb156545806096c9463165f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fda7f03b4ef4dd841a7f4fe026ac94c5, type: 2}
     - target: {fileID: 7544765447887727450, guid: dc1864ab2bb156545806096c9463165f, type: 3}
       propertyPath: m_Name
       value: RedAmmoDrop
