@@ -1693,6 +1693,70 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 330740800}
     m_Modifications:
+    - target: {fileID: 804076893732054484, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
+      propertyPath: meleeEnemyPF
+      value: 
+      objectReference: {fileID: 6595366150817246249, guid: b94d6e003a4f03844820c9be5b2e9402, type: 3}
+    - target: {fileID: 804076893732054484, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
+      propertyPath: flyingEnemyPF
+      value: 
+      objectReference: {fileID: 5504087671447090723, guid: 235c66dade91eca4591b4f27a0c0529a, type: 3}
+    - target: {fileID: 804076893732054484, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
+      propertyPath: waves.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 804076893732054484, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
+      propertyPath: swarmEnemyParentPF
+      value: 
+      objectReference: {fileID: 5611767884946554848, guid: 3eb16046ff8a90e4ba1ae29aaa3474ab, type: 3}
+    - target: {fileID: 804076893732054484, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
+      propertyPath: waves.Array.data[5].enemies.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 804076893732054484, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
+      propertyPath: waves.Array.data[5].nextWaveOnComplete
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 804076893732054484, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
+      propertyPath: waves.Array.data[6].enemies.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 804076893732054484, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
+      propertyPath: waves.Array.data[6].nextWaveOnComplete
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 804076893732054484, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
+      propertyPath: waves.Array.data[7].enemies.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 804076893732054484, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
+      propertyPath: waves.Array.data[7].nextWaveOnComplete
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 804076893732054484, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
+      propertyPath: waves.Array.data[6].enemies.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 804076893732054484, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
+      propertyPath: waves.Array.data[6].enemies.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 804076893732054484, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
+      propertyPath: waves.Array.data[6].enemies.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 804076893732054484, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
+      propertyPath: waves.Array.data[7].enemies.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 804076893732054484, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
+      propertyPath: waves.Array.data[7].enemies.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 804076893732054484, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
+      propertyPath: waves.Array.data[7].enemies.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4816768036412534582, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1925,6 +1989,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2048401693169313208, guid: ca622dccc3d7b1d49899b108281e414f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2301634840258292857, guid: ca622dccc3d7b1d49899b108281e414f, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3199570969999896354, guid: ca622dccc3d7b1d49899b108281e414f, type: 3}
