@@ -61,6 +61,11 @@ public class MusicManager : MonoBehaviour
             audioDictionary["MenuMusic"].source.Stop();
             audioDictionary["GameMusic"].source.Play();
         }
+        else if (scene.name == "Tutorial")
+        {
+            audioDictionary["MenuMusic"].source.Stop();
+            audioDictionary["GameMusic"].source.Play();
+        }
     }
 
     public void Play(string name)
