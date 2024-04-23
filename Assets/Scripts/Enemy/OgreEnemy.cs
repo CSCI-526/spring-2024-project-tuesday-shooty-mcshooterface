@@ -7,12 +7,16 @@ using UnityEngine;
 [Enemy]
 public class OgreEnemy : BaseEnemy
 {
-    [SerializeField] private GameObjectCollection enemyCollection;
-    [SerializeField] private GameObjectCollection meleeEnemyCollection;
+    [SerializeField]
+    private GameObjectCollection enemyCollection;
+
+    [SerializeField]
+    private GameObjectCollection meleeEnemyCollection;
 
     [Header("Ogre Enemy Vars")]
     [SerializeField]
     private float _knockbackForce = 100f;
+
     [SerializeField]
     private float _knockbackStunDuration = 1.5f;
 
@@ -20,9 +24,10 @@ public class OgreEnemy : BaseEnemy
 
     // anim
     private Animator monsterAnimator;
+    public int Wave { get; set; }
 
-
-    protected override void Start() {
+    protected override void Start()
+    {
         base.Start();
         enemyCollection.Add(gameObject);
         meleeEnemyCollection.Add(gameObject);
@@ -33,18 +38,20 @@ public class OgreEnemy : BaseEnemy
         {
             monsterAnimator = monsterTransform.GetComponent<Animator>();
         }
-        else 
+        else
         {
             Debug.LogError("No Animator for ORGE!");
         }
     }
 
-    private void OnDestroy() {
+    private void OnDestroy()
+    {
         enemyCollection.Remove(gameObject);
         meleeEnemyCollection.Remove(gameObject);
     }
 
-    void Update() {
+    void Update()
+    {
         var player = PlayerCharacterController.Instance;
         if (player == null)
         {
@@ -59,6 +66,7 @@ public class OgreEnemy : BaseEnemy
         {
             if (toVector.sqrMagnitude > 1 + _collider.radius * 2)
             {
+                float mult = 2.0f / (1.0f + Mathf.Exp(-0.5f * Wave)) - 0.572f;
                 RigidbodyComponent.velocity = toVector.normalized * _enemyStatTunable.OgreSpeed;
             }
             else
@@ -73,14 +81,15 @@ public class OgreEnemy : BaseEnemy
         // anim
         monsterAnimator.Play("Atk");
 
-
         Vector3 toVector = entity.transform.position - transform.position;
 
         DamageInfo d = new DamageInfo(1, BulletColor.Red, GetType().Name);
         entity.GetComponent<HealthComponent>().TakeDamage(d);
-        
+
         RigidbodyComponent.velocity = Vector3.zero;
-        RigidbodyComponent.AddForce((-toVector.normalized + Vector3.up).normalized * _knockbackForce);
+        RigidbodyComponent.AddForce(
+            (-toVector.normalized + Vector3.up).normalized * _knockbackForce
+        );
         StartCoroutine(Stun());
     }
 

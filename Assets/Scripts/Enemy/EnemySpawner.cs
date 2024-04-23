@@ -179,6 +179,10 @@ public class EnemySpawner : MonoBehaviour
         {
             flyingEnemy.Wave = _currentWave;
         }
+        else if (newEnemy.TryGetComponent<OgreEnemy>(out var ogreEnemy))
+        {
+            ogreEnemy.Wave = _currentWave;
+        }
     }
 
     private void SpawnEnemy(EnemyType type)
@@ -193,6 +197,10 @@ public class EnemySpawner : MonoBehaviour
         else if (newEnemy.TryGetComponent<FlyingEnemy>(out var flyingEnemy))
         {
             flyingEnemy.Wave = _currentWave;
+        }
+        else if (newEnemy.TryGetComponent<OgreEnemy>(out var ogreEnemy))
+        {
+            ogreEnemy.Wave = _currentWave;
         }
     }
 
