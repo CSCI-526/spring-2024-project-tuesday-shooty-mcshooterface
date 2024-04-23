@@ -43,6 +43,13 @@ public class BaseEnemy : MonoBehaviour
         GameManager.Instance.ScoreManager.GiveEnemyBonus();
         SpawnDrop();
         enemiesKilled.Value++;
+
+        KillstreakSlider killStreakManager = FindObjectOfType<KillstreakSlider>();
+        if (killStreakManager != null)
+        {
+            killStreakManager.OnKill();
+        }
+
         Destroy(gameObject);
     }
 
