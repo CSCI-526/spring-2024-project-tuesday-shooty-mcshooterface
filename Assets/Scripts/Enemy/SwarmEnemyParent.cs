@@ -167,6 +167,13 @@ public class SwarmEnemyParent : MonoBehaviour
         GameManager.Instance.ScoreManager.GiveEnemyBonus();
         SpawnDrop(_swarmCenter);
         enemiesKilled.Value++;
+
+        KillstreakSlider killStreakManager = FindObjectOfType<KillstreakSlider>();
+        if (killStreakManager != null)
+        {
+            killStreakManager.OnKill();
+        }
+
         Destroy(gameObject);
     }
 
