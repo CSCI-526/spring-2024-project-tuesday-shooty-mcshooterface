@@ -52,7 +52,7 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetFloat(MouseSensitivityKey, mouseSensitivity);
     }
 
-    private void Update()
+    void Update()
     {
         // why not
         PlayerCharacterController.Instance.SetSensitivity(
