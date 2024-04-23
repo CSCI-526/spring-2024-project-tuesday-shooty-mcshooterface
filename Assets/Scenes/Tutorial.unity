@@ -1710,6 +1710,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5611767884946554848, guid: 3eb16046ff8a90e4ba1ae29aaa3474ab, type: 3}
     - target: {fileID: 804076893732054484, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
+      propertyPath: waves.Array.data[3].nextWaveOnComplete
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 804076893732054484, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
+      propertyPath: waves.Array.data[4].nextWaveOnComplete
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 804076893732054484, guid: 4ad0b2d6700fee148a7376a7d9603baa, type: 3}
       propertyPath: waves.Array.data[5].enemies.Array.size
       value: 3
       objectReference: {fileID: 0}
