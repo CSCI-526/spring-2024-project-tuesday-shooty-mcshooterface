@@ -508,6 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2290cb0cd367d9478fede887cd2ae81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _firstPersonController: {fileID: 8616685848737228371}
   _knifeModel: {fileID: 2587185946936780877}
   _launcherModel: {fileID: 128627915139023029}
   _rifleModel: {fileID: 3990734487125770155}

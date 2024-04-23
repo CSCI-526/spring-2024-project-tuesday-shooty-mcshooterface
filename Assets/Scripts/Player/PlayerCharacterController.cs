@@ -1,5 +1,6 @@
 using System;
 using Scripts.Game;
+using StarterAssets;
 using UnityEngine;
 
 namespace Scripts.Player
@@ -10,7 +11,11 @@ namespace Scripts.Player
         public HealthComponent HealthComponent =>
             _healthComponent ??= GetComponent<HealthComponent>();
         public Transform BulletSpawnTransform => _bulletSpawnTransform;
+        public FirstPersonController FirstPersonController => _firstPersonController;
         private HealthComponent _healthComponent;
+
+        [SerializeField]
+        private FirstPersonController _firstPersonController;
 
         [SerializeField]
         private GameObject _knifeModel;
@@ -24,7 +29,6 @@ namespace Scripts.Player
         [SerializeField]
         private GameObject _shotgunModel;
 
-
         [SerializeField]
         private Transform _bulletSpawnTransform;
 
@@ -35,12 +39,21 @@ namespace Scripts.Player
             _knifeModel.SetActive(true); // TODO: Temp fix
         }
 
+        public void SetSensitivity(float sensitivity)
+        {
+            _firstPersonController.RotationSettingsMult = sensitivity;
+        }
+
         private void DisableAllModels(GameObject modelToKeep = null)
         {
-            if (modelToKeep != _knifeModel) _knifeModel.SetActive(false);
-            if (modelToKeep != _launcherModel) _launcherModel.SetActive(false);
-            if (modelToKeep != _rifleModel) _rifleModel.SetActive(false);
-            if (modelToKeep != _shotgunModel) _shotgunModel.SetActive(false);
+            if (modelToKeep != _knifeModel)
+                _knifeModel.SetActive(false);
+            if (modelToKeep != _launcherModel)
+                _launcherModel.SetActive(false);
+            if (modelToKeep != _rifleModel)
+                _rifleModel.SetActive(false);
+            if (modelToKeep != _shotgunModel)
+                _shotgunModel.SetActive(false);
         }
 
         void Start()

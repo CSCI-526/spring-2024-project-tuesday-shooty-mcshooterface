@@ -1,11 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using ScriptableObjectArchitecture;
-using Scripts.Player;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Scripts.Game
 {
@@ -40,7 +34,8 @@ namespace Scripts.Game
         [SerializeField]
         private DeathManager _deathManager;
 
-        [SerializeField] protected IntVariable enemiesKilled;
+        [SerializeField]
+        protected IntVariable enemiesKilled;
 
         void Awake()
         {
@@ -52,7 +47,5 @@ namespace Scripts.Game
             Cursor.lockState = CursorLockMode.Locked;
             enemiesKilled.Value = 0;
         }
-
-        
     }
 }
