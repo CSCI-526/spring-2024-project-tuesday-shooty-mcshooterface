@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyType: 1
-  _enemyStatTunable: {fileID: 11400000, guid: 2bd2ddad11caf024181ef76e02fec1cc, type: 2}
+  _enemyStatTunable: {fileID: 11400000, guid: 0bb76c06e768e0b4c975c8aca5d4928d, type: 2}
   _superEffectiveTunable: {fileID: 11400000, guid: f8358c299f5b71e4ead746982db47860, type: 2}
   enemiesKilled: {fileID: 11400000, guid: c5b0b2d7029e638488289a909c164dfb, type: 2}
   closeRange: 11

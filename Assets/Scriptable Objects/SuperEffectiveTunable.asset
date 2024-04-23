@@ -16,7 +16,7 @@ MonoBehaviour:
   shotgunVersusOgreMultiplier: 6
   grenadeVersusOgreMultiplier: 3
   rifleVersusSwarmMultiplier: 2
-  shotgunVersusSwarmMultiplier: 2
+  shotgunVersusSwarmMultiplier: 10
   grenadeVersusSwarmMultiplier: 2
   rifleVersusFlyingMultiplier: 6
   shotgunVersusFlyingMultiplier: 3
