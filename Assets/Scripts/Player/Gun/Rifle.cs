@@ -61,7 +61,7 @@ namespace Scripts.Player.Gun
 
             if (hits.Length > 0)
             {
-                float closest = float.MaxValue;
+                float furthest = 0;
                 for (int i = 0; i < hits.Length; i++)
                 {
                     RaycastHit hit = hits[i];
@@ -77,9 +77,9 @@ namespace Scripts.Player.Gun
                         }
                     }
 
-                    if (hit.distance < closest)
+                    if (hit.distance > furthest)
                     {
-                        closest = hit.distance;
+                        furthest = hit.distance;
                         hitPosition = hit.point;
                         hitNormal = hit.normal;
                     }
